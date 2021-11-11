@@ -1,3 +1,5 @@
+# See SO discussion for more info: https://stackoverflow.com/questions/69931001/install-swipl-using-docker/69932289#69932289
+
 FROM ubuntu:latest
 
 ## for apt to be noninteractive
