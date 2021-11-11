@@ -1,0 +1,18 @@
+I want to build an app using swipl+bash+node.js.
+
+I *think* that I want to use Docker (to avoid pathname issues).
+
+Trying to apt-get install swipl with a simple script fails (at the interactive input stage):
+
+Dockerfile:
+
+---
+
+FROM ubuntu:latest
+RUN   apt-get update && \
+ printf '2\n' | apt-get install -y swi-prolog
+
+RUN   export PATH=/root/.local/bin:/usr/local/bin:/root/.local/bin:$PATH
+
+COPY hello.pl ./
+ENTRYPOINT /usr/local/bin/swipl -g 'consult("hello.pl").' -g 'hello.' -g 'halt.'

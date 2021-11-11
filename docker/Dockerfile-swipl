@@ -1,10 +1,11 @@
 FROM ubuntu:latest
 RUN apt-get update && \
-  apt-get install swi-prolog
+  apt-get -y install swi-prolog
+
+RUN   export PATH=/root/.local/bin:/usr/local/bin:/root/.local/bin:$PATH
 
 COPY hello.pl ./
-ENTRYPOINT which swipl
-# ENTRYPOINT /usr/local/bin/swipl -g 'consult("hello.pl").' -g 'hello.' -g 'halt.'
+ENTRYPOINT /usr/local/bin/swipl -g 'consult("hello.pl").' -g 'hello.' -g 'halt.'
 
 # docker build . --tag hellofromswipl
 # docker stop hellofromswipl

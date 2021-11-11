@@ -1,10 +1,22 @@
 FROM ubuntu:latest
-RUN apt-get update
 
-COPY hello.bash ./
-RUN chmod a+x ./hello.bash
-ENTRYPOINT ./hello.bash
+## for apt to be noninteractive
+ENV DEBIAN_FRONTEND noninteractive
+ENV DEBCONF_NONINTERACTIVE_SEEN true
 
-# docker build . --tag hellofrombash
-# docker stop hellofrombash
-# docker run hellofrombash
+## preseed tzdata, update package index, upgrade packages and install needed software
+RUN echo "tzdata tzdata/Areas select America" > /tmp/preseed.txt ; \
+    echo "tzdata tzdata/Zones/America select Toronto" >> /tmp/preseed.txt; \
+    debconf-set-selections /tmp/preseed.txt && \
+    apt-get update && \
+    apt-get install -y tzdata
+    
+RUN   apt-get update && \
+ printf '2\n' | apt-get install -y swi-prolog
+
+RUN   export PATH=/root/.local/bin:/usr/local/bin:/root/.local/bin:$PATH
+COPY hello.pl ./
+ENTRYPOINT swipl -g 'consult("hello.pl").' -g 'hello.' -g 'halt.'
+
+# docker build . --tag hellofromswipl
+# docker run hellofromswipl

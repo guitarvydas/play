@@ -1,0 +1,11 @@
+FROM ubuntu:latest
+RUN apt-get update && \
+  apt-get install swi-prolog
+
+COPY hello.pl ./
+ENTRYPOINT which swipl
+# ENTRYPOINT /usr/local/bin/swipl -g 'consult("hello.pl").' -g 'hello.' -g 'halt.'
+
+# docker build . --tag hellofromswipl
+# docker stop hellofromswipl
+# docker run hellofromswipl
