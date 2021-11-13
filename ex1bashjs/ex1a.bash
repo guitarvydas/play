@@ -7,7 +7,7 @@ mkfifo ${start}
 ignore=ignore${RANDOM}
 mkfifo ${ignore}
 
-node hello 5>${pipe} 6<${start} &
+node hello.js 5>${pipe} 6<${start} &
 pidhello=$!
 ./display.bash 5>${ignore} 6<${pipe} &
 piddisplay=$!
