@@ -1,0 +1,20 @@
+const net = require ('net');
+const fs = require ('fs');
+
+var in1  = new net.Socket ();
+var out1 = new net.Socket ();
+
+var text = '<empty>';
+
+out1.connect ({ host: "127.0.0.1", port: 59091});
+in1.connect  ({ host: "127.0.0.1", port: 59090});
+
+in1.on ('data',
+	(buff) => {
+	    var data = buff.toString ('utf-8');
+	    out1.write (data);
+	});
+
+	      () => {
+		  out1.write (text);
+	      });

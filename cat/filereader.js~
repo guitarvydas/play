@@ -1,0 +1,10 @@
+const net = require ('net');
+const fs = require ('fs');
+
+var text = fs.readFileSync ("test.txt");
+
+var out1 = new net.Socket ();
+out1.connect ({ host: "127.0.0.1", port: 59090},
+	      () => {
+		  out1.write (text);
+	      });
