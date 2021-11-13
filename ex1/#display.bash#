@@ -1,2 +1,0 @@
-#!/bin/bash
-cat -b </dev/fd/6

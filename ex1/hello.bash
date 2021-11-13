@@ -1,1 +1,1 @@
-echo "hello" >/dev/fd/5
+echo "[bash] hello" 1>&5
