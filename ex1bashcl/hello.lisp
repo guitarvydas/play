@@ -1,0 +1,10 @@
+;; (defun main ()
+;;   (format *error-output* "[cl stderr] hello~%")
+;;   (with-open-file (f "/dev/fd/5" :direction :output :if-exists :append)
+;;     (format f "[cl 5] hello"))
+;;   (format *error-output* "[cl done]~%"))
+;; ;;  (sb-ext:exit :code 0 :abort nil))
+
+  (with-open-file (f "/dev/fd/5" :direction :output :if-exists :append)
+    (format f "[cl 5] hello"))
+  (format *error-output* "[cl done]~%")
