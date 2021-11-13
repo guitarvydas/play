@@ -2,7 +2,7 @@
 
 var fs = require ('fs');
 try {
-    fs.writeFileSync ('test.txt', '[js] hello\n')
+    fs.writeFileSync ('/dev/fd/1', '[js] hello\n')
 } catch (err) {
     throw err;
 }
