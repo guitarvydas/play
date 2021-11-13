@@ -1,18 +1,20 @@
 const net = require ('net');
 const fs = require ('fs');
+const kernel = require ('./kernel.js');
 
 var text = fs.readFileSync ("test.txt");
 
-// from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-// sleep time expects milliseconds
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
+var inputPortNumber = parseInt (process.argv [2]);
+var outputPortNumber = parseInt (process.argv [3]);
+var output = new net.Socket ();
 
-var out1 = new net.Socket ();
+kernel.waitForBaton ();
 sleep(1).then(() => {
-out1.connect ({ host: "127.0.0.1", port: 59090},
-	      () => {
-		  out1.write (text);
+    console.error (`filereader connecting ${outputPortNumber}`);
+    output.connect ({ host: "127.0.0.1", port: outputPortNumber},
+		  () => {
+		      kernel.Send (output, text);
 	      });
 });    
+kernel.sendBaton ()
+

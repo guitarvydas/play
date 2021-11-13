@@ -1,0 +1,9 @@
+81424 ttys001    0:00.00 /bin/bash ./dev.bash
+81533 ttys001    0:00.00 /bin/bash ./dev.bash
+81542 ttys001    0:00.00 /bin/bash ./dev.bash
+81549 ttys001    0:00.00 /bin/bash ./dev.bash
+81559 ttys001    0:00.00 /bin/bash ./dev.bash
+81564 ttys001    0:00.00 /bin/bash ./dev.bash
+81570 ttys001    0:00.00 /bin/bash ./dev.bash
+81575 ttys001    0:00.00 /bin/bash ./dev.bash
+81672 ttys001    0:00.00 grep dev.bash

@@ -1,0 +1,31 @@
+#!/bin/bash
+batonX=baton${RANDOM}
+batonY=baton${RANDOM}
+mkfifo ${batonX}
+mkfifo ${batonY}
+
+start=start${RANDOM}
+mkfifo ${start}
+ignore=ignore${RANDOM}
+mkfifo ${ignore}
+
+./hello.bash 5>${baton} 6<${start} &
+pidhello=$!
+./echo.bash 5>${baton} 6<${start} &
+pidhello=$!
+./display.bash 5>${ignore} 6<${baton} &
+piddisplay=$!
+
+echo "go" >${start} &
+pidstart=$!
+read <${ignore}
+pidignore=$!
+
+wait ${pidhello}
+wait ${piddisplay}
+wait ${pidstart}
+wait ${pidignore}
+rm -f ${batonX}
+rm -f ${batonY}
+rm -f ${start}
+rm -f ${ignore}

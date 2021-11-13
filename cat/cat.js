@@ -1,21 +1,25 @@
 const net = require ('net');
+const fs = require ('fs');
+const kernel = require ('./kernel.js');
 
-// from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-// sleep time expects milliseconds
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
 
-var in1 = net.createServer  ((socket) => {
+var inputPortNumber = parseInt (process.argv [2]);
+var outputPortNumber = parseInt (process.argv [3]);
+
+var outputPort = new net.Socket ();
+var input = net.createServer  ((socket) => {
     socket.on ('data', (buff) => {
 	var data = buff.toString ('utf-8');
-	out1.write (data);
+	outputPort.write (data);
     });
 });
-in1.listen (59090);
 
-var out1 = new net.Socket ();
-sleep(1).then(() => {
-    out1.connect ({ host: "127.0.0.1", port: 59091});
+input.listen (inputPortNumber);
+console.error (`cat listening on ${inputPortNumber}`);
+
+kernel.waitForBaton ();
+sleep(2).then(() => {
+    console.error (`cat connecting ${output}`);
+    outputPort.connect ({ host: "127.0.0.1", port: outputPortNumber});
 });    
-
+kernel.sendBaton ();
