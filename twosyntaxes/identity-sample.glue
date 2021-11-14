@@ -1,23 +1,23 @@
-top [kobject name @Functions kend kobject2] = [[${kobject} ${name}${Functions}${kend} ${kobject2}]]
+top [kobject name @Functions kend kobject2] = [[${kobject}${name}${Functions}${kend}${kobject2}]]
 
 function [kfunction name klp @FormalParameters krp @Statements kend kfunction2] =
-  [[${kfunction} ${name} ${klp}${FormalParameters}${krp}${Statements}${kend} ${kfunction2}]]
+  [[${kfunction}${name}${klp}${FormalParameters}${krp}${Statements}${kend}${kfunction2}]]
 
-formalParameter [name kcolon Type] = [[${name} ${kcolon} ${Type} ]]
+formalParameter [name kcolon Type] = [[${name}${kcolon}${Type} ]]
 
 statement [s] = [[${s}]]
 
 withStatement [kwith name @EqRHS @Statements kend kwith2] =
-  [[${kwith} ${name} ${EqRHS}${Statements}${kend} ${kwith2}]]
+  [[${kwith}${name}${EqRHS}${Statements}${kend}${kwith2}]]
 
 whileStatement [kwhile Expression @Statements kend kwhile2] =
-  [[${kwhile} ${Expression}${Statements}${kend} ${kwhile2}]]
+  [[${kwhile}${Expression}${Statements}${kend}${kwhile2}]]
 
 letStatement [klet name keq Expression @Statements kend klet2] =
-  [[${klet} ${name}${keq}${Expression}${Statements}${kend} ${klet2}]]
+  [[${klet}${name}${keq}${Expression}${Statements}${kend}${klet2}]]
 
 callStatement_withActuals [callOperator name klp @ActualParameters krp] =
-  [[${callOperator}${name} ${klp}${ActualParameters}${krp}]]
+  [[${callOperator}${name}${klp}${ActualParameters}${krp}]]
 callStatement_withoutActuals [callOperator name] =
   [[${callOperator}${name}]]
 
@@ -26,7 +26,7 @@ expression [CallStatement] = [[${CallStatement}]]
   type [name] = [[${name}]]
   callOperator [c] = [[${c}]]
   actualParameter [name] = [[${name}]]
-  eqRHS [keq Expression] = [[${keq} ${Expression}]]
+  eqRHS [keq Expression] = [[${keq}${Expression}]]
 
     name [nameFirst @nameRest ws] = [[${nameFirst}${nameRest}${ws}]]
     nameFirst [c] = [[${c}]]
