@@ -1,0 +1,7 @@
+
+
+// from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+// sleep time expects milliseconds
+export.sleep = function (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}

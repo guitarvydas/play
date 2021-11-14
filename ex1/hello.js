@@ -2,13 +2,14 @@
 
 const net = require ('net');
 const fs = require ('fs');
+const kernel = require ('./kernel.js');
 
 var text = "abc def";
 
 var outputPortNumber = 59090;
 var output = new net.Socket ();
 
-sleep(1).then(() => {
+kernel.waitForBaton ().then(() => {
     console.error (`hello connecting ${outputPortNumber}`);
     output.connect ({ host: "127.0.0.1", port: outputPortNumber},
 		    () => {
@@ -16,10 +17,3 @@ sleep(1).then(() => {
 			output.destroy ();
 		    });
 });    
-
-
-// from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-// sleep time expects milliseconds
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}

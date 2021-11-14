@@ -12,11 +12,3 @@ var inputPort = net.createServer ((socket) => {
 inputPort.maxConnections = 1;
 inputPort.listen (inputPortNumber);
 console.log (`stringwriter listening on ${inputPortNumber}`);
-
-
-
-// from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
-// sleep time expects milliseconds
-function sleep (time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
-}
