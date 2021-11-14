@@ -1,0 +1,22 @@
+const net = require ('net');
+const fs = require ('fs');
+
+var text = "abc def";
+
+var outputPortNumber = 59090;
+var output = new net.Socket ();
+
+sleep(1).then(() => {
+    console.error (`hello connecting ${outputPortNumber}`);
+    output.connect ({ host: "127.0.0.1", port: outputPortNumber},
+		    () => {
+			output.write (text);
+		    });
+});    
+
+
+// from https://stackoverflow.com/questions/951021/what-is-the-javascript-version-of-sleep
+// sleep time expects milliseconds
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}

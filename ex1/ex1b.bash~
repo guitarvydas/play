@@ -1,4 +1,5 @@
 #!/bin/bash
+socket=/dev/tcp/127.0.0.1/59090
 
 node stringwriter &
 pidhello=$!

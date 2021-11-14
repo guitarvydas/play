@@ -1,0 +1,2 @@
+import os
+buffer = os.read(5, 80000)

@@ -9,7 +9,7 @@ mkfifo ${ignore}
 
 python hello.py 5>${pipe} 1>&5 6<${start} &
 pidhello=$!
-./display.bash 5>${ignore} 6<${pipe} &
+python display.py 5>${ignore} 6<${pipe} &
 piddisplay=$!
 
 echo "go" >${start} &
