@@ -1,0 +1,69 @@
+Notation {
+  top = kObject name
+          function+ 
+        kEnd kObject
+
+  function = kFunction name kLpar formalParameter+ kRpar
+               statement+
+             kEnd kFunction
+
+  formalParameter = name kColon type
+
+  statement = withStatement | whileStatement | letStatement | callStatement
+
+  withStatement = kWith name eqRHS?
+                    statement+
+                  kEnd kWith
+
+  whileStatement = kWhile expression
+                     statement+
+                   kEnd kWhile 
+
+  letStatement = kLet name kEq expression
+                    statement+
+                 kEnd kLet 
+
+  callStatement =   callOperator name kLpar actualParameter+ kRpar -- withActuals
+                  | callOperator name                          -- withoutActuals
+
+  expression = callStatement
+
+    type = name
+    callOperator = kAt | kQuestion 
+    actualParameter = name
+    eqRHS = kEq expression    
+
+      name = nameFirst nameRest* ws
+      nameFirst = letter
+      nameRest = alnum | "-"
+
+        ws = whiteSpace*
+        whiteSpace = " " | "\t" | "\n"
+
+        kObject = "object" ws
+        kEnd = "end" ws
+        kFunction = "function" ws
+        kColon = ":" ws
+        kWith = "with" ws
+        kWhile = "while" ws
+        kLet = "let" ws
+        kAt = "@" ws
+        kQuestion = "?" ws
+        kLpar = "(" ws  
+        kRpar = ")" ws  
+        kEq = "=" ws
+}
+
+// synonyms:
+// kObject        kObject
+// kEnd           kEnd
+// kFunction      kFunction
+// kColon             kColon
+// kWith          kWith
+// kWhile         kWhile
+// kLet           kLet
+// kAt             kAt
+// kQuestion             kQuestion
+// kLpar             kLpar
+// kRpar             kRpar
+// kEq             kEq

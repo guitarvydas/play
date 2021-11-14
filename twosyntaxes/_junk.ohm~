@@ -1,0 +1,6 @@
+Notation {
+  name = nameFirst nameRest*
+  nameFirst = letter
+  nameRest = alnum | "-"
+
+}

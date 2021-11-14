@@ -1,0 +1,37 @@
+Top [kobject name @Functions kend kobject] = [[${kobject}${name}${Functions}${kend}${kobject}]]
+
+Function [kfunction name klp @FormalParameters krp @Statements kend kfunction] =
+[[${kfunction}${}${}${}${}${kend}${kfunction}]]
+= "function" name "(" FormalParameter+ ")" 
+	     Statement+
+	   "end" "function"
+
+FormalParameter = name ":" name
+
+Statement = WithStatement | WhileStatement | LetStatement | CallStatement
+
+WithStatement = "with" name EqRHS?
+		  Statement+
+		"end" "with"
+
+WhileStatement = "while" Expression
+		   Statement+
+		 "end" "while"
+
+LetStatement = "let" name "=" Expression
+		  Statement+
+	       "end" "let"
+
+CallStatement =   ("@" | "?") name "(" ActualParameter+ ")" -- withActuals
+		| ("@" | "?") name                          -- withoutActuals
+
+Expression = CallStatement
+
+  ActualParameter = name
+  EqRHS = "=" Expression    
+
+    name = nameFirst nameRest*
+    nameFirst = letter
+    nameRest = alnum | "-"
+
+}

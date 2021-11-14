@@ -1,0 +1,12 @@
+#!/bin/bash
+baton=baton${RANDOM}
+mkfifo ${baton}
+
+./hello.bash 5>${baton} &
+pidhello=$!
+./display.bash 6<${baton} &
+piddisplay=$!
+
+wait ${pidhello}
+wait ${piddisplay}
+rm ${baton}

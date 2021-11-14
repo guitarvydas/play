@@ -1,0 +1,14 @@
+Notation {
+
+  CallStatement =   ("@" | "?") name "(" ActualParameter+ ")" -- withActuals
+                  | ("@" | "?") name                          -- withoutActuals
+
+  Expression = CallStatement
+
+    ActualParameter = Expression
+
+      name = nameFirst nameRest*
+      nameFirst = letter
+      nameRest = alnum | "-"
+
+}

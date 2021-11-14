@@ -1,0 +1,50 @@
+top [kobject name @Functions kend kobject2] = [[${kobject} ${name}${Functions}${kend} ${kobject2}]]
+
+function [kfunction name klp @FormalParameters krp @Statements kend kfunction2] =
+  [[${kfunction} ${name} ${klp}${FormalParameters}${krp}${Statements}${kend} ${kfunction2}]]
+
+formalParameter [name kcolon Type] = [[${name} ${kcolon} ${Type} ]]
+
+statement [s] = [[${s}]]
+
+withStatement [kwith name @EqRHS @Statements kend kwith2] =
+  [[${kwith} ${name} ${EqRHS}${Statements}${kend} ${kwith2}]]
+
+whileStatement [kwhile Expression @Statements kend kwhile2] =
+  [[${kwhile} ${Expression}${Statements}${kend} ${kwhile2}]]
+
+letStatement [klet name keq Expression @Statements kend klet2] =
+  [[${klet} ${name}${keq}${Expression}${Statements}${kend} ${klet2}]]
+
+callStatement_withActuals [callOperator name klp @ActualParameters krp] =
+  [[${callOperator}${name} ${klp}${ActualParameters}${krp}]]
+callStatement_withoutActuals [callOperator name] =
+  [[${callOperator}${name}]]
+
+expression [CallStatement] = [[${CallStatement}]]
+
+  type [name] = [[${name}]]
+  callOperator [c] = [[${c}]]
+  actualParameter [name] = [[${name}]]
+  eqRHS [keq Expression] = [[${keq} ${Expression}]]
+
+    name [nameFirst @nameRest ws] = [[${nameFirst}${nameRest}${ws}]]
+    nameFirst [c] = [[${c}]]
+    nameRest [c] = [[${c}]]
+
+ws [@cs] = [[${cs}]]
+whiteSpace [c] = [[${c}]]
+
+kObject [k ws] = [[${k}${ws}]]
+kEnd [k ws] = [[${k}${ws}]]
+kFunction [k ws] = [[${k}${ws}]]
+kColon [k ws] = [[${k}${ws}]]
+kWith [k ws] = [[${k}${ws}]]
+kWhile [k ws] = [[${k}${ws}]]
+kLet [k ws] = [[${k}${ws}]]
+kAt [k ws] = [[${k}${ws}]]
+kQuestion [k ws] = [[${k}${ws}]]
+kLpar [k ws] = [[${k}${ws}]]
+kRpar [k ws] = [[${k}${ws}]]
+kEq [k ws] = [[${k}${ws}]]
+

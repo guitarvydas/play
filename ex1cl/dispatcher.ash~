@@ -1,0 +1,20 @@
+class connection {
+  sender : asc
+  receiver : asc
+  sender-fifo : [message]
+  receiver-fifo : [message]
+}
+  
+class asc {
+  initializer : function ()
+  react : function (message)
+}
+
+class asc-leaf inherits asc {
+}
+
+class asc-container inherits asc {
+  children : [asc]
+  connections : [connection]
+}
+  
