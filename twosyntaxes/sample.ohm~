@@ -1,3 +1,0 @@
-Notation {
-  Top = "object" id FormalParameters ObjectBody "end" "object"
-}

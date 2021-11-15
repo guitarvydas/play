@@ -8,5 +8,5 @@
 // for now, /dev/fd/3 and /dev/fd/4 are reserved for kernel usage
 // for now, we ignore /dev/fd/0, /dev/fd/1 and /dev/fd/2
 
-// the above program generates 1 shell script and uses 1 bash commands (echo) twice
+// the above program generates 1 shell script and uses 2 bash commands (echo and cat)
 hello -> display
