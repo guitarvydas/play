@@ -1,0 +1,2 @@
+hello:-
+    format("SWIPL~n").
