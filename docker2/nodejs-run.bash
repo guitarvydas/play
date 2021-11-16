@@ -9,8 +9,6 @@
 
 docker build -t simple .
 file1=../tests/test1.txt
-file2=../tests/test2.txt
 fullname=`realpath ${file1}`
-fullname2=`realpath ${file2}`
 dir=`dirname ${fullname}`
-docker run -v "${dir}/:${dir}" simple ${fullname} ${fullname2}
+docker run -v "${dir}/:${dir}" simple ${fullname}
