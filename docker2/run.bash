@@ -11,5 +11,4 @@ docker build -t simple .
 file1=../tests/test1.txt
 fullname=`realpath ${file1}`
 dir=`dirname ${fullname}`
-fname=`basename ${file1}`
-docker run -v "${dir}/:/app" simple /app/${fname}
+docker run -v "${dir}/:${dir}" simple ${fullname}
