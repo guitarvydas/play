@@ -1,2 +1,4 @@
 :- consult(hello1).
-hello.
+hello:-
+    nl(user_output),
+    hello1.
