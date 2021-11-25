@@ -7,10 +7,10 @@
 # fileInMyEnvironment=`realdir $1`
 # docker run -v "${testdir}/:/app" simple test1.txt
 
-docker build -t simple .
+docker build -t pt .
 file1=../tests/test1.txt
 file2=../tests/test2.txt
 fullname=`realpath ${file1}`
 fullname2=`realpath ${file2}`
 dir=`dirname ${fullname}`
-docker run -v "${dir}/:${dir}" simple ${fullname} ${fullname2}
+docker run -v "${dir}/:${dir}" pt ${fullname} ${fullname2}
