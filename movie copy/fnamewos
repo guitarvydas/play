@@ -1,0 +1,9 @@
+#!/bin/sh
+# full name without spaces or dots, except for extension
+originalname=$1
+dname=`echo $PWD`
+#dname=`dirname "$originalname"`
+tname=`basename "$originalname" .mov`
+newname=`echo "${dname}/${tname}" | tr ' ' '_' | tr '.' '_'`
+echo ${newname}.mov
+

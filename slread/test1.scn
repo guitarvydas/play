@@ -1,0 +1,9 @@
+defs scanner provides:[initialize read] returns:{object error} uses:[cons consatom $NIL]
+  var text
+  var index
+  entry initialize (string)
+	 text = string
+         index = 0
+  def nextchar ()
+    cond { (terminated?) (setf index -1) $NIL)
+           else          (let c <- text[index] in { (incf index) c) } }

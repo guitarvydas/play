@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-int main (int argc, char **argv) {
+int main2 (int argc, char **argv) {
     printf ("hello\n");
     printf ("goodbye\n");
+    return 2;
 }

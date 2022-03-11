@@ -1,0 +1,26 @@
+S {
+  Main = name+
+
+  name  (a name)
+    = nameFirst nameRest*
+
+  nameFirst
+    = "_"
+    | letter
+
+  nameRest
+    = "_"
+    | alnum
+
+  ident  (an identifier)
+    = name
+
+  token = name | operator | punctuation | brace
+
+  operator = "<:" | "=" | ":=" | "+=" | "*" | "+" | "?" | "~" | "&"
+
+  punctuation = "<" | ">" | "," | "--"
+  
+  brace = "{" | "}"
+}
+

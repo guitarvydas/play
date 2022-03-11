@@ -1,0 +1,47 @@
+S {
+  Main = "defs" ident Provides Returns Uses Body
+  Provides = provides ":" "[" ident* "]"
+  Returns = "returns" ":" CrossProductType
+  Uses = "uses" ":" "[" ident* "]"
+  Body
+
+  CrossProductType = "{" ident+ "}"
+  Body
+    = Var
+    | Entry
+    | Def
+    | Let
+    | Cond
+    | Expression
+
+  Var = "var" ident
+  Entry = "entry" ident Params
+  Def = "def" ident Params
+  Let = "let" ident "<-" Expression "in" Body
+  Cond = "cond" "{" ExpressionPair+ "else" Expression "}"
+
+  Expression
+   = "{" Expression "}"
+   | NestedParenExpression
+
+  NestedParenExpression
+  = "(" NestedParenExpression ")"
+  | atom+
+
+  ExpressionPair = Expression Expression
+  Params = "(" ")" | "(" ident+ ")"
+  atom = ident | string
+
+
+
+  string = dq (~DQ any)* dq
+  dq = "\""
+  ident = identChar+ &separator
+  identChar = ~bracket ~ws any
+  ws = blank | tab | nl
+  blank = " "
+  tab = "\t"
+  nl = "\n"
+  bracket = "{" | "}" | "(" | ")" | "<" | ">"
+  separator = bracket | ":"
+}
