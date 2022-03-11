@@ -1,3 +1,8 @@
 #!/bin/bash
-echo hello >/tmp/hello
-./sub.bash </tmp/hello
+set -x
+echo top
+duct=/tmp/ductHello
+rm -f ${duct}
+mkfifo ${duct}
+echo helloduct >${duct} &
+./sub.bash <${duct}
