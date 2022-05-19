@@ -19,39 +19,64 @@ function patternMatch (grammar, phrase) {
     }
 }
 
+function acar (a) { return a [0]; }
+function acdr (a) { return a.slice (1); }
+
+function Cell (first, second) { this.car = first; this.cdr = second; }
+function car (cell) { return cell.car; }
+function cdr (cell) { return cell.cdr; }
+function cons (v, cell) { 
+    var newcell;
+    if (cell) {
+        newcell = new Cell (v, cell);
+    } else {
+        newcell = new Cell (v, null);
+    }
+    return newcell;
+}
+function lookup (name, cell) {
+    if (cell) {
+        var first = car (cell);
+        if (first [name]) {
+            return first [name];
+        } else {
+            return lookup (name, cdr (cell));
+        }
+    } else {
+        return undefined;
+    }
+}
+
 const opActions = {
     Main : function (_cs) { _cs.op (215); },
     Chars: function (_cs) { var depth = this.args.depth; console.log (`Chars depth=${depth}`); _cs.op (depth + 1);},
     char: function (_c) { var depth = this.args.depth; console.log (`char=${_c.op (depth)} depth=${depth}`); },
     _terminal: function () { return this.sourceString; },
     _iter: function (...children) {
-	var depth = this.args.depth;
-	return recursive_iter (children, depth);
+        var valueStack = new Cell ({ depth: this.args.depth }, null);
+        return recursive_iter (children, valueStack);
     }
 };
 
-function recursive_iter (child_array, depth) {
+function recursive_iter (child_array, valueStack) {
     if (0 == child_array.length) {
-	return;
+        return;
     } else {
-	var frontChild = car (child_array);
-	frontChild.op (depth);
-	recursive_iter (cdr (child_array), depth + 1);
+        var depth = lookup ('depth', valueStack);
+        var frontChild = acar (child_array);
+        frontChild.op (depth);
+        recursive_iter (acdr (child_array), cons ({depth: depth + 1}, valueStack));
     }
 }
 
-function car (a) { return a [0]; }
-function cdr (a) { return a.slice (1); }
-
-
 function do_op (cst, walker_skeleton, actions) {
     if (cst.succeeded ()) {
-	walker_skeleton.addOperation ('op(depth)', actions);
+        walker_skeleton.addOperation ('op(depth)', actions);
         let treeWalker = walker_skeleton (cst);
         let result = treeWalker.op (null);
-	return result;
+        return result;
     } else {
-	return "Parse FAILED";
+        return "Parse FAILED";
     }
 }
 
