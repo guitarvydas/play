@@ -22,30 +22,11 @@ function patternMatch (grammar, phrase) {
 function acar (a) { return a [0]; }
 function acdr (a) { return a.slice (1); }
 
-// function Cell (first, second) { this.car = first; this.cdr = second; }
-// function car (cell) { return cell.car; }
-// function cdr (cell) { return cell.cdr; }
-// function cons (v, cell) { 
-//     var newcell;
-//     if (cell) {
-//         newcell = new Cell (v, cell);
-//     } else {
-//         newcell = new Cell (v, null);
-//     }
-//     return newcell;
-// }
-// function lookup (name, cell) {
-//     if (cell) {
-//         var first = car (cell);
-//         if (first [name]) {
-//             return first [name];
-//         } else {
-//             return lookup (name, cdr (cell));
-//         }
-//     } else {
-//         return undefined;
-//     }
-// }
+function cloneModify (name, v, obj) {
+    var newobj = obj;
+    obj [name] = v;
+    return newobj;
+}
 
 const opActions = {
     Main : function (_cs) { _cs.op (215); },
@@ -64,9 +45,7 @@ function recursive_iter (child_array, valueStack) {
         var depth = valueStack.depth;
         var frontChild = acar (child_array);
         frontChild.op (depth);
-	var newStack = valueStack;
-	newStack.depth = depth + 1;
-        recursive_iter (acdr (child_array), newStack);
+        recursive_iter (acdr (child_array), cloneModify ('depth', depth + 1, valueStack));
     }
 }
 
