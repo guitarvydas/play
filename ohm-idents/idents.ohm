@@ -1,0 +1,8 @@
+idents {
+Main_Syntactic              =        ident        ident
+main_lexical_like_syntactic = spaces ident spaces ident
+ident = letter+
+space := " " | "\n"
+}
+
+// input "p q"

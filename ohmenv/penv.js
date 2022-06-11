@@ -18,6 +18,14 @@ function patternMatch (grammar, phrase) {
         return [ matchResult, dontcare ];
     }
 }
+const opActions = {
+    Main : function (_cs) { _cs.op (215); },
+    Chars: function (_cs) { var depth = this.args.depth; console.log (`Chars depth=${depth}`); _cs.op (depth + 1);},
+    char: function (_c) { var depth = this.args.depth; console.log (`char=${_c.op (depth)} depth=${depth}`); },
+    _terminal: function () { return this.sourceString; },
+    _iter: function (...children) { return recursive_iter (children, { depth: this.args.depth }); }
+};
+
 
 function acar (a) { return a [0]; }
 function acdr (a) { return a.slice (1); }
@@ -27,16 +35,6 @@ function cloneModify (name, v, obj) {
     obj [name] = v;
     return newobj;
 }
-
-const opActions = {
-    Main : function (_cs) { _cs.op (215); },
-    Chars: function (_cs) { var depth = this.args.depth; console.log (`Chars depth=${depth}`); _cs.op (depth + 1);},
-    char: function (_c) { var depth = this.args.depth; console.log (`char=${_c.op (depth)} depth=${depth}`); },
-    _terminal: function () { return this.sourceString; },
-    _iter: function (...children) {
-        return recursive_iter (children, { depth: this.args.depth });
-    }
-};
 
 function recursive_iter (child_array, valueStack) {
     if (0 == child_array.length) {
