@@ -1,0 +1,25 @@
+text [@macro] = [[~{macro}]]
+
+macro [x] = [[~{x}]]
+  
+ShowPhrase [kShow filename kat Coordinate] = [[~{kShow}~{filename}~{kat}~{Coordinate}]]
+MovePhrase [kMove filename kto Coordinate TimeSpan] = [[~{kMove}~{filename}~{kto}~{Coordinate}~{TimeSpan}]]
+WaitPhrase [kWait number kframes] = [[~{kWait}~{number}~{kframes}]]
+FadeToBlackPhrase [kFade kto kblack TimeSpan] = [[~{kFade}~{kto}~{kblack}~{TimeSpan}]]
+JumpPhrase [kJump ChapterName] = [[~{kJump}~{ChapterName}]]
+CHELNAspoken [kCHELNA Spoken] = [[~{kCHELNA}~{Spken}]]
+MEspoken [kME Spoken] = [[~{kME}~{Spoken}]]
+RADIOspoken [kRADIO Spoken] = [[~{kRADIO}~{Spoken}]]
+
+Coordinate [number1 kx number2] = [[~{number1}~{kx}~{number2}]]
+TimeSpan [kover number kframes] = [[~{kover}~{number}~{kframes}]]
+ChapterName [name] = [[~{name}]]
+filename [name] = [[~{name}]]
+
+Spoken [@cs] = [[${cs}]]
+spokenchar [c] = [[${c}]]
+
+name [nameFirst @nameRest] = [[~{nameFirst}~{nameRest}]]
+nameFirst [letter] = [[~{letter}]]
+nameRest [c] = [[~{c}]]
+number [@kminus @digit] = [[~{kminus}~{kdigit}]]

@@ -1,0 +1,20 @@
+ifgrammar {
+Main = Statement
+ThenPart = StatementBlock
+ElsePart = "else" StatementBlock
+Statement = 
+  | IfStatement
+  | ReturnStatement
+IfStatement = "if" "(" Expression ")" ThenPart ElsePart? "end" "if"
+ReturnStatement = "return" Expression
+StatementBlock =
+  | "{" StatementBlock+ "}" -- compound
+  | Statement -- simple
+Expression = 
+  | ident Parameters -- parameterized
+  | ident -- simple
+Parameters = "(" ListOf<ident, ","> ")"
+ident = ident1 identRest*
+ident1 = letter | "_"
+identRest = alnum | ident1
+}

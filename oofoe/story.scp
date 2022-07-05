@@ -1,0 +1,386 @@
+
+
+@PROLOG
+
+: Show prolog_bg at 0x-550. Move prolog_bg to 0x0
+over 300 frames. Wait 150 frames.
+
+		    CHEL:NA
+	  The last time I saw
+	  her... She was smiling. As
+	  if she had some secret that
+	  she couldn't wait to tell me.
+	  
+	  And then, in a sudden wash of
+	  red, she was gone.
+	  
+	  Gone as if she had never stood
+	  beneath the uncaring stars.
+
+: fade to black over 40 frames. Jump INTRO.
+
+@INTRO
+
+Pan across starfield to find hulking silhouette of
+DERELICT. Tiny light being drawn towards it.
+
+: Show intro_bg.png at 0x0. Show
+intro_derelict.png at 800x-500. Move intro_bg to
+0x-450 over 250 frames. Move intro_derelict to
+234x-133 over 250 frames. Wait 90 frames.
+
+		    RADIO
+	  MAYDAY... MAYDAY... MAYDAY... EXPLORER
+	  SHIP _GOLD BUG_, INVESTIGATING
+	  ALIEN CONSTRUCTION IN TAU
+	  SECTOR... SHIP SEIZED BY UNKNOWN
+	  FORCE, DRAWING US
+	  IN... ENGINES USELESS, WE
+	  CANNOT ESCAPE. TWO SOULS ON
+	  BOARD. MAYDAY... MAYDAY... MAYDAY...
+
+: Show intro_goldbug_0.png at -200x300. Move
+intro_goldbug_0 to 300x200 over 150 frames. Wait
+150. Fade to white over 10 frames. Jump to ENTRANCE.
+
+@ENTRANCE
+
+EXPLORER standing in front of giant DERELICT
+entrance lock. Wreckage of GOLD BUG visible to
+right, with some sort of techno-organic tentacle
+wrapped around it.
+
+: Dress entrance. Enter chel at 660x355 is
+IDLE. Enter hero at 750x335 is IDLE.
+
+:TOUCH GOLD BUG
+
+		    ME
+	  Goldie's a complete wreck. That
+	  tentacle really did a number
+	  on us. She's never going to
+	  fly again.
+
+	  Where did CHEL:NA go? I hope
+	  she didn't get hurt!
+
+		    CHEL:NA
+	  Here I am, Captain! I was
+	  checking the reactor and engines.
+
+		    ME
+	  Oh, OK. What does it look like?
+
+		    CHEL:NA
+	  The reactor is still good. The
+	  engines are burned out from
+	  when you tried to escape the
+	  tongue thing. 
+
+		    ME
+	  It was a tentacle.
+
+		    CHEL:NA
+	  Well, actually both are
+	  muscular hydrostats, so same
+	  difference.
+
+		    ME
+	  Are you telling me I have a
+	  tentacle in my mouth? 
+
+:TOUCH DERELICT LOCK
+
+		    ME
+	  This looks like some sort of
+	  door... Maybe we can get in
+	  here and figure out what's
+	  going on.
+
+		    CHEL:NA
+	  There's a wierd thing over
+	  here. Maybe it's a control for
+	  the door?
+
+:TOUCH CONTROL ORB
+
+		    CHEL:NA
+	  It seems to be some sort of
+	  switch matrix, what if you try
+	  just flipping all of them to
+	  their alternate position...?
+
+Present puzzle interface with simple 2x3
+matrix. Once matrix is solved, 
+
+				                          FADE TO
+
+ENTRANCE HALL
+
+A vast entrance hall. Two exits slope away to left
+and right (no exit back to outside). A charred and
+broken orb lies on the floor.
+
+		    ME
+	  This place is huge! These
+	  people must have been giants!
+
+		    CHEL:NA
+	  There is artificial gravity,
+	  Skipper.  It's just a bit less
+	  than Earth-standard 1G. If
+	  their biology was anything
+	  like yours, they might have
+	  been tall, but definitely not
+	  giants.
+
+		    ME
+	  Either way, they built
+	  big. Looks like there's two
+	  passageways out of here.
+
+:TOUCH BROKEN ORB
+
+		    CHEL:NA
+	  It appears to be some sort of
+	  data storage device. It must
+	  have held a lot of
+	  information, it has a very
+	  dense structure.
+
+		    ME
+	  It looks broken?
+
+		    CHEL:NA
+	  Very broken. However sometimes
+	  a broken mechanism can show how
+	  a functional one works. If we
+	  find another like this, it
+	  could be useful.
+
+		    ME
+	  Maybe you can find some
+	  replacement memories for the
+	  ones that got wiped.
+
+		    CHEL:NA
+	  Well, unlike humans, at least
+	  I didn't have to learn how to
+	  go to the bathroom!
+
+SKELETON ROOM
+
+A body lies crumpled in a heap near one of the
+exits. It's wearing a ragged corporate
+jumpsuit, skull visible.
+
+		    ME
+	  What? Is that...
+
+		    CHEL:NA
+	  99% probability that's human
+	  remains, Chief!
+
+		    ME
+	  Make that 100%. There's a corp
+	  logo I recognize. I guess I
+	  wasn't the only one to buy
+	  these coordinates from the
+	  Travellers. But why didn't we
+	  see his ship?
+
+		    CHEL:NA
+	  This is a big place, maybe he
+	  came in from somewhere else.
+
+		    ME
+	  That's true...
+
+		    CHEL:NA
+	  Or maybe the tongue ate it.
+
+		    ME
+	  Tentacle!
+
+:TOUCH SKELETON
+
+		    ME
+	  Why wasn't he wearing an
+	  environment suit? It looks
+	  like he had a log recorder
+	  with him... Where's the play
+	  button?
+
+		    LOG
+	  Day 37. We lost Anna and Tom,
+	  they just never came
+	  back. Maybe to those damn
+	  triangle things. And Sal,
+	  yesterday, she just walked
+	  away.
+
+	  Can't really blame her. We
+	  haven't had any food for the
+	  last two weeks. 
+
+	  The ghost is back now. I think
+	  it's just here to watch me
+	  die.
+
+		    ME
+	  So, it was a party of four.
+
+		    CHEL:NA
+	  What did he mean about a
+	  ghost, Chief?
+
+:TOUCH CHEL:NA
+
+		    CHEL:NA
+	  You humans look really
+	  different without all the
+	  squishy bits.
+	  
+
+ROOM EGG 1
+
+This room is littered with ranks of broken
+ovoids. Not one is left untouched.
+
+		    ME
+	  What is this mess?
+
+		    CHEL:NA
+	  Some sort of organic remains,
+	  Boss.
+
+		    ME
+	  You mean, like... eggs?
+
+		    CHEL:NA
+	  Unknown. They are similar in
+	  shape to hard shell eggs laid
+	  by certain creatures on Earth,
+	  but larger than any of those.
+
+	  And they're not white, they're
+	  green.
+
+GNOMON flickers into phase and drifts across room,
+towards exit to ROOM EGG 2.
+
+		    ME
+	  What the...?
+
+		    CHEL:NA
+	  That... creature... it seemed
+	  familiar somehow.
+
+:TOUCH CHEL:NA
+
+		    CHEL:NA
+	  I'm sure I've seen that
+	  creature somewhere before...
+
+ROOM EGG 2
+
+Another large egg room. This one has a
+alien sprawled in pieces like an
+exploded lobster.
+
+		    ME
+	  It's one of the aliens.
+
+	  Or what's left of him, anyway.
+
+		    CHEL:NA
+	  Scan matches organic materials
+	  in these remains with those in
+	  the "eggs".
+
+		    ME
+	  So the Ship builders, or
+	  pilots were born from eggs.
+
+		    CHEL:NA
+	  Or they ate a lot of them
+	  scrambled.
+
+		    ME
+	  ...
+
+:TOUCH CORPSE
+
+		    ME
+	  This is an exoskeleton. Like a
+	  giant bug or something...
+
+		    CHEL:NA
+	  Reconstructed body plan is
+	  similar to an Earth cicada
+	  without wings. 
+
+		    ME
+	  But it's so big. Bugs on Earth
+	  can't get this big because
+	  they don't have lungs. Maybe
+	  these do, or the normal
+	  atmosphere is a lot higher
+	  pressure.
+
+	  Do we have an atmosphere now?
+
+		    CHEL:NA
+	  Current atmosphere is a
+	  nitrogen/oxygen mix. You can
+	  breathe it, no problem.
+
+		    ME
+	  I think I'll keep the suit 
+	  for now.
+
+:TOUCH ORB
+
+		    CHEL:NA
+	  That's another Orb. 
+
+		    ME
+	  This one isn't broken. See
+	  what you can do with it.
+
+		    CHEL:NA
+	  I'll put it with the other
+	  one.
+
+ROOM EGG 3
+
+		    ME
+	  More eggs... Or what's left of
+	  'em. Do you think that ghostly
+	  thing we saw destroyed them?
+	  Or killed bug-guy back there?
+
+		    CHEL:NA
+	  That ghost... I remember it
+	  from somewhere.
+
+		    ME
+	  They told me you were
+	  completely wiped, you're not
+	  supposed to remember anything.
+
+		    CHEL:NA
+	  I was. But
+	  some... deeper... part of me
+	  still remembers.
+
+		    ME
+	  Well... If you remember
+	  anything else, be sure you let
+	  me know.
+
+
+
+CREDITS
+* Photo by <a href="https://unsplash.com/@erriko_tsg_photographer?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Erriko Boccia</a> on <a href="https://unsplash.com/s/photos/field-star?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  

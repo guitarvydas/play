@@ -1,0 +1,60 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="213px" height="311px" viewBox="-0.5 -0.5 213 311" content="&lt;mxfile host=&quot;Electron&quot; modified=&quot;2022-06-17T21:50:05.471Z&quot; agent=&quot;5.0 (Macintosh; Intel Mac OS X 12_0_1) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/14.6.13 Chrome/89.0.4389.128 Electron/12.0.7 Safari/537.36&quot; etag=&quot;g2_iSUDH1Z5xdo6dCp9t&quot; version=&quot;14.6.13&quot; type=&quot;device&quot;&gt;&lt;diagram id=&quot;MkaVQHuV-yonu-WsagfA&quot; name=&quot;Page-1&quot;&gt;3ZdBk5sgFMc/jcfOGFBjrkmzu4ftoZN22h6JPJVZEAdJ1X76YsREw2bazmzqZE/i/8ETfv8nAx7eiOZRkTL/JClwD/m08fBHD6HFwo/Mo1PaXolD1AuZYtR2Ogs79gus6Fv1wChUk45aSq5ZORUTWRSQ6IlGlJL1tFsq+fSrJcnAEXYJ4a76jVGdn9blnwNPwLJcD+uzAUGGzlaockJlPZLw1sMbJaXuW6LZAO/gDVz6cQ9XoqeJKSj03wz4Lla8hK/103L3sIXPz3nc/vhgs/wk/GAX/EWRoioZB2WnrduBhZKHgkKXbuHhdZ0zDbuSJF20Nu4bLdeC27BNDEpDc3XGixMHU0AgBWjVmi7DgMCia4easO/1yInIavnIBLSyIrHuZ6fcZ0CmYRn9Ay/k8KpU4oAyiUx9wp8hkarsizZlTQd2nTLON5JLdUyEaQgxDYxeaSVfYBSJ0R5H0RtxRheckcs5eAVzcCvK2KGsh6qkHoq4+f56b+ozyrqWWbi+nQVpmqIkec0CGu2j8I0sQPGFBatwXgsCx4JMESGI+t/85/kF0Ny/QOjyl/cOGflTyPHMjKPrNe4XRMC983b29eXMwJcO8FzKF7OPENEBLPZVeVz55Q7zHs1Ac5sRu0cZEKTQLKlcBzqfqvdmAZ57k185FoC5srgH7zs/zKBoZs7DZXJc64ckgeqGJT3TuRHfDLV5PV9Wj7HRlR9vfwM=&lt;/diagram&gt;&lt;/mxfile&gt;" style="background-color: rgb(255, 255, 255);">
+  <defs/>
+  <g>
+    <rect x="27" y="20" width="160" height="290" rx="24" ry="24" fill="#ffffff" stroke="#000000" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="107" y="169" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">Transpiler
+	</text>
+    </g>
+    <ellipse cx="27" cy="60" rx="20" ry="20" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="27" y="64" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">src
+	</text>
+    </g>
+    <ellipse cx="187" cy="135" rx="20" ry="20" fill="#fff2cc" stroke="#d6b656" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="187" y="139" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">transp...
+	</text>
+    </g>
+    <ellipse cx="27" cy="160" rx="20" ry="20" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="27" y="164" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">gramma...
+	</text>
+    </g>
+    <ellipse cx="107" cy="20" rx="20" ry="20" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="107" y="24" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">go
+	</text>
+    </g>
+    <ellipse cx="27" cy="110" rx="20" ry="20" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="27" y="114" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">gramma...
+	</text>
+    </g>
+    <ellipse cx="27" cy="210" rx="20" ry="20" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="27" y="214" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">hook...
+	</text>
+    </g>
+    <ellipse cx="27" cy="260" rx="20" ry="20" fill="#d5e8d4" stroke="#82b366" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="27" y="264" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">semant...
+	</text>
+    </g>
+    <ellipse cx="187" cy="200" rx="20" ry="20" fill="#fff2cc" stroke="#d6b656" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="187" y="204" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">error
+	</text>
+    </g>
+    <ellipse cx="187" cy="70" rx="20" ry="20" fill="#fff2cc" stroke="#d6b656" pointer-events="all"/>
+    <g transform="translate(-0.5 -0.5)">
+	<text x="187" y="74" fill="#000000" font-family="Helvetica" font-size="12px" text-anchor="middle">success
+	</text>
+    </g>
+  </g>
+</svg>

@@ -4,7 +4,7 @@ baseline {
 }
 `;
 
-var libmatch = require ('./libmatch.js');
-var obj = libmatch.ohmMatch ("a", "baseline", grammarsrc);
+var libmatch = require ('/Users/tarvydas/tools/libmatch.js');
+var [obj, sem] = libmatch.ohmMatch ("a", "baseline", grammarsrc);
 console.log (obj.succeeded ());
-
+console.log (sem.toString ());

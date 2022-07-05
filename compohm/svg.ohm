@@ -1,0 +1,12 @@
+drawio {
+Main = XMLheader DoctypeHeader SVG
+XMLheader = "<?xml" (~"?>" any)* "?>"
+DoctypeHeader = "<!DOCTYPE" (~">" any)+ ">"
+SVG = "<svg" (~"<defs/>" any)* "<defs/>" Element* "</svg>"
+Element =
+  | "<g>" Element* "</g>" -- graphiccontext
+  | Transform -- transform
+  | "<ellipse " Attribute* "/>" -- ellipse
+  | "<text " Attribute* "/>" -- text
+}
+

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea {
+}
+</style>
+</head>
+<body>
+
+<h1>Transpiler</h1>
+<p>source:</p>
+<textarea id="src" rows="7" cols="90" placeholder="src" style="background-color:oldlace;">
+❖ Show prolog_bg at 0x-550. Move prolog_bg to 0x0
+over 300 frames. Wait 150 frames.
+
+		    CHEL:NA
+	  The last time I saw
+	  her... She was smiling. As
+	  if she had some secret that
+	  she couldn't wait to tell me.
+	  
+	  And then, in a sudden wash of
+	  red, she was gone.
+	  
+	  Gone as if she had never stood
+	  beneath the uncaring stars.
+
+❖ Fade to black over 40 frames. Jump INTRO.
+</textarea>
+
+
+<p>output:</p>
+<textarea id="output" rows="15" cols="150" placeholder="transpiled"  readonly style="background-color:whitesmoke;">
+</textarea>
+<!-- <textarea id="temp" rows="15" cols="50" placeholder="transpiled"  readonly style="background-color:whitesmoke;"> -->
+<!-- </textarea> -->
+<br>
+<br>
+<p id="status" > READY </p>
+<br>
+<button onclick="transpile ()">Test</button>
+<!-- Ohm-JS -->
+<script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
+
+
+<!-- Macro preprocessor -->
+<script src="../../nl/mac.js"></script>
+
+
+<script>
+  function fixup (s) {
+      return s
+          .replace (/~{/g, '${');
+  }
+
+  const grammar = String.raw`
+OOFOE {
+text = macro+
+
+macro = 
+  | applySyntactic<ShowPhrase>
+  | applySyntactic<MovePhrase>
+  | applySyntactic<WaitPhrase>
+  | applySyntactic<FadeToBlackPhrase>
+  | applySyntactic<JumpPhrase>
+  | lex_CHELNAspoken
+  | lex_MEspoken
+  | lex_RADIOspoken
+  | any
+  
+ShowPhrase = "Show" filename "at" Coordinate
+MovePhrase = "Move" filename "to" Coordinate TimeSpan
+WaitPhrase = "Wait" number "frames"
+FadeToBlackPhrase = "Fade" "to" "black" TimeSpan
+JumpPhrase = "Jump" ChapterName
+lex_CHELNAspoken = "CHEL:NA" space* spoken
+lex_MEspoken = "ME" space* spoken
+lex_RADIOspoken = "RADIO" space* spoken
+
+Coordinate = number "x" number
+TimeSpan = "over" number "frames"
+ChapterName = name
+filename = name
+
+spoken = spokenchar+
+spokenchar = ~"❖" any
+
+name = nameFirst nameRest*
+nameFirst = letter
+nameRest = "_" | digit | nameFirst
+number = "-"? digit+
+}
+`;
+
+  const identityfmt = String.raw`
+text [@macro] = [[~{macro}]]
+
+macro [x] = [[~{x}]]
+  
+ShowPhrase [kShow filename kat Coordinate] = [[~{kShow}~{filename}~{kat}~{Coordinate}]]
+MovePhrase [kMove filename kto Coordinate TimeSpan] = [[~{kMove}~{filename}~{kto}~{Coordinate}~{TimeSpan}]]
+WaitPhrase [kWait number kframes] = [[~{kWait}~{number}~{kframes}]]
+FadeToBlackPhrase [kFade kto kblack TimeSpan] = [[~{kFade}~{kto}~{kblack}~{TimeSpan}]]
+JumpPhrase [kJump ChapterName] = [[~{kJump}~{ChapterName}]]
+lex_CHELNAspoken [kCHELNA @spaces Spoken] = [[~{kCHELNA}~{spaces}~{Spoken}]]
+lex_MEspoken [kME @spaces Spoken] = [[~{kME}~{spaces}~{Spoken}]]
+lex_RADIOspoken [kRADIO @spaces Spoken] = [[~{kRADIO}~{spaces}~{Spoken}]]
+
+Coordinate [number1 kx number2] = [[~{number1}~{kx}~{number2}]]
+TimeSpan [kover number kframes] = [[~{kover}~{number}~{kframes}]]
+ChapterName [name] = [[~{name}]]
+filename [name] = [[~{name}]]
+
+spoken [@cs] = [[~{cs}]]
+spokenchar [c] = [[~{c}]]
+
+name [nameFirst @nameRest] = [[~{nameFirst}~{nameRest}]]
+nameFirst [letter] = [[~{letter}]]
+nameRest [c] = [[~{c}]]
+number [@kminus @digit] = [[~{kminus}~{digit}]]
+`;
+
+  const emitterfmt = String.raw`
+text [@macro] = [[~{macro}]]
+
+macro [x] = [[~{x}]]
+  
+ShowPhrase [kShow filename kat Coordinate] = [[\n["image","~{filename}",~{Coordinate}],]]
+MovePhrase [kMove filename kto Coordinate TimeSpan] = [[~{kMove}~{filename}~{kto}~{Coordinate}~{TimeSpan}]]
+WaitPhrase [kWait number kframes] = [[~{kWait}~{number}~{kframes}]]
+FadeToBlackPhrase [kFade kto kblack TimeSpan] = [[\n["fadeout",~{TimeSpan}],]]
+JumpPhrase [kJump ChapterName] = [[\n["jump","~{ChapterName}"],]]
+lex_CHELNAspoken [kCHELNA @spaces Spoken] = [[\n["say","CHEL:NA","~{Spoken}"],]]
+lex_MEspoken [kME @spaces Spoken] = [[\n["say","ME","~{Spoken}"],]]
+lex_RADIOspoken [kRADIO @spaces Spoken] = [[\n["say","RADIO","~{Spoken}"],]]
+
+Coordinate [number1 kx number2] = [[~{number1},~{number2}]]
+TimeSpan [kover number kframes] = [[~{number}]]
+ChapterName [name] = [[~{name}]]
+filename [name] = [[~{name}]]
+
+spoken [@cs] = [[~{cs}]]
+spokenchar [c] = [[~{c}]]
+
+name [nameFirst @nameRest] = [[~{nameFirst}~{nameRest}]]
+nameFirst [letter] = [[~{letter}]]
+nameRest [c] = [[~{c}]]
+number [@kminus @digit] = [[~{kminus}~{digit}]]
+`;
+
+  const fmt = emitterfmt;
+
+  function transpile1 (src, grammar, fmt, message) {
+      var success = false;
+      var transpiled = '';
+      var jssemantics = '';
+      try {
+          [success, transpiled, jssemantics] = expand1 (src, grammar, fmt, fixup);
+      } catch (err) {
+          success = false;
+      }
+      if (success) {
+          return [true, transpiled];
+      } else {
+          document.getElementById('status').innerHTML = "FAILED " + message + "<br>" + Date ();
+          return [false, transpiled];
+      }
+  }
+
+  var transpileSuccess;
+  var errorMessages = '';
+  
+  function transpile () {
+      transpileSuccess = true;
+      let src = document.getElementById('src').value;
+      let [success, transpiled] = transpile1 (src, grammar, fmt, "transpile1");
+      transpileSuccess &&= success;
+      if (transpileSuccess) {
+          document.getElementById('status').innerHTML = "OK " + Date ();
+          //document.getElementById('temp').innerHTML = step;
+          document.getElementById('output').innerHTML = transpiled;
+      } else {
+          document.getElementById('output').innerHTML = errorMessages + transpiled;
+      }
+  }
+  
+  function transpilerError (message) {
+      errorMessages += '\n' + message;
+      transpileSuccess = false;
+  }
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,38 @@
+OOFOE {
+text = macro+
+
+macro = 
+  | applySyntactic<ShowPhrase>
+  | applySyntactic<MovePhrase>
+  | applySyntactic<WaitPhrase>
+  | applySyntactic<FadeToBlackPhrase>
+  | applySyntactic<JumpPhrase>
+  | applySyntactic<CHELNAspoken>
+  | applySyntactic<MEspoken>
+  | applySyntactic<RADIOspoken>
+  | any
+  
+ShowPhrase = "Show" filename "at" Coordinate
+MovePhrase = "Move" filename "to" Coordinate TimeSpan
+WaitPhrase = "Wait" number "frames"
+FadeToBlackPhrase = "Fade" "to" "black" TimeSpan
+JumpPhrase = "Jump" ChapterName
+CHELNAspoken = "CHEL:NA" Spoken
+MEspoken = "ME" Spoken
+RADIOspoken = "RADIO" Spoken
+
+Coordinate = number "x" number
+TimeSpan = "over" number "frames"
+ChapterName = name
+filename = name
+
+Spoken = spokenchar+
+spokenchar = ~"☞" any
+
+name = nameFirst nameRest*
+nameFirst = letter
+nameRest = "_" | digit | nameFirst
+number = "-"? digit+
+}
+
+
