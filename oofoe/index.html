@@ -67,6 +67,8 @@ macro =
   | lex_CHELNAspoken
   | lex_MEspoken
   | lex_RADIOspoken
+  | period
+  | separator
   | any
   
 ShowPhrase = "Show" filename "at" Coordinate
@@ -84,7 +86,10 @@ ChapterName = name
 filename = name
 
 spoken = spokenchar+
-spokenchar = ~"❖" any
+spokenchar = ~separator any
+
+separator = "❖"
+period = "."
 
 name = nameFirst nameRest*
 nameFirst = letter
@@ -92,6 +97,9 @@ nameRest = "_" | digit | nameFirst
 number = "-"? digit+
 }
 `;
+
+  // early attempt at debugging
+  // identity transform output=input
 
   const identityfmt = String.raw`
 text [@macro] = [[~{macro}]]
@@ -119,16 +127,23 @@ name [nameFirst @nameRest] = [[~{nameFirst}~{nameRest}]]
 nameFirst [letter] = [[~{letter}]]
 nameRest [c] = [[~{c}]]
 number [@kminus @digit] = [[~{kminus}~{digit}]]
+
+period [c] = [[~{c}]]
+separator [c] = [[~{c}]]
 `;
 
+  // end identity transform
+  //////////////
+
+  
   const emitterfmt = String.raw`
-text [@macro] = [[~{macro}]]
+text [@macro] = [[{onenter:[~{macro}true]}]]
 
 macro [x] = [[~{x}]]
   
 ShowPhrase [kShow filename kat Coordinate] = [[\n["image","~{filename}",~{Coordinate}],]]
-MovePhrase [kMove filename kto Coordinate TimeSpan] = [[~{kMove}~{filename}~{kto}~{Coordinate}~{TimeSpan}]]
-WaitPhrase [kWait number kframes] = [[~{kWait}~{number}~{kframes}]]
+MovePhrase [kMove filename kto Coordinate TimeSpan] = [[\n["moveto","~{filename}","???",~{Coordinate}~{TimeSpan},"easin"],]]
+WaitPhrase [kWait number kframes] = [[\n["wait",~{number}],]]
 FadeToBlackPhrase [kFade kto kblack TimeSpan] = [[\n["fadeout",~{TimeSpan}],]]
 JumpPhrase [kJump ChapterName] = [[\n["jump","~{ChapterName}"],]]
 lex_CHELNAspoken [kCHELNA @spaces Spoken] = [[\n["say","CHEL:NA","~{Spoken}"],]]
@@ -147,9 +162,14 @@ name [nameFirst @nameRest] = [[~{nameFirst}~{nameRest}]]
 nameFirst [letter] = [[~{letter}]]
 nameRest [c] = [[~{c}]]
 number [@kminus @digit] = [[~{kminus}~{digit}]]
+
+period [c] = [[]]
+separator [c] = [[]]
+
 `;
 
-  const fmt = emitterfmt;
+  const fmt = identityfmt;
+//  const fmt = emitterfmt;
 
   function transpile1 (src, grammar, fmt, message) {
       var success = false;

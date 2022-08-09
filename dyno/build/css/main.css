@@ -1,0 +1,17 @@
+body { max-width: 1024px; margin: auto; background: white; font-family: sans-serif; } 
+
+.tray { display: grid; grid-template-columns: 512px auto; gap: 1pc; width: 100%; }
+.workspace { width: 512px; background: #eef; }
+.workspace table td { padding: 0; width: 128px; height: 128px; }
+.workspace table td:hover { background: orange; }
+
+.details { background: #eef; border: 2px gray solid; border-radius: 8px; padding: 1pc; }
+.details .title { font-weight: bold; font-size: +larger; margin-bottom: 1pc; }
+.details .tags { margin-bottom: 1pc; }
+
+.card { width: 116px; height: 116px; background: #ddf; border: 2px gray solid; border-radius: 8px; padding: 4px; display: flex; text-align: center; align-items: center; }
+.card-empty { background: #dde; border-colour: lightgray; }
+.card-picked { border-color: blue; }
+.card:hover { border-color: red; }
+
+.textish { width: 600px; height: 6pc; }
