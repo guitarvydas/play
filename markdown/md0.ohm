@@ -1,0 +1,17 @@
+Article {
+article = title tagDefinitions text
+title = line
+tagDefinitions = tagDef+ nl
+tagDef = "#" name ws*
+text = line* lastline
+
+line = (~nl any)* nl+
+lastline = (~nl any)* eol
+
+name = nameFirst nameRest*
+nameFirst = letter
+nameRest = alnum
+nl = "\n"
+ws = " "
+eol = nl | end
+}

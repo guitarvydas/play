@@ -1,0 +1,11 @@
+Article {
+Article = Title TagDefinitions #text
+Title = lineContent nl
+TagDefinitions = tagDef+ nl
+tagDef = "#" name
+text = any*
+lineContent = (~nl any)*
+name = letter alnum*
+nl = "\n"
+spaces := (~nl space)*
+}
