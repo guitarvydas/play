@@ -1,0 +1,114 @@
+component B ({input}) (...) {
+  handler (message): 
+    handled = FALSE
+    if (message.port == 'input') {
+      ...
+      handled = TRUE
+    }
+    if (not handled) {
+      FAIL
+    }
+}
+
+
+λ
+ė
+λ
+
+λ(handled).
+  cond ((not handled) -> FAIL)
+
+
+component B ({input}) (...) {
+  handler (message): 
+  unless {
+    if (message.port == 'input') {
+      ...
+      return TRUE
+    }
+    if (not handled) {
+      FAIL
+    }
+}
+
+handle (message):
+  cond { 
+    (message.port == 'input') -> ...
+    (delegate (message)) -> pass
+    t -> fail (message)
+  }
+  t
+
+
+handle (message) {
+  cond {
+    self.delegate (message) -> pass
+    else -> self.fail (message)
+  }
+}
+
+delegate (message) }
+  cond { 
+    (message.port == 'input') -> self. ..., t
+    (self.delegate (message)) -> pass, t
+    t -> false
+  }
+}
+
+
+---
+
+Handle (message) {
+  cond {
+    self.HandlerChain (message, self.λs['handler']) -> pass
+    else -> self.fail (message)
+  }
+}
+
+HandlerChain (message, InputHandlers) }
+  cond { 
+    null (InputHandlers) -> false
+    (message.port == 'input') -> self.λs['input'](message.data), t
+    HandlerChain (message, cdr (InputHandlers)) -> t
+    self.SubLayer -> self.SubLayer.Handle (message)
+  }
+}
+
+Step () {
+}
+
+RunToCompletion () {
+}
+
+---
+
+CompositeHandler (message) {
+  net = LookupNet (self, message.port)
+  foreach receiver in net.receivers {
+    newMessage = MapMessageForReceiver (receiver, Message)
+    if IsInput (newMessage) {
+      receiver.enqueueInput (newMessage)
+    } else if IsOutput (newMessage) {
+      receiver.enqueueOutput (newMessage)
+    }
+  }
+  foreach child in self.children {
+    child.RunToCompletion ()
+  }
+}
+
+Step () {
+  foreach child in self.children {
+    child.Step ()
+  }
+}
+
+RunToCompletion () {
+  foreach child in self.children {
+    while (child.IsBusy ()) {
+      child.Step ()
+    }
+  }
+}
+
+
