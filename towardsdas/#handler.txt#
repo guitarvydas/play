@@ -88,7 +88,7 @@ routing: {
 }
 
 CompositeHandler (message) {
-  net = LookupNet (self, message.port)
+  net = self.LookupNet (message.port)
   foreach receiver in net.receivers {
     newMessage = MapMessageForReceiver (receiver, Message)
     if IsInput (newMessage) {
