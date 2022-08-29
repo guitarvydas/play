@@ -1,0 +1,37 @@
+const testsrc = String.raw`
+    component:"cell_7",
+    id:"cell_6",
+`;
+
+const pregrammar = String.raw`
+Test {
+Main = Component ID
+Component = "component" ":" string
+ID = "id" ":" string
+}
+`;
+
+const postgrammar = String.raw`
+Test {
+Main = Component ID
+Component = "component" ":" string
+ID = "id" ":" string
+}
+`;
+
+
+const prefmt = String.raw`
+Test {
+Main [Component ID] = ‛⟨Component⟩⟨ID⟩’
+Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
+ID [kid kcolon s] = ‛⟨kid⟩⟨kcolon⟩⟨s⟩’
+}
+`;
+
+const postfmt = String.raw`
+Test {
+Main [Component ID] = ‛⟨Component⟩⟨ID⟩’
+Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
+ID [kid kcolon s] = ‛⟨kid⟩⟨kcolon⟩⟨s⟩’
+}
+`;
