@@ -62,11 +62,20 @@ dq = "\""
 }
 `;
 
-  var id = undefined;
+  var selfid = undefined;
   function setID (s) {
-      id = s;
-      console.log (`id set to /${id}/`);
+      selfid = s;
+      console.log (`id set to /${selfid}/`);
       return '';
+  }
+  function maybeMapSelf (s) {
+      if (s === selfid) {
+	  console.log ('FOUND self');
+	  return 'self';
+      } else {
+	  console.log ('not self');
+	  return s;
+      }
   }
 
 const prefmt = String.raw`
@@ -82,7 +91,7 @@ dq [c] = ‛⟨c⟩’
 const postfmt = String.raw`
 Test {
 Main [Component] = ‛⟨Component⟩’
-Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
+Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨maybeMapSelf (s)⟩’
 string [dq1 c* dq2] = ‛⟨dq1⟩⟨c⟩⟨dq2⟩’
 dq [c] = ‛⟨c⟩’
 }
@@ -106,7 +115,7 @@ dq [c] = ‛⟨c⟩’
       [r, phase1] = test (testsrc, "Test", pregrammar, prefmt);
       console.log (`prefmt done with return code ${r} and /${phase1}/`);
       [r2, phase2] = test (phase1, "Test", postgrammar, postfmt);
-      console.log (`postfmt done with return code ${r2} and /${phase2}/`);
+      console.log (`postfmt done with return code ${r2} and /${phase2}/ selfid = /${selfid}/`);
   }
 
   </script>
