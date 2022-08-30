@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea {
+}
+</style>
+</head>
+<body>
+
+<h1>Testing, Testing</h1>
+
+<button onclick="generate ()">Generate code</button>
+
+<br>
+<p id="status" > READY </p>
+<br>
+
+<p>JSON:</p>
+<textarea id="input" rows="17" cols="120" placeholder="input file" style="background-color:oldlace;">
+</textarea>
+
+
+<p>Python code:</p>
+<textarea id="output" rows="17" cols="120" placeholder="transpiled"  readonly style="background-color:whitesmoke;">
+</textarea>
+<br>
+<br>
+<br>
+
+<!-- Ohm-JS -->
+<script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
+
+
+<!-- Macro preprocessor -->
+    <script src="fmt-js.js"></script>
+    <script src="transpile.js"></script>
+
+<script>
+
+const testsrc = String.raw`
+    component:"cell_7"
+    id:"cell_6"
+`;
+
+const pregrammar = String.raw`
+Test {
+Main = Component ID
+Component = "component" ":" string
+ID = "id" ":" string
+string = dq (~dq any)* dq
+dq = "\""
+}
+`;
+
+const postgrammar = String.raw`
+Test {
+Main = Component ID
+Component = "component" ":" string
+ID = "id" ":" string
+string = dq (~dq any)* dq
+dq = "\""
+}
+`;
+
+
+const prefmt = String.raw`
+Test {
+Main [Component ID] = ‛⟨Component⟩⟨ID⟩’
+Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
+ID [kid kcolon s] = ‛⟨kid⟩⟨kcolon⟩⟨s⟩’
+string [dq1 c* dq2] = ‛⟨dq1⟩⟨c⟩⟨dq2⟩’
+dq [c] = ‛⟨c⟩’
+}
+`;
+
+const postfmt = String.raw`
+Test {
+Main [Component ID] = ‛⟨Component⟩⟨ID⟩’
+Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
+ID [kid kcolon s] = ‛⟨kid⟩⟨kcolon⟩⟨s⟩’
+string [dq1 c* dq2] = ‛⟨dq1⟩⟨c⟩⟨dq2⟩’
+dq [c] = ‛⟨c⟩’
+}
+`;
+
+  function test (src, grammarName, grammar, fmt) {
+      document.getElementById('input').innerHTML = src;
+      [success, transpiled, errormessage] = transpile (src, grammarName, grammar, fmt);
+      if (success) {
+          document.getElementById('output').value = transpiled;
+          document.getElementById('status').innerHTML = "OK";
+      } else {
+          document.getElementById('output').value = transpiled;
+          document.getElementById('status').innerHTML = "FAILED " + errormessage;
+      }
+  }
+  
+  function generate () {
+      test (testsrc, "Test", pregrammar, prefmt);
+  }
+
+  </script>
+</body>
+</html>
+
+
