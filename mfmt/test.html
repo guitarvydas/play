@@ -67,7 +67,7 @@ dq = "\""
   function setID (s) {
       id = s;
       console.log (`id set to /${id}/`);
-      return s;
+      return 'xyz';
   }
 
 const prefmt = String.raw`
@@ -96,17 +96,19 @@ dq [c] = ‛⟨c⟩’
       if (success) {
           document.getElementById('output').value = transpiled;
           document.getElementById('status').innerHTML = "OK";
+	  return [ true, transpiled ];
       } else {
           document.getElementById('output').value = transpiled;
           document.getElementById('status').innerHTML = "FAILED " + errormessage;
+	  return [ false, '<error>' ];
       }
   }
   
   function generate () {
-      test (testsrc, "Test", pregrammar, prefmt);
-      console.log ('prefmt done');
-      test (testsrc, "Test", pregrammar, postfmt);
-      console.log ('postfmt done');
+      [r, transpiled] = test (testsrc, "Test", pregrammar, prefmt);
+      console.log (`prefmt done with return code ${r} and /${transpiled}/`);
+      [r2, transpiled2] = test (testsrc, "Test", pregrammar, postfmt);
+      console.log (`postfmt done with return code ${r2} and /${transpiled2}/`);
   }
 
   </script>
