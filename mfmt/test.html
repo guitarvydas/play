@@ -55,9 +55,8 @@ dq = "\""
 
 const postgrammar = String.raw`
 Test {
-Main = Component ID
+Main = Component
 Component = "component" ":" string
-ID = "id" ":" string
 string = dq (~dq any)* dq
 dq = "\""
 }
@@ -67,14 +66,14 @@ dq = "\""
   function setID (s) {
       id = s;
       console.log (`id set to /${id}/`);
-      return 'xyz';
+      return '';
   }
 
 const prefmt = String.raw`
 Test {
 Main [Component ID] = ‛⟨Component⟩⟨ID⟩’
 Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
-ID [kid kcolon s] = ‛⟨kid⟩⟨kcolon⟩⟨setID (s)⟩’
+ID [kid kcolon s] = ‛⟨setID (s)⟩’
 string [dq1 c* dq2] = ‛⟨dq1⟩⟨c⟩⟨dq2⟩’
 dq [c] = ‛⟨c⟩’
 }
@@ -82,9 +81,8 @@ dq [c] = ‛⟨c⟩’
 
 const postfmt = String.raw`
 Test {
-Main [Component ID] = ‛⟨Component⟩⟨ID⟩’
+Main [Component] = ‛⟨Component⟩’
 Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
-ID [kid kcolon s] = ‛⟨kid⟩⟨kcolon⟩⟨s⟩’
 string [dq1 c* dq2] = ‛⟨dq1⟩⟨c⟩⟨dq2⟩’
 dq [c] = ‛⟨c⟩’
 }
@@ -105,10 +103,10 @@ dq [c] = ‛⟨c⟩’
   }
   
   function generate () {
-      [r, transpiled] = test (testsrc, "Test", pregrammar, prefmt);
-      console.log (`prefmt done with return code ${r} and /${transpiled}/`);
-      [r2, transpiled2] = test (testsrc, "Test", pregrammar, postfmt);
-      console.log (`postfmt done with return code ${r2} and /${transpiled2}/`);
+      [r, phase1] = test (testsrc, "Test", pregrammar, prefmt);
+      console.log (`prefmt done with return code ${r} and /${phase1}/`);
+      [r2, phase2] = test (phase1, "Test", postgrammar, postfmt);
+      console.log (`postfmt done with return code ${r2} and /${phase2}/`);
   }
 
   </script>
