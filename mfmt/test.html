@@ -39,13 +39,15 @@ textarea {
 <script>
 
 const testsrc = String.raw`
+    component:"cell_5"
     component:"cell_6"
+    component:"cell_7"
     id:"cell_6"
 `;
 
 const pregrammar = String.raw`
 Test {
-Main = Component ID
+Main = Component+ ID
 Component = "component" ":" string
 ID = "id" ":" string
 string = dq (~dq any)* dq
@@ -55,7 +57,7 @@ dq = "\""
 
 const postgrammar = String.raw`
 Test {
-Main = Component
+Main = Component+
 Component = "component" ":" string
 string = dq (~dq any)* dq
 dq = "\""
@@ -80,7 +82,7 @@ dq = "\""
 
 const prefmt = String.raw`
 Test {
-Main [Component ID] = ‛⟨Component⟩⟨ID⟩’
+Main [Component+ ID] = ‛⟨Component⟩⟨ID⟩’
 Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨s⟩’
 ID [kid kcolon s] = ‛⟨setID (s)⟩’
 string [dq1 c* dq2] = ‛⟨dq1⟩⟨c⟩⟨dq2⟩’
@@ -90,8 +92,8 @@ dq [c] = ‛⟨c⟩’
 
 const postfmt = String.raw`
 Test {
-Main [Component] = ‛⟨Component⟩’
-Component [kcomponent kcolon s] = ‛⟨kcomponent⟩⟨kcolon⟩⟨maybeMapSelf (s)⟩’
+Main [Component+] = ‛⟨Component⟩’
+Component [kcomponent kcolon s] = ‛\n⟨kcomponent⟩⟨kcolon⟩⟨maybeMapSelf (s)⟩’
 string [dq1 c* dq2] = ‛⟨dq1⟩⟨c⟩⟨dq2⟩’
 dq [c] = ‛⟨c⟩’
 }
