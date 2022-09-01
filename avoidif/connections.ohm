@@ -1,0 +1,12 @@
+Connections {
+  Connections = Connection+
+  Connection = "{" Sender Receiver "}"
+  Sender = "sender" ":" "{" ComponentName "," PortName "}"
+  Receiver = "receiver" ":" "{" ComponentName "," PortName "}"
+
+  ComponentName = string
+  PortName = string
+
+  string = dq (~dq any)* dq
+  dq = "\""
+}
