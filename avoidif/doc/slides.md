@@ -165,6 +165,7 @@ N.B. '"cell_6"' hard-coded to make this example more clear, see eh.html for a mo
 
 - hint: use a "lifting" pass to determine self's *id* before use, to help subsequent passes
 	- lifting pass does only 1 job: determine *self*'s id, emit that id before all other code
+	- computer performs declaration-before-use, programmers don't need to deal with this
 
 ---
 ### c. Step 3 Match Routing Use-Cases
