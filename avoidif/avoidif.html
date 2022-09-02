@@ -40,25 +40,23 @@ textarea {
 <br>
 
 <!-- Ohm-JS -->
-<script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
+    <script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
 
 
-<!-- Macro preprocessor -->
+<!-- transpiler -->
     <script src="fmt-js/fmt-js.js"></script>
     <script src="fmt-js/transpile.js"></script>
 
 <!-- utilities -->
-    <script src="stack.js"></script>
-    <script src="panic.js"></script>
-    <script src="quotes.js"></script>
+    <!-- <script src="panic.js"></script> -->
 
 <!-- mechanisms -->
-    <script src="selfid2.js"></script>
+    <!-- <script src="selfid2.js"></script> -->
     
-<!-- passs -->
-    <script src="connectiondsl1.js"></script>
-    <script src="connectiondsl2.js"></script>
-    <script src="connectiondsl3.js"></script>
+<!-- passes -->
+    <script src="connections1.js"></script>
+    <!-- <script src="connections2.js"></script> -->
+    <!-- <script src="connections3.js"></script> -->
 
 <!-- source code -->
     <script src="src.js"></script>
@@ -84,18 +82,9 @@ textarea {
 
       let r = undefined;
       let pass1transpiled = undefined;
-      [r, pass1transpiled] = test ('dsl',             'pass1 transpiled', "Connectiondsl",       connectiondslgrammar,  connectiondslfmt);
+      [r, pass1transpiled] = test ('dsl',             'pass1 transpiled', "Connection",       connectionsgrammar,  connections1fmt);
       console.log (`pass 1 ${r}`);
       
-      let r2 = undefined;
-      let pass2transpiled = undefined;
-      [r2, pass2transpiled] = test ('pass1 transpiled', 'pass2 transpiled', "Connectiondslpass2", connectiondslgrammar2, connectiondslfmt2);
-      console.log (`self resolution (pass 2) ${r2}`);
-
-      let r3 = undefined;
-      let pass3transpiled = undefined;
-      [r3, pass3transpiled] = test ('pass2 transpiled', 'pass3 transpiled', "Connectiondslpass3", connectiondslgrammar3, connectiondslfmt3);
-      console.log (`identify pass 3 (pass 3) ${r3}`);
   }
 
   </script>
