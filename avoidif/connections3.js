@@ -23,14 +23,14 @@ Connections {
 const connections3fmt = String.raw`
 Connections {
   Connections [Connections+] = ‛⟨Connections⟩’
-  Connection_route [lb Sender Receiver rb] = ‛\n⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
-  Connection_down [lb Sender Receiver rb] = ‛\n⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
-  Connection_up [lb Sender Receiver rb] = ‛\n⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
-  Connection_passThrough [lb Sender Receiver rb] = ‛\n⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
-  Sender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛⟨ksender⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
-  SelfSender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛⟨ksender⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
-  Receiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛⟨kreceiver⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
-  SelfReceiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛⟨kreceiver⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
+  Connection_route [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩, ⟨Receiver⟩, self.route)’
+  Connection_down [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩, ⟨Receiver⟩, self.down)’
+  Connection_up [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩,⟨Receiver⟩, self.up)’
+  Connection_passThrough [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩, ⟨Receiver⟩, self.passThrough)’
+  Sender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
+  SelfSender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
+  Receiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
+  SelfReceiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
 
   SelfComponentName [s] = ‛self’
   ComponentName [s] = ‛⟨s⟩’
