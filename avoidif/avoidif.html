@@ -55,7 +55,7 @@ textarea {
     
 <!-- passes -->
     <script src="connections1.js"></script>
-    <!-- <script src="connections2.js"></script> -->
+    <script src="connections2.js"></script>
     <!-- <script src="connections3.js"></script> -->
 
 <!-- source code -->
@@ -84,7 +84,12 @@ textarea {
       let pass1transpiled = undefined;
       [r, pass1transpiled] = test ('dsl',             'pass1 transpiled', "Connections",       connections1grammar,  connections1fmt);
       console.log (`pass 1 ${r}`);
-      
+
+      let r2 = undefined;
+      let pass2transpiled = undefined;
+      [r2, pass2transpiled] = test ('dsl',             'pass2 transpiled', "Connections",       connections2grammar,  connections2fmt);
+      console.log (`pass 2 ${r}`);
+
   }
 
   </script>
