@@ -15,7 +15,7 @@ Connections {
 
 function maybeMapSelf (s) {
     if ('"cell_6"' === s) {
-        return '"self"';
+        return 'self';
     } else {
         return s;
     }
