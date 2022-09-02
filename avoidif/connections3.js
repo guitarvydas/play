@@ -5,7 +5,9 @@ Connections {
   Sender = "sender" ":" "{" ComponentName "," PortName "}"
   Receiver = "receiver" ":" "{" ComponentName "," PortName "}"
 
-  ComponentName = string
+  ComponentName = SelfComponentName | NonSelfComponentName
+    SelfComponentName = "self"
+    NonSelfComponentName = string
   PortName = string
 
   string = dq (~dq any)* dq
