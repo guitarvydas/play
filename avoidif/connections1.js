@@ -18,7 +18,7 @@ Connections {
   Connections [Connections+] = ‛⟨Connections⟩’
   Connection [lb Sender Receiver rb] = ‛⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
   Sender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛⟨ksender⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
-  Receiver [ksender kcolon lb ComponentName kcomma PortName rb] = ‛⟨kreceiver⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
+  Receiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛⟨kreceiver⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
 
   ComponentName [s] = ‛⟨s⟩’
   PortName [s] = ‛⟨s⟩’

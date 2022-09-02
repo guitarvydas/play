@@ -64,8 +64,8 @@ textarea {
 <script>
 
   function test (infield, outfield, grammarName, grammar, fmt) {
-      src = document.getElementById(infield).value;
-      [success, transpiled, errormessage] = transpile (src, grammarName, grammar, fmt);
+      inputsrc = document.getElementById(infield).value;
+      [success, transpiled, errormessage] = transpile (inputsrc, grammarName, grammar, fmt);
       if (success) {
           document.getElementById(outfield).value = transpiled;
           document.getElementById('status').innerHTML = "OK";
@@ -78,11 +78,11 @@ textarea {
   }
   
   function generate () {
-      document.getElementById('dsl').innerHTML = jsonsrc;
+      document.getElementById('dsl').innerHTML = src;
 
       let r = undefined;
       let pass1transpiled = undefined;
-      [r, pass1transpiled] = test ('dsl',             'pass1 transpiled', "Connection",       connectionsgrammar,  connections1fmt);
+      [r, pass1transpiled] = test ('dsl',             'pass1 transpiled', "Connections",       connections1grammar,  connections1fmt);
       console.log (`pass 1 ${r}`);
       
   }
