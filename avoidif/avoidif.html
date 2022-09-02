@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea {
+}
+</style>
+</head>
+<body>
+
+<h1>Avoiding IF Statements</h1>
+
+<h2>??? how to make: TBD</h2>
+
+<button onclick="generate ()">Generate</button>
+
+<br>
+<p id="status" > READY </p>
+<br>
+
+<p>Source:</p>
+<textarea id="dsl" rows="7" cols="120" placeholder="dsl file" style="background-color:oldlace;">
+</textarea>
+
+<p>transpiled output of pass 1:</p>
+<textarea id="pass1 transpiled" rows="7" cols="120" placeholder="transpiled output from pass 1" style="background-color:oldlace;">
+</textarea>
+
+<p>transpiled output of pass 2:</p>
+<textarea id="pass2 transpiled" rows="7" cols="120" placeholder="transpiled output from pass 2" style="background-color:oldlace;">
+</textarea>
+
+<p>transpiled output of pass 3:</p>
+<textarea id="pass3 transpiled" rows="17" cols="120" placeholder="transpiled output from pass 3" style="background-color:oldlace;">
+</textarea>
+
+
+<br>
+<br>
+<br>
+
+<!-- Ohm-JS -->
+<script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
+
+
+<!-- Macro preprocessor -->
+    <script src="fmt-js/fmt-js.js"></script>
+    <script src="fmt-js/transpile.js"></script>
+
+<!-- utilities -->
+    <script src="stack.js"></script>
+    <script src="panic.js"></script>
+    <script src="quotes.js"></script>
+
+<!-- mechanisms -->
+    <script src="selfid2.js"></script>
+    
+<!-- passs -->
+    <script src="connectiondsl1.js"></script>
+    <script src="connectiondsl2.js"></script>
+    <script src="connectiondsl3.js"></script>
+
+<!-- source code -->
+    <script src="src.js"></script>
+
+<script>
+
+  function test (infield, outfield, grammarName, grammar, fmt) {
+      src = document.getElementById(infield).value;
+      [success, transpiled, errormessage] = transpile (src, grammarName, grammar, fmt);
+      if (success) {
+          document.getElementById(outfield).value = transpiled;
+          document.getElementById('status').innerHTML = "OK";
+	  return [true, transpiled];
+      } else {
+          document.getElementById(outfield).value = transpiled;
+          document.getElementById('status').innerHTML = "FAILED " + errormessage;
+	  return [false, transpiled];
+      }
+  }
+  
+  function generate () {
+      document.getElementById('dsl').innerHTML = jsonsrc;
+
+      let r = undefined;
+      let pass1transpiled = undefined;
+      [r, pass1transpiled] = test ('dsl',             'pass1 transpiled', "Connectiondsl",       connectiondslgrammar,  connectiondslfmt);
+      console.log (`pass 1 ${r}`);
+      
+      let r2 = undefined;
+      let pass2transpiled = undefined;
+      [r2, pass2transpiled] = test ('pass1 transpiled', 'pass2 transpiled', "Connectiondslpass2", connectiondslgrammar2, connectiondslfmt2);
+      console.log (`self resolution (pass 2) ${r2}`);
+
+      let r3 = undefined;
+      let pass3transpiled = undefined;
+      [r3, pass3transpiled] = test ('pass2 transpiled', 'pass3 transpiled', "Connectiondslpass3", connectiondslgrammar3, connectiondslfmt3);
+      console.log (`identify pass 3 (pass 3) ${r3}`);
+  }
+
+  </script>
+</body>
+</html>
+
+
