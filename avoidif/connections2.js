@@ -13,14 +13,22 @@ Connections {
 }
 `;
 
+function maybeMapSelf (s) {
+    if ('"cell_6"' === s) {
+        return '"self"';
+    } else {
+        return s;
+    }
+}
+
 const connections2fmt = String.raw`
 Connections {
   Connections [Connections+] = ‛⟨Connections⟩’
-  Connection [lb Sender Receiver rb] = ‛⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
+  Connection [lb Sender Receiver rb] = ‛\n⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
   Sender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛⟨ksender⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
   Receiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛⟨kreceiver⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
 
-  ComponentName [s] = ‛⟨s⟩’
+  ComponentName [s] = ‛⟨maybeMapSelf (s)⟩’
   PortName [s] = ‛⟨s⟩’
 
   string [q1 cs* q2] = ‛⟨q1⟩⟨cs⟩⟨q2⟩’

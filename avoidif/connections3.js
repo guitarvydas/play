@@ -16,7 +16,7 @@ Connections {
 const connections3fmt = String.raw`
 Connections {
   Connections [Connections+] = ‛⟨Connections⟩’
-  Connection [lb Sender Receiver rb] = ‛⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
+  Connection [lb Sender Receiver rb] = ‛\n⟨lb⟩⟨Sender⟩⟨Receiver⟩⟨rb⟩’
   Sender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛⟨ksender⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
   Receiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛⟨kreceiver⟩⟨kcolon⟩⟨lb⟩⟨ComponentName⟩⟨kcomma⟩⟨PortName⟩⟨rb⟩’
 

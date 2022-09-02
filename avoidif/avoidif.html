@@ -79,17 +79,17 @@ textarea {
 
       let r = undefined;
       let pass1transpiled = undefined;
-      [r, pass1transpiled] = test ('dsl',             'pass1 transpiled', "Connections",       connections1grammar,  connections1fmt);
+      [r, pass1transpiled] = test ('dsl',               'pass1 transpiled', "Connections", connections1grammar,  connections1fmt);
       console.log (`pass 1 ${r}`);
 
       let r2 = undefined;
       let pass2transpiled = undefined;
-      [r2, pass2transpiled] = test ('dsl',             'pass2 transpiled', "Connections",       connections2grammar,  connections2fmt);
+      [r2, pass2transpiled] = test ('pass1 transpiled', 'pass2 transpiled', "Connections", connections2grammar,  connections2fmt);
       console.log (`pass 2 ${r}`);
 
       let r3 = undefined;
       let pass3transpiled = undefined;
-      [r3, pass3transpiled] = test ('dsl',             'pass3 transpiled', "Connections",       connections3grammar,  connections3fmt);
+      [r3, pass3transpiled] = test ('pass2 transpiled', 'pass3 transpiled', "Connections", connections3grammar,  connections3fmt);
       console.log (`pass 3 ${r}`);
 
   }
