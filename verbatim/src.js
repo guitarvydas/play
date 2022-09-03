@@ -1,10 +1,15 @@
 const src = String.raw`
 a b 
 ⟪
-console.log ('hello');
-  ⟪
-    console.log ('world');
-  ⟫
+{
+  f : function () {
+    var h = 'hello';
+      ⟪
+	var w = 'world';
+      ⟫
+	⟪return (h + ' ' + w);⟫
+  }
+}
 ⟫
 c d
 `;

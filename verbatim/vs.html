@@ -16,11 +16,16 @@ textarea {
 <br>
 
 <p>Source:</p>
-<textarea id="src" rows="10" cols="60" placeholder="source file" style="background-color:oldlace;">
+<textarea id="src" rows="10" cols="30" placeholder="source file" style="background-color:oldlace;">
 </textarea>
 
-<p>transpiled output:</p>
-<textarea id="transpiled" rows="10" cols="60" placeholder="transpiled output" style="background-color:oldlace;">
+<p>output: (transpiled, stripped)</p>
+<textarea id="transpiled" rows="5" cols="30" placeholder="transpiled output" style="background-color:oldlace;">
+</textarea>
+
+<textarea id="stripped" rows="5" cols="30" placeholder="stripped output" style="background-color:oldlace;">
+</textarea>
+<textarea id="value" rows="5" cols="20" placeholder="evaluated" style="background-color:oldlace;">
 </textarea>
 
 
@@ -70,8 +75,14 @@ textarea {
       document.getElementById('src').innerHTML = src;
 
       let r = undefined;
-      let pass1transpiled = undefined;
-      [r, pass1transpiled] = test ('src', 'transpiled', 'Tester', grammar, fmt);
+      let transpiled = '';
+      [r, transpiled] = test ('src', 'transpiled', 'Tester', grammar, fmt);
+
+      var stripped = transpiled.replace (/⟪/g,'').replace (/⟫/g,'');
+      document.getElementById('stripped').innerHTML = stripped;
+      let result = eval ('(' + stripped + ')');
+      let val = result.f ();
+      document.getElementById('value').innerHTML = val;
   }
 
   </script>
