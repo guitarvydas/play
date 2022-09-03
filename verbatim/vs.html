@@ -43,6 +43,7 @@ textarea {
     <script src="fmt-js/panic.js"></script>
 
 <!-- utilities -->
+    <script src="compile.js"></script>
 
 <!-- mechanisms -->
     
@@ -80,8 +81,8 @@ textarea {
 
       var stripped = transpiled.replace (/⟪/g,'').replace (/⟫/g,'');
       document.getElementById('stripped').innerHTML = stripped;
-      let result = eval ('(' + stripped + ')');
-      let val = result.f ();
+      let compiled = compile (stripped);
+      let val = compiled.f ();
       document.getElementById('value').innerHTML = val;
   }
 
