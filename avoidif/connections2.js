@@ -14,7 +14,7 @@ Connections {
 `;
 
 function maybeMapSelf (s) {
-    if ('"cell_6"' === s) {
+    if (selfid === s) {
         return 'self';
     } else {
         return s;

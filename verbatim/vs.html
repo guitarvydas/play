@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea {
+}
+</style>
+</head>
+<body>
+
+<h1>Verbatim Example</h1>
+<button onclick="generate ()">Generate</button>
+
+<br>
+<p id="status" > READY </p>
+<br>
+
+<p>Source:</p>
+<textarea id="src" rows="10" cols="60" placeholder="source file" style="background-color:oldlace;">
+</textarea>
+
+<p>transpiled output:</p>
+<textarea id="transpiled" rows="10" cols="60" placeholder="transpiled output" style="background-color:oldlace;">
+</textarea>
+
+
+<br>
+<br>
+<br>
+
+<!-- Ohm-JS -->
+    <script src="https://unpkg.com/ohm-js@16/dist/ohm.min.js"></script>
+
+
+<!-- transpiler -->
+    <script src="fmt-js/fmt-js.js"></script>
+    <script src="fmt-js/transpile.js"></script>
+    <script src="fmt-js/panic.js"></script>
+
+<!-- utilities -->
+
+<!-- mechanisms -->
+    
+<!-- passes -->
+
+<!-- source code -->
+    <script src="src.js"></script>
+<!-- grammar -->
+    <script src="grammar.js"></script>
+<!-- formatter -->
+    <script src="fmt.js"></script>
+
+<script>
+
+  function test (infield, outfield, grammarName, grammar, fmt) {
+      inputsrc = document.getElementById(infield).value;
+      [success, transpiled, errormessage] = transpile (inputsrc, grammarName, grammar, fmt);
+      if (success) {
+          document.getElementById(outfield).value = transpiled;
+          document.getElementById('status').innerHTML = "OK";
+	  return [true, transpiled];
+      } else {
+          document.getElementById(outfield).value = transpiled;
+          document.getElementById('status').innerHTML = "FAILED " + errormessage;
+	  return [false, transpiled];
+      }
+  }
+  
+  function generate () {
+      document.getElementById('src').innerHTML = src;
+
+      let r = undefined;
+      let pass1transpiled = undefined;
+      [r, pass1transpiled] = test ('src', 'transpiled', 'Tester', grammar, fmt);
+  }
+
+  </script>
+</body>
+</html>
+
+

@@ -63,8 +63,9 @@ Wanted:
 ---
 # A Solution
 
-3 basic steps
-
+- 3 basic steps
+- "declaration before use" handled by computer, not by programmers
+	- pipeline allows input file to "use before declaration" (if desired)
 ---
 # Steps
 1. convert diagram to text
@@ -173,11 +174,62 @@ N.B. '"cell_6"' hard-coded to make this example more clear, see eh.html for a mo
 - *down*: self input -> self.child
 - *up*: self.child -> self output
 - *pass-through*: self input -> self output
+
+---
+#### c. Add More Detail to Connection Rule
+```
+...
+Connection = 
+    | "{" SelfSender SelfReceiver "}" -- passThrough
+    | "{" SelfSender Receiver "}" -- down
+    | "{" Sender SelfReceiver "}" -- up
+    | "{" Sender Receiver "}" -- route
+...
+```
+
+N.B. Order matters - specify most specialized first
+
+---
+#### c. Add More Detail to Sender and Receiver Rules
+```
+...
+  SelfSender = "sender" ":" "{" SelfComponentName "," PortName "}"
+  Sender = "sender" ":" "{" ComponentName "," PortName "}"
+  SelfReceiver = "receiver" ":" "{" SelfComponentName "," PortName "}"
+  Receiver = "receiver" ":" "{" ComponentName "," PortName "}"
+...
+```
 ---
 ### d. Step 3 - Emit New Code
+Finally, we have enough information to choose between `self.route` or `self.down` or `self.up` or `self.passThrough`.
+```
+...
+  Connection_route [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩, ⟨Receiver⟩, self.route)’
+...
+```
+---
+#### d. Emitter Details
+```
+Connections {
+  Connections [Connections+] = ‛⟨Connections⟩’
+  Connection_route [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩, ⟨Receiver⟩, self.route)’
+  Connection_down [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩, ⟨Receiver⟩, self.down)’
+  Connection_up [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩,⟨Receiver⟩, self.up)’
+  Connection_passThrough [lb Sender Receiver rb] = ‛\nConnection (⟨Sender⟩, ⟨Receiver⟩, self.passThrough)’
+  Sender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
+  SelfSender [ksender kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
+  Receiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
+  SelfReceiver [kreceiver kcolon lb ComponentName kcomma PortName rb] = ‛{⟨ComponentName⟩, ⟨PortName⟩}’
 
+  SelfComponentName [s] = ‛self’
+  ComponentName [s] = ‛⟨s⟩’
+  PortName [s] = ‛⟨s⟩’
+
+  string [q1 cs* q2] = ‛⟨q1⟩⟨cs⟩⟨q2⟩’
+  dq [q] = ‛⟨q⟩’
+```
 ---
 # Gory Details
 ## Skip This Unless You Want To Build A Transpiler
-- tbd elsewhere
-- 
+- elsewhere
+- see [eh](https://github.com/guitarvydas/eh) for a fully-worked solution to a real use-case
