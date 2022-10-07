@@ -1,0 +1,230 @@
+template MessageDebug {
+  prop from
+  prop trail
+}
+template Message {
+  prop data
+  prop port
+  include MessageDebug
+}
+template InputMessage {
+  include Message
+}
+template OutputMessage {
+  include Message
+}
+template TopMessage {
+  include Message
+}
+
+template FIFO {
+  parameterized-action enqueue
+  value dequeue
+  predicate empty?
+}
+
+template Sender {
+  prop port
+  prop from
+  prop name
+  parameterized-predicate match
+}
+
+template Receiver {
+  prop port
+  prop who
+  prop name
+  parameterized-action ❲enqueue input❳
+  parameterized-action ❲enqueue output❳
+}
+
+template ❲Sender Queue❳ {
+  action ❲clear outputs❳
+  parameterized-action ❲enqueue output❳
+  value ❲dequeue output❳
+  prop outputs
+  prop ❲output queue❳
+  parameterized-action send
+}
+
+template ❲Receiver Queue❳ {
+  predicate ready?
+  parameterize-action ❲inject message❳
+  action-predicate ❲handle if ready❳ --- run handler is there is something in the input queue
+}
+
+template HSM {
+  action enter
+  action exit
+  parameterized-action next
+  action reset
+  parameterized-action handle
+  action step
+  predicate busy
+}
+
+template State {
+  prop name
+  action enter
+  action exit
+  parameterized-action handle
+  action step
+  predicate busy?
+}
+
+template  ❲Port Handler❳ {
+  prop port
+  action func
+  parameterized-predicate ❲match port❳
+}
+
+template Runnable {
+  prop parent
+  prop name
+  prop top
+  action run
+}
+
+template Connection {
+  prop sender
+  prop receiver
+  action ❲guarded deliver❳
+}
+template Across {
+  include Connection
+}
+template Up {
+  include Connection
+}
+template Down {
+  include Connection
+}
+template ❲Pass Through❳ {
+  include Connection
+}
+
+template EH {
+  include Runnable
+  include ❲Receiver Queue❳
+  include ❲Sender Queue❳
+  include HSM
+}
+
+template Container {
+  include EH
+  prop children
+  prop connections
+}
+template Leaf {
+  include EH
+}
+
+--- shortcuts
+synonym id = external
+synonym action = external
+synonym children = [Component]
+synonym connections = [Connection]
+---
+internal Runnable {
+  action ❲set name❳ (id)
+  action ❲set default name❳ (id)
+  action ❲set enter❳ (action)
+  action ❲set exit❳ (action)
+}
+
+internal EH {
+  action ❲set name❳ (id)
+  action ❲set default name❳ (id)
+  action ❲set enter❳ (action)
+  action ❲set exit❳ (action)
+}
+
+--- signatures
+
+signature parameterized-action FIFO/enqueue << Message
+signature value FIFO/dequeue << Message
+
+signature parameterized-predicate Sender/match {
+  sender: (Sender, port)
+  other: (_, _)
+}
+
+signature parameterized-action Receiver/❲enqueue input❳ << InputMessage
+signature parameterized-action Receiver/❲enqueue output❳ << OutputMessage
+
+signature parameterized-action ❲Sender Queue❳/❲enqueue output❳ << OutputMessage
+signature value ❲Sender Queue❳/❲dequeue output❳ >> OutputMessage
+signature parameterized-action ❲Sender Queue❳/send << (Port, Data)
+
+signature parameterized-action ❲Receiver Queue❳/❲inject message❳ << InputMessage
+signature action-predicate ❲Receiver Queue❳/❲handle if ready❳
+
+signature parameterized-action HSM/next << State
+signature parameterized-action HSM/handle << InputMessage
+
+signature parameterized-action State/handle << InputMessage
+
+signature parameterized-predicate ❲Port Handler❳/❲match port❳ << Port
+
+signature parameterized-action Connection/❲guarded deliver❳ << InputMessage
+
+
+
+
+signature constructor/after ❲Hello World Sequential❳ << (parent, name)
+
+--- Implementations
+
+constructor for EH {
+  with .Runnable {
+    ❲set name❳ (.name)
+    ❲set default name❳ (.default-state-name)
+    ❲set enter❳ (.enter)
+    ❲set exit❳ (.exit)
+  }
+}
+
+after initializer for HelloWorldSequential (parent name) {
+  synonym %e1 = new Echo ($parent, '«$name»-e1') {
+    synonym %e2 = new Echo ($parent, '«$name»-e2') {
+      .children = [%e1, %e2]
+      .connections = [
+	  : Down   @'stdin'       {%e1 @'stdin'}
+	  : Across {%e1 @'stdout'} {%e2 @'stdin'}
+	  : Up     {%e2 @'stdout'} @'stdout'
+      ]
+    }
+  }
+}
+
+script action Runnable/run {
+  while ❲is busy❳? { 
+    step
+  }
+  while ❲handle-if-ready❳? {
+    while ❲is-busy❳? {
+      step
+    }
+  }
+}
+
+signatures ❲Sender Queue❳ {
+  ❲clear outputs❳  ()              -x
+  ❲enqueue output❳ (OutputMessage) -x
+  ❲dequeue output❳ ()              -> OutputMessage
+  send             (Port, Data)    -x
+}
+---
+
+
+TODO:
+comp HelloWorldSequential {
+}
+comp HelloWorldConcurrent {
+}
+comp Echo {
+}
+
+
+comp Test {
+}

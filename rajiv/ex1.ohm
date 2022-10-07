@@ -1,0 +1,14 @@
+ex1 {
+Main = Expression+
+Expression = primary op primary
+op = "+" | "x"
+primary = number | string
+number = float | int
+int = digit+
+float = digit+ "." digit+
+string = dq (~dq any)* dq
+dq = "\""
+comment = "#" (~nl any)* nl
+nl = "\n"
+space += comment
+}

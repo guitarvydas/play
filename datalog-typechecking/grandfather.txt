@@ -1,0 +1,21 @@
+
+fact mother{child: "Pete", mother: "Mary"}.
+fact father{child: "Mary", father: "Mark"}.
+
+rule parent{child: C, parent: P} :-
+  mother{child: C, mother: P} |
+  father{child: C, father: P}.
+
+rule grandfather{child: A, grandfather: C} :-
+  parent{child: A, parent: B} &
+  father{child: B, father: C}.
+
+query grandfather{child: "Pete", grandfather: C}.
+
+=> query grandfather{child: "Pete", grandfather: ?0}.
+
+=> parent { child: "Pete", parent: ?1 } &
+   father { child: ?1, father: ?0 }
+
+=> parent { child: "Pete", parent: ?1 } &
+   father { child: ?1, father: ?0 }

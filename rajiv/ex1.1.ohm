@@ -1,0 +1,4 @@
+ex1 {
+string = dq (~dq any)* dq
+dq = "\""
+}

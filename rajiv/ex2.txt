@@ -1,0 +1,6 @@
+1 + 1
+# mixed arithmetic
+1 + 1.5
+1 + "1"
+# grouping
+1 x (2 + 5)

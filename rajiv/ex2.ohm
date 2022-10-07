@@ -1,0 +1,26 @@
+Basic {
+Main = TopExpression+
+TopExpression = Expression
+Expression =
+  | "(" Expression ")" -- nested
+  | Expression op Expression -- op
+  | primary -- basic
+op = "+" | "x"
+primary = number | string
+number = decimal | whole
+whole = digit+
+decimal = digit+ "." digit+
+string = dq (~dq any)* dq
+dq = "\""
+comment = "#" (~nl any)* nl
+nl = "\n"
+space += comment
+}
+
+// git clone https://github.com/guitarvydas/parsingexplorer.git
+
+Test <: Basic {
+op := opPlus | opTimes
+opPlus = "+"
+opTimes = "x"
+}

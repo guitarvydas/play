@@ -1,3 +1,13 @@
+# Overview
+- *If then else* is a low level assembler-like, imperative operation. 
+
+- I recommend that *if then else* not be used.  Pattern matching is used, instead.
+
+- In these slides, I attempt to show how to use pattern matching. 
+
+- I use diagrams and Ohm-JS to illustrate the techniques.
+
+---
 # Component Diagram
 
 ![[test5.png]]

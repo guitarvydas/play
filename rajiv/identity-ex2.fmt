@@ -1,0 +1,20 @@
+Test {
+Main [TopExpression+] = ‛«TopExpression»’
+TopExpression [e] = ‛\n«e»’
+Expression_nested [lp Expression rp] = ‛«lp»«Expression»«rp»’
+Expression_op [e1 op e2] = ‛«e1»«op»«e2»’
+Expression_basic [p] = ‛«p»’
+op_plus [c] = ‛ «c» ’
+op_times [c] = ‛ «c» ’
+primary [x] = ‛«x»’
+number [x] = ‛«x»’
+whole [digit+] = ‛«digit»’
+decimal [d1+ kdot d2+] = ‛«d1»«kdot»«d2»’
+
+string [q1 cs* q2] = ‛«q1»«cs»«q2»’
+dq [c] = ‛«c»’
+comment [koctothorpe cs* nl] = ‛«koctothorpe»«cs»«nl»’
+nl [c] = ‛«c»’
+}
+
+// git clone https://github.com/guitarvydas/parsingexplorer.git

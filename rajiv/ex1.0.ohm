@@ -1,0 +1,4 @@
+ex1 {
+comment = "#" (~nl any)* nl
+nl = "\n"
+}

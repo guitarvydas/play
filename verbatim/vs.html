@@ -16,16 +16,16 @@ textarea {
 <br>
 
 <p>Source:</p>
-<textarea id="src" rows="10" cols="30" placeholder="source file" style="background-color:oldlace;">
+<textarea id="src" rows="17" cols="30" placeholder="source file" style="background-color:oldlace;">
 </textarea>
 
 <p>output: (transpiled, stripped)</p>
-<textarea id="transpiled" rows="5" cols="30" placeholder="transpiled output" style="background-color:oldlace;">
+<textarea id="transpiled" rows="12" cols="30" placeholder="transpiled output" style="background-color:oldlace;">
 </textarea>
 
-<textarea id="stripped" rows="5" cols="30" placeholder="stripped output" style="background-color:oldlace;">
+<textarea id="stripped" rows="12" cols="30" placeholder="stripped output" style="background-color:oldlace;">
 </textarea>
-<textarea id="value" rows="5" cols="20" placeholder="evaluated" style="background-color:oldlace;">
+<textarea id="value" rows="12" cols="20" placeholder="evaluated" style="background-color:oldlace;">
 </textarea>
 
 
@@ -82,7 +82,7 @@ textarea {
       var stripped = transpiled.replace (/⟪/g,'').replace (/⟫/g,'');
       document.getElementById('stripped').innerHTML = stripped;
       let compiled = compile (stripped);
-      let val = compiled.f ();
+      let val = loadAndRun (compiled);
       document.getElementById('value').innerHTML = val;
   }
 

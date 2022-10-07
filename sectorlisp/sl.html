@@ -1,0 +1,22 @@
+<script>
+  var g_editor = CodeMirror.fromTextArea(document.getElementById("input"), {
+    spellcheck: false,
+    autocorrect: false,
+    autocapitalize: true,
+    matchBrackets: true,
+    lineWrapping: true
+  });
+  g_editor.setSize(640, null);
+  g_editor.setOption('extraKeys', {
+    'Ctrl-Enter': function() {
+      OnEval();
+    },
+    'Cmd-Enter': function() {
+      OnEval();
+    }
+  });
+  SetUp();
+  Reset();
+  RestoreMachine();
+  ReportUsage(0);
+</script>

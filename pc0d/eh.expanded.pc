@@ -1,0 +1,33 @@
+template EH {
+  template Runnable {
+    prop parent
+    prop name
+    prop top
+    action run
+  }
+  template ❲Receiver Queue❳ {
+    predicate ready
+    action ❲inject message❳ (message)
+    predicate ❲handle if ready❳
+  }
+
+  template ❲Sender Queue❳ {
+    action ❲clear outputs❳
+    action ❲enqueue output❳
+    action ❲dequeue output❳
+    prop outputs
+    prop ❲output queue❳
+    action send
+  }
+
+  template HSM {
+    action enter
+    action exit
+    action next (❲state name❳)
+    action reset
+    action handle (InputMessage)
+    action step
+    predicate busy
+  }
+
+}

@@ -1,0 +1,6 @@
+class FIFO {
+  proc enqueue (element)
+  proc dequeue (element)
+  pred isEmpty
+  func asList
+}

@@ -1,0 +1,28 @@
+<script>var g_lisp = "sectorlisp";</script>
+<script src="lisp.js?v=7"></script>
+<script src="fast.js?v=7" async></script>
+<script src="prog.js?v=7" async></script>
+<link rel="stylesheet" href="//worker.jart.workers.dev/sectorlisp2/codemirror.min.css?v=7">
+<script src="//worker.jart.workers.dev/sectorlisp2/codemirror.min.js?v=7"></script>
+<script>
+  var g_editor = CodeMirror.fromTextArea(document.getElementById("input"), {
+    spellcheck: false,
+    autocorrect: false,
+    autocapitalize: true,
+    matchBrackets: true,
+    lineWrapping: true
+  });
+  g_editor.setSize(640, null);
+  g_editor.setOption('extraKeys', {
+    'Ctrl-Enter': function() {
+      OnEval();
+    },
+    'Cmd-Enter': function() {
+      OnEval();
+    }
+  });
+  SetUp();
+  Reset();
+  RestoreMachine();
+  ReportUsage(0);
+</script>

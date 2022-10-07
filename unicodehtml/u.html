@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+textarea {
+}
+</style>
+</head>
+<body>
+
+<h1>Drawing Transpiler</h1>
+
+<p>Text:</p>
+<textarea id="text" rows="7" cols="120" placeholder="text" style="background-color:oldlace;">
+</textarea>
+<button onclick="generate ()">Test</button>
+<script>
+
+  function generate () {
+      //var vopen = "&#e29fa8";
+      //var vopen = "\u{2329}"; //〈
+      var vopen = "\u{2039}"; //‹ -- from https://www.unicodepedia.com/?p=16
+      //var vopen = "\u{2018}"; //‘
+      //var vopen = "\u{1D306}";
+      //var vclose = "\u{205ac}";
+      //var vclose = "\u{232a}";//〉
+      var vclose = "\u{203a}";//›
+      //var vclose = "\u{2019}";//’
+      document.getElementById('text').innerHTML = `${vopen}${vclose}`;
+      var x = document.getElementById('text').value;
+      console.log (`text is ${x} len=${x.length}`);
+  }
+  
+  </script>
+</body>
+</html>
+
+
