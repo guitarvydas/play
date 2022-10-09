@@ -1,0 +1,9 @@
+PseudoCodeComments {
+main = pcchar+
+pcchar =
+  | comment main? -- commented
+  | any           -- raw
+  
+comment = "---" (~nl any)* nl
+nl = "\n"
+}

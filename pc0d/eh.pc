@@ -5,16 +5,16 @@ template MessageDebug {
 template Message {
   prop data
   prop port
-  include MessageDebug
+  insert MessageDebug
 }
 template InputMessage {
-  include Message
+  insert Message
 }
 template OutputMessage {
-  include Message
+  insert Message
 }
 template TopMessage {
-  include Message
+  insert Message
 }
 
 template FIFO {
@@ -91,32 +91,32 @@ template Connection {
   action ❲guarded deliver❳
 }
 template Across {
-  include Connection
+  insert Connection
 }
 template Up {
-  include Connection
+  insert Connection
 }
 template Down {
-  include Connection
+  insert Connection
 }
 template ❲Pass Through❳ {
-  include Connection
+  insert Connection
 }
 
 template EH {
-  include Runnable
-  include ❲Receiver Queue❳
-  include ❲Sender Queue❳
-  include HSM
+  insert Runnable
+  insert ❲Receiver Queue❳
+  insert ❲Sender Queue❳
+  insert HSM
 }
 
 template Container {
-  include EH
+  insert EH
   prop children
   prop connections
 }
 template Leaf {
-  include EH
+  insert EH
 }
 
 --- shortcuts

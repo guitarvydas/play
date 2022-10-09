@@ -1,0 +1,5 @@
+# Don't forget including your subrepos' roots to .gitignore!
+subrepos:
+- path: 'prep'
+  repo: 'git@github.com:guitarvydas/prep.git'
+  branch: 'master'

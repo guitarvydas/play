@@ -1,0 +1,20 @@
+Test {
+
+main = unit+
+
+unit =
+  | id    -- withid
+  | other -- other
+
+id =
+  | "❲" idchar* "❳" -- bracketed
+  | letter alnum*   -- raw
+  
+idchar =
+  | "❲" idchar* "❳" -- recursive
+  | rawchar   -- raw
+
+other = rawchar
+
+rawchar = ~"❲" ~"❳" any
+}

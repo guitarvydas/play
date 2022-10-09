@@ -1,0 +1,4 @@
+template Receiver {
+  parameterized-action ❲enqueue input❳
+  prop port
+}

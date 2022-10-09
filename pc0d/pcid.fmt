@@ -1,0 +1,7 @@
+pcid {
+  main [unit+] = ‛«unit»’
+  unit [x]  = ‛«x»’
+  id_raw [unadorned] = ‛❲«unadorned»❳’
+  other  [x]  = ‛«x»’
+  rawchar  [x]  = ‛«x»’
+}
