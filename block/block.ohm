@@ -1,0 +1,10 @@
+id {
+  main = block
+  block =
+    | "{" inner* "}"    -- recursive
+
+  inner =
+    | "{" inner* "}"    -- recursive
+    | ~"{" ~"}" any    -- basic
+    
+}
