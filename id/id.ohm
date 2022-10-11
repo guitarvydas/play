@@ -1,11 +1,11 @@
 id {
   main = id
   id =
-    | "❲" inner "❳"    -- recursive
+    | "❲" inner* "❳"    -- recursive
     | letter alnum* -- basic
 
   inner =
-    | "❲" inner "❳"    -- recursive
+    | "❲" inner* "❳"    -- recursive
     | ~"❲" ~"❳" any    -- basic
     
 }
