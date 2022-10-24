@@ -1,0 +1,44 @@
+Test {
+Main = Test1
+Test1 = EmptyStringParameter1 EmptyStringParameter2
+EmptyStringParameter1 = "(" emptyString1 ")"
+emptyString1 = dq dq
+
+EmptyStringParameter2= "(" emptyString2 ")"
+emptyString2 = sq sq
+
+dq = "\""
+sq = "'"
+}
+
+---
+
+Test {
+Main = Test1
+Test1 = EmptyStringParameter1 EmptyStringParameter2
+EmptyStringParameter1 = "(" dq dq ")"
+emptyString1 = dq dq
+
+EmptyStringParameter2= "(" sq sq ")"
+emptyString2 = sq sq
+
+dq = "\""
+sq = "'"
+}
+
+---
+Test {
+Main = Test1
+Test1 = EmptyStringParameter1 EmptyStringParameter2
+EmptyStringParameter1 = "(" "\"" "\"" ")"
+EmptyStringParameter2= "(" "'" "'" ")"
+}
+
+---
+
+Test {
+Main = Test1
+Test1 = EmptyStringParameter1 EmptyStringParameter2
+EmptyStringParameter1 = "(" "\"\"" ")"
+EmptyStringParameter2= "(" "''" ")"
+}

@@ -1,0 +1,9 @@
+sp {
+Test = sp sp PutSpace
+sp = "'" " " "'"
+PutSpace = "putchar" "(" sp ")" ";"
+}
+
+// test:
+// ' ' ' '
+// putchar (' ');

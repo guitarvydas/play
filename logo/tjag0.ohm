@@ -1,0 +1,12 @@
+TJAGrammar {
+    Chart = Element+
+    Element = Command
+
+    Command = "#" header value -- withValue
+            | "#" header -- justHeader
+
+    header = upper+
+    value = (~eol any)+
+
+    eol = "\n" | "\r"
+}

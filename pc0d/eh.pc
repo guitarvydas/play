@@ -5,16 +5,16 @@ template MessageDebug {
 template Message {
   prop data
   prop port
-  insert MessageDebug
+  incorporate MessageDebug
 }
 template InputMessage {
-  insert Message
+  incorporate Message
 }
 template OutputMessage {
-  insert Message
+  incorporate Message
 }
 template TopMessage {
-  insert Message
+  incorporate Message
 }
 
 template FIFO {
@@ -49,7 +49,7 @@ template ❲Sender Queue❳ {
 
 template ❲Receiver Queue❳ {
   predicate ready?
-  parameterize-action ❲inject message❳
+  parameterized-action ❲inject message❳
   action-predicate ❲handle if ready❳ --- run handler is there is something in the input queue
 }
 
@@ -60,7 +60,7 @@ template HSM {
   action reset
   parameterized-action handle
   action step
-  predicate busy
+  predicate busy?
 }
 
 template State {
@@ -91,32 +91,32 @@ template Connection {
   action ❲guarded deliver❳
 }
 template Across {
-  insert Connection
+  incorporate Connection
 }
 template Up {
-  insert Connection
+  incorporate Connection
 }
 template Down {
-  insert Connection
+  incorporate Connection
 }
 template ❲Pass Through❳ {
-  insert Connection
+  incorporate Connection
 }
 
 template EH {
-  insert Runnable
-  insert ❲Receiver Queue❳
-  insert ❲Sender Queue❳
-  insert HSM
+  incorporate Runnable
+  incorporate ❲Receiver Queue❳
+  incorporate ❲Sender Queue❳
+  incorporate HSM
 }
 
 template Container {
-  insert EH
+  incorporate EH
   prop children
   prop connections
 }
 template Leaf {
-  insert EH
+  incorporate EH
 }
 
 --- shortcuts

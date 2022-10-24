@@ -1,0 +1,44 @@
+test2 {
+MaybeSp = "if" "(" "argc" ">" "0" ")" "putchar" "(" "''" ")" ";"
+}
+
+// test case:
+//  if (argc > 0)
+//       putchar (' ');
+
+---
+
+test2 {
+Main = MaybeSp1 MaybeSp2
+MaybeSp1 = "if" "(" "argc" ">" "0" ")" "putchar" "(" qq1 ")" ";"
+MaybeSp2 = "if" "(" "argc" ">" "0" ")" "putchar" "(" qq2 ")" ";"
+q = "'"
+qq1 = "'" "'"
+qq2 = "''"
+}
+
+// test case:
+//  if (argc > 0)
+//       putchar (' ');
+//  if (argc > 0)
+//       putchar (' ');
+
+---
+
+test2 {
+Main = MaybeSp1 MaybeSp2 MaybeSp3
+MaybeSp1 = "if" "(" "argc" ">" "0" ")" "putchar" "(" qq1 ")" ";"
+MaybeSp2 = "if" "(" "argc" ">" "0" ")" "putchar" "(" qq2 ")" ";"
+MaybeSp3 = "if" "(" "argc" ">" "0" ")" "putchar" "(" "''" ")" ";"
+q = "'"
+qq1 = "'" "'"
+qq2 = "''"
+}
+
+// test case:
+//  if (argc > 0)
+//       putchar (' ');
+//  if (argc > 0)
+//       putchar (' ');
+//  if (argc > 0)
+//       putchar (' ');

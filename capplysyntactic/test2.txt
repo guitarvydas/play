@@ -1,0 +1,10 @@
+{
+  x = 1;
+  --argc;
+  ++argv;
+  if (argc > 0)
+      putchar (' ');
+  --argc;
+  ++argv;
+  y = 2;
+}

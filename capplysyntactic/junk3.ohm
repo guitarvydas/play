@@ -1,0 +1,27 @@
+Ccompound {
+main = text+
+
+text =
+  | applySyntactic<Block>
+  | (~"{" ~"}" any)+
+
+Block = "{" Statement* "}"
+
+Statement =
+  | Block
+  | Cstatement
+
+Cstatement =
+  | NextArgNoSp MaybeSp3 -- nextargMaybeSp3
+
+NextArgNoSp = "--" "argc" ";" "++" "argv" ";"
+MaybeSp3 = "if" "(" "argc" ">" "0" ")" "putchar" "(" dd ")" ";"
+
+qq = q q
+q = "'"
+dd = digit digit
+}
+
+// test:
+//  if (argc > 0)
+//     putchar (12);
