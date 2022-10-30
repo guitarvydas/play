@@ -1,0 +1,157 @@
+synonym function ⟪ReportUsage⟫ ⟪⟫
+synonym function ⟪FormatDuration⟫ ⟪⟫
+synonym function ⟪FormatInt⟫ ⟪⟫
+synonym function ⟪SaveOutput⟫ ⟪⟫
+synonym function ⟪SetStorage⟫ ⟪⟫
+synonym function ⟪GetStorage⟫ ⟪⟫
+synonym function ⟪RemoveStorage⟫ ⟪⟫
+synonym function ⟪SetUp⟫ ⟪⟫
+synonym function ⟪GetMillis⟫ ⟪⟫
+synonym function ⟪CountGets⟫ ⟪⟫
+synonym function ⟪CountSets⟫ ⟪⟫
+synonym bracketed begin fini ⟪⟫
+synonym name dx CharacterIndex
+Synonym name cx ConsIndex
+synonym matching line GetMillis
+synonym matching line cGets
+synonym matching line cSets
+synonym matching line cHeap
+synonym matching line cReads
+synonym matching line cPrints
+in-scope function ReadList {
+  synonym name x temp_x
+  synonym name y temp_y
+  synonym line {
+    if (Get(x) == Ord(')')) return -0;
+    @if end-of-list return empty-list
+  }
+}
+
+
+
+functionsynonym "ReportUsage" ""
+
+match function $name="ReportUsage"
+on "function $name" with "{" "}" {
+  ""
+}
+
+---
+
+pattern function («name») {
+  “function” “«name»” block ⇉ ❇delete
+}
+
+pattern block {
+  “{” innard+ “}”
+}
+
+pattern innard {
+  | “{” innard+ “}”
+  | ~“{” ~“}” .
+}
+
+---
+
+pattern function («name») {
+  “function” “«name»” block ⇉ ❇delete
+}
+
+pattern block {
+  “{” innard+ “}”
+}
+
+pattern innard {
+  | “{” innard+ “}”
+  | ~“{” ~“}” .
+}
+
+find-and-replace function “ReportUsage” ⇉ ❇delete
+find-and-replace function “FormatDuration” ⇉ ❇delete
+find-and-replace function “FormatInt” ⇉ ❇delete
+find-and-replace function “SaveOutput” ⇉ ❇delete
+find-and-replace function “SetStorage” ⇉ ❇delete
+find-and-replace function “GetStorage” ⇉ ❇delete
+find-and-replace function “RemoveStorage” ⇉ ❇delete
+find-and-replace function “SetUp” ⇉ ❇delete
+find-and-replace function “GetMillis” ⇉ ❇delete
+find-and-replace function “CountGets” ⇉ ❇delete
+find-and-replace function “CountSets” ⇉ ❇delete
+
+---
+
+pattern function «name» {
+  “function” «name» block 
+}
+
+pattern block {
+  “{” innard+ “}”
+}
+
+pattern innard {
+  | “{” innard+ “}”
+  | ~“{” ~“}” .
+}
+
+pattern GetMillis {
+  ^ .* “GetMillis” .* $
+}
+
+pattern cGets {
+  ^ .* “cGets” .* $
+}
+
+pattern cSets {
+  ^ .* “cSets” .* $
+}
+
+pattern cReads {
+  ^ .* “cRead” .* $
+}
+
+pattern cHeap {
+  ^ .* “cHeap” .* $
+}
+
+pattern cPrints {
+  ^ .* “cPrints” .* $
+}
+
+???
+in-scope function ReadList {
+  synonym name x temp_x
+  synonym name y temp_y
+  synonym line {
+    if (Get(x) == Ord(')')) return -0;
+    @if end-of-list return empty-list
+  }
+}
+???
+
+function «“ReportUsage”» ⇔ “”
+function «“FormatDuration”» ⇔ “”
+function «“FormatInt”» ⇔ “”
+function «“SaveOutput”» ⇔ “”
+function «“SetStorage”» ⇔ “”
+function «“GetStorage”» ⇔ “”
+function «“RemoveStorage”» ⇔ “”
+function «“SetUp”» ⇔ “”
+function «“GetMillis”» ⇔ “”
+function «“CountGets”» ⇔ “”
+function «“CountSets”» ⇔ “”
+“dx” ⇔ “CharacterIndex”
+“cx” ⇔ “ConsIndex”
+GetMillis ⇔ “”
+cGets ⇔ “”
+cSets ⇔ “”
+cHeap ⇔ “”
+cReads ⇔ “”
+cPrints ⇔ “”
+
+
+
+=====
+
+“”
+⇔
+⇉
