@@ -5,22 +5,23 @@ include './message.js'
 */
 
 function helloWorld () {
-    'Hello World' }
+    'Hello World'
+}
 
 constructor Top () {
     synonym top ≣ ↵Container {
-        synonym leaf1 ≣ ↵Leaf (helloWorld) {
+        synonym ❲leaf 1❳ ≣ ↵Leaf (helloWorld) {
             synonym routings ≣ ⎨direction receiver port⎬ 
                               [
-                               {down!    leaf1     in!}
+                               {down!    ❲leaf 1❳  in!}
                                {up!      top       out!}
                               ] {
-                top/setChildren ([leaf1])
+                top/setChildren ([❲leaf 1❳])
                 top/setRoutings (routings)
                 top }}}}
 
 synonym top ≣ ↵Top () {
   top/handle (⟪in! true⟫)
   top/runToCompletion 
-  $/display (top.outputs)
+  ≈/display (top.outputs)
 }

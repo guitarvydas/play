@@ -43,20 +43,23 @@ PseudoCode {
   symbol = name "!"
 
   name =
+    | compoundName
     | builtinName
+    | selfName
     | basicName
 
   port = symbol | name
   FieldRef = name "." name
   
-//  compoundName = "❲" (~nameBracket any)* "❳"
+  compoundName = "❲" (~nameBracket any)* "❳"
   basicName = nameFirst nameRest*
   
   delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
   asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">" 
   asciiCharacter = "!" | call | "." | builtinName
   call = "/"
-  builtinName = "$"
+  builtinName = "≈"
+  selfName = "š"
   unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
   messageBegin = "⟪"
   messageEnd = "⟫"

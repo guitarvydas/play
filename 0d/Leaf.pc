@@ -1,48 +1,57 @@
+/*
 var messageClass = require ('./message.js');
+*/
 
-function Leaf (func) {
-    this.func = func;
-    this.reset = reset;
-    this.isCompleted = isCompleted;
-    this.handle = handle;
-    this.step = step;
-    this.outputs = [];
+constructor Leaf (𝜌func) {
+    š.func ≣ 𝜌func
+    š.reset ≣ λreset
+    š.isCompleted ≣ λisCompleted
+    š.handle ≣ λhandle
+    š.step ≣ λstep
+    š.outputs ≣ []
 
-    this.reset ();
+    š/reset
 
 }
 
-function handle (message, sendFunction) {
-    if (this.state === "armed") {
-	function send (port, data, trace) {
-	    this.outputs.push (new messageClass.Message (port, data, trace));
-	}
-	var val = this.func (message, send);
-	this.outputs.push (new messageClass.Message ('$out', val, message));
-	this.state = "completed";
-    } else {
-	throw "Leaf not armed";
+function handle (𝜌message 𝜌sendFunction) {
+    cond š.state {
+        'armed' {
+	    function send (𝜌port 𝜌data 𝜌trace) {
+		š.outputs/push (new messageClass.Message (𝜌port 𝜌data 𝜌trace));
+	    }
+	    synonym val ≣ ≈call š.func (𝜌message  𝜌send) {
+		š.outputs/push (new messageClass.Message ('≈out' val message));
+		completed! ⇒ š.state
+            }
+        }
+        ≈else {
+	    die "Leaf not armed";
+	}        
     }
 }
 
-function step (sendFunction) {
+function step (𝜌sendFunction) {
+    /*
     // nothing to do
     // Leaf calls its function once, then doesn't call it again until reset() has been called
     // protocol: (1) call reset (2) call handle (3) call step 0 or more times
     // in a Leaf, (3) step should only be called after (2) handle has been called, hence, there is nothing left to do in step
     // in a Leaf (3) step is called only after the Leaf is in the completed state - step is a no-op in Leaf
-    if (this.isCompleted ()) {
-    } else {
-	throw "internal error: Leaf.step called on armed leaf";
+    */
+    cond š.state {
+        completed! {}
+        ≈else {
+	    die 'internal error: Leaf/step called on armed leaf'
     }
 }
 
 function reset () {
-    this.state = "armed"; // armed => ready to run function, completed => function already executed once
+    armed! ⇒ š.state /* armed => ready to run function, completed => function already executed once */
 }
 
 function isCompleted () {
-    return this.state === "completed";
+   š.state === "completed";
 }
 
 exports.Leaf = Leaf;
