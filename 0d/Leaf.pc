@@ -17,17 +17,17 @@ constructor Leaf (𝜌func) {
 function handle (𝜌message 𝜌sendFunction) {
     ≈cond š.state {
         armed! {
-	    function send (𝜌port 𝜌data 𝜌trace) {
-		š.outputs/push (⟪𝜌port 𝜌data š 𝜌trace⟫)
-	    }
-	    synonym val ≣ ≈call š.func (𝜌message  𝜌send) {
-		š.outputs/push (⟪out! val š 𝜌message⟫)
-		completed! ⇒ š.state
+            function send (𝜌port 𝜌data 𝜌trace) {
+                š.outputs/push (⟪𝜌port 𝜌data š 𝜌trace⟫)
+            }
+            synonym val ≣ ≈call š.func (𝜌message  𝜌send) {
+                š.outputs/push (⟪out! val š 𝜌message⟫)
+                completed! ⇒ š.state
             }
         }
         ≈else {
-	    die "Leaf not armed"
-	}        
+            die 'Leaf not armed'
+        }        
     }
 }
 
@@ -42,16 +42,15 @@ function step (𝜌sendFunction) {
     cond š.state {
         completed! {}
         ≈else {
-	    die 'internal error: Leaf/step called on armed leaf'
+            die 'internal error: Leaf/step called on armed leaf'
+        }
     }
 }
 
-function reset () {
+procedure reset {
     armed! ⇒ š.state /* armed => ready to run function, completed => function already executed once */
 }
 
-function isCompleted () {
-   š.state = "completed"
+function isCompleted {
+   completed! ⇒ š.state
 }
-
-exports.Leaf = Leaf

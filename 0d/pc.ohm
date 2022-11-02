@@ -4,14 +4,16 @@ PseudoCode {
 
   toplevel =
     | applySyntactic<FunctionDefinition>
+    | applySyntactic<ProcedureDefinition>
     | applySyntactic<ConstructorDefinition>
     | applySyntactic<Statement>
 
   FunctionDefinition = "function" name FormalParameters? Block
+  ProcedureDefinition = "procedure" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? Block
 
   Block = 
-    | "{" BlockStatement+ "}"
+    | "{" BlockStatement* "}"
 
   BlockStatement =
     | FunctionDefinition
@@ -22,6 +24,7 @@ PseudoCode {
     | Block -- block
     | SelfFieldDefinition -- selfFieldDefinition
     | SelfFieldUpdate -- selfFieldUpdate
+    | die operand* -- die
     | expr -- expr
 
   Parameters = "(" operand* ")"
@@ -115,6 +118,7 @@ PseudoCode {
   nameRest = alnum | "_"
 
   callop = "≈call"
+  die = "≈die"
   else = "≈else"
   cond = "≈cond"
 
