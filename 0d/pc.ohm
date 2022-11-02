@@ -4,45 +4,69 @@ PseudoCode {
 
   toplevel =
     | applySyntactic<FunctionDefinition>
+    | applySyntactic<ProcedureDefinition>
     | applySyntactic<ConstructorDefinition>
     | applySyntactic<Statement>
 
   FunctionDefinition = "function" name FormalParameters? Block
+  ProcedureDefinition = "procedure" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? Block
 
-  Block = "{" Statement+ "}"
+  Block = 
+    | "{" BlockStatement* "}"
 
+  BlockStatement =
+    | FunctionDefinition
+    | Statement
+    
   Statement =
     | "synonym" name "≣" expr Block -- synonym
     | Block -- block
-    | MethodCall -- call
     | SelfFieldDefinition -- selfFieldDefinition
     | SelfFieldUpdate -- selfFieldUpdate
+    | die operand* -- die
     | expr -- expr
 
-  ClassInstantiation = new name Parameters?
-  Parameters = "(" expr* ")"
+  Parameters = "(" operand* ")"
   FormalParameters = "(" parameterDefinition* ")"
-  MethodCall = name call name Parameters?
+
+  operand = constant | value
+  expr = operand
+
+  constant =
+    | applySyntactic<Message>
+    | applySyntactic<BasicList>
+    | applySyntactic<ListOfObjects>
+    | string
+    | symbol
+    
+  value =
+    | applySyntactic<Funcall> -- funcall
+    | applySyntactic<ClassInstantiation> -- instantiation
+    | applySyntactic<MethodCall> -- methodCall
+    | applySyntactic<FieldRef> -- fieldRef
+    | parameterReference -- parameterRef
+    | functionReference -- functionRef
+    | else operand -- else
+    | condOperand -- cond
+    | name -- name
+
+  valueOperand = value
+
+  condOperand = cond operand applySyntactic<Block>
+
+  Funcall = callop operand Parameters?
+
+  ClassInstantiation = new name Parameters?
+  MethodCall = value call name Parameters?
   ListOfObjects = ListHeader "[" UnnamedObject+ "]"
   ListHeader = headerOpen name+ headerClose
   BasicList = "[" name* "]"
   UnnamedObject = "{" expr* "}"
   Message =
-    | messageBegin port name name name messageEnd -- withDebug
-    | messageBegin port name messageEnd -- raw
+    | messageBegin port operand operand operand messageEnd -- withDebug
+    | messageBegin port operand messageEnd -- raw
 
-  expr =
-    | applySyntactic<Message>
-    | applySyntactic<ClassInstantiation>
-    | string
-    | applySyntactic<BasicList>
-    | applySyntactic<ListOfObjects>
-    | applySyntactic<FieldRef>
-    | symbol
-    | parameterReference
-    | functionReference
-    | name
 
   SelfFieldDefinition = selfField "≣" expr
   SelfFieldUpdate = expr "⇒" selfField
@@ -55,8 +79,9 @@ PseudoCode {
     | selfName
     | basicName
 
-  port = symbol | name
-  FieldRef = name "." nonSpecialName
+  port = symbol | valueOperand
+
+  FieldRef = value "." nonSpecialName
   selfField = selfName "." nonSpecialName
   parameterReference = "𝜌" nonSpecialName
   parameterDefinition = parameterReference
@@ -91,6 +116,11 @@ PseudoCode {
 
   nameFirst = letter
   nameRest = alnum | "_"
+
+  callop = "≈call"
+  die = "≈die"
+  else = "≈else"
+  cond = "≈cond"
 
   space += comment
 }
