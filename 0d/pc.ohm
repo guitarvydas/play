@@ -1,0 +1,70 @@
+PseudoCode {
+
+  main =
+    | applySyntactic<FunctionDefinition>
+    | applySyntactic<ConstructorDefinition>
+    | applySyntactic<Statement>
+
+  FunctionDefinition = "function" name FormalParameters? Block
+  ConstructorDefinition = "constructor" name FormalParameters? Block
+
+  Statement =
+    | "synonym" name "≣" Block -- synonym
+    | Block -- block
+
+  Block = "{" Statement "}"
+
+  ClassInstantiation = new name Parameters?
+  Parameters = "(" exprs ")"
+  FormalParameters = "(" names ")"
+  MethodCall = name call name Parameters?
+  listOfObjects = headerOpen names headerClose basicList
+  basicList = "[" spaces names spaces "]"
+  Message =
+    | messageBegin name name name name messageEnd -- withDebug
+    | messageBegin name name messageEnd -- raw
+
+  names = (name spaces)*
+  
+  exprs = (expr spaces)*
+  expr =
+    | name
+    | applySyntactic<Message>
+    
+  symbol = name "!"
+
+  name =
+      compoundName
+    | builtinName
+    | basicName
+
+  compoundName = "❲" (~nameBracket any)* "❳"
+  basicName = nameFirst nameRest*
+  
+  delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
+  asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">" 
+  asciiCharacter = "!" | call | "." | builtinName
+  call = "/"
+  builtinName = "$"
+  unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
+  messageBegin = "⟪"
+  messageEnd = "⟫"
+  headerOpen = "⎨"
+  headerClose = "⎬"
+  nameBracket = "❲" | "❳"
+  unicodeCharacter = new
+  new = "↵"
+
+  string = sq (~sq any)* sq
+  sq = "'"
+
+  comment =  "/*" commentInnards* "*/" -- flat
+  commentInnards =
+    | "/*" commentInnards* "*/" -- rec
+    | ~"/*" ~"*/" any -- flat
+
+  nameFirst = letter
+  nameRest = alnum | "_"
+
+  space += comment
+}

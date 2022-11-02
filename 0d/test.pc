@@ -1,0 +1,26 @@
+/*
+include './container.pc'
+include './leaf.pc'
+include './message.js'
+*/
+
+function helloWorld () {
+    'Hello World' }
+
+constructor Top () {
+    synonym top ≣ ↵Container {
+        synonym leaf1 ≣ ↵Leaf (helloWorld) {
+            synonym routings ≣ ⎨direction receiver port⎬ 
+                              [
+                               {down!    leaf1     in!}
+                               {up!      top       out!}
+                              ] {
+                top/setChildren ([leaf1])
+                top/setRoutings (routings)
+                top }}}}
+
+synonym top ≣ ↵Top () {
+  top/handle (⟪in! true⟫)
+  top/runToCompletion 
+  $/display (top.outputs)
+}
