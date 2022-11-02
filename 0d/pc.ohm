@@ -15,7 +15,6 @@ PseudoCode {
   Statement =
     | "synonym" name "≣" expr Block -- synonym
     | Block -- block
-    | MethodCall -- call
     | SelfFieldDefinition -- selfFieldDefinition
     | SelfFieldUpdate -- selfFieldUpdate
     | expr -- expr
@@ -23,7 +22,7 @@ PseudoCode {
   ClassInstantiation = new name Parameters?
   Parameters = "(" expr* ")"
   FormalParameters = "(" parameterDefinition* ")"
-  MethodCall = name call name Parameters?
+  MethodCall = value call name Parameters?
   ListOfObjects = ListHeader "[" UnnamedObject+ "]"
   ListHeader = headerOpen name+ headerClose
   BasicList = "[" name* "]"
@@ -35,11 +34,15 @@ PseudoCode {
   expr =
     | applySyntactic<Message>
     | applySyntactic<ClassInstantiation>
-    | string
     | applySyntactic<BasicList>
     | applySyntactic<ListOfObjects>
     | applySyntactic<FieldRef>
+    | applySyntactic<MethodCall>
     | symbol
+    | value
+
+  value=
+    | string
     | parameterReference
     | functionReference
     | name
@@ -56,7 +59,7 @@ PseudoCode {
     | basicName
 
   port = symbol | name
-  FieldRef = name "." nonSpecialName
+  FieldRef = value "." nonSpecialName
   selfField = selfName "." nonSpecialName
   parameterReference = "𝜌" nonSpecialName
   parameterDefinition = parameterReference
