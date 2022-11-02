@@ -1,7 +1,3 @@
-/*
-var messageClass = require ('./message.js')
-*/
-
 constructor Leaf (𝜌func) {
     š.func ≣ 𝜌func
     š.reset ≣ λreset
