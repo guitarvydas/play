@@ -34,14 +34,14 @@ PseudoCode {
     
   value =
     | applySyntactic<ClassInstantiation>
-    | applySyntactic<FieldRef>
     | applySyntactic<MethodCall>
+    | applySyntactic<FieldRef>
     | parameterReference
     | functionReference
     | name
 
   ClassInstantiation = new name Parameters?
-  MethodCall = operand call name Parameters?
+  MethodCall = value call name Parameters?
   ListOfObjects = ListHeader "[" UnnamedObject+ "]"
   ListHeader = headerOpen name+ headerClose
   BasicList = "[" name* "]"
