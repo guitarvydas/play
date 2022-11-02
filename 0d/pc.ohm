@@ -1,6 +1,8 @@
 PseudoCode {
 
-  main =
+  main = toplevel+
+
+  toplevel =
     | applySyntactic<FunctionDefinition>
     | applySyntactic<ConstructorDefinition>
     | applySyntactic<Statement>
@@ -8,18 +10,21 @@ PseudoCode {
   FunctionDefinition = "function" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? Block
 
-  Statement =
-    | "synonym" name "≣" Block -- synonym
-    | Block -- block
-
   Block = "{" Statement "}"
+
+  Statement =
+    | "synonym" name "≣" expr Block -- synonym
+    | Block -- block
+    | MethodCall -- call
+    | expr -- expr
 
   ClassInstantiation = new name Parameters?
   Parameters = "(" exprs ")"
   FormalParameters = "(" names ")"
   MethodCall = name call name Parameters?
-  listOfObjects = headerOpen names headerClose basicList
+  listOfObjects = headerOpen names headerClose spaces "[" spaces unnamedObject+ spaces "]"
   basicList = "[" spaces names spaces "]"
+  unnamedObject = "{" spaces exprs spaces "}" spaces
   Message =
     | messageBegin name name name name messageEnd -- withDebug
     | messageBegin name name messageEnd -- raw
@@ -28,8 +33,13 @@ PseudoCode {
   
   exprs = (expr spaces)*
   expr =
-    | name
     | applySyntactic<Message>
+    | applySyntactic<ClassInstantiation>
+    | string
+    | basicList
+    | listOfObjects
+    | symbol
+    | name
     
   symbol = name "!"
 
