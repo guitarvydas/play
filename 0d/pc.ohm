@@ -19,10 +19,29 @@ PseudoCode {
     | SelfFieldUpdate -- selfFieldUpdate
     | expr -- expr
 
-  ClassInstantiation = new name Parameters?
-  Parameters = "(" expr* ")"
+  Parameters = "(" operand* ")"
   FormalParameters = "(" parameterDefinition* ")"
-  MethodCall = value call name Parameters?
+
+  operand = constant | value
+  expr = operand
+
+  constant =
+    | applySyntactic<Message>
+    | applySyntactic<BasicList>
+    | applySyntactic<ListOfObjects>
+    | string
+    | symbol
+    
+  value =
+    | applySyntactic<ClassInstantiation>
+    | applySyntactic<FieldRef>
+    | applySyntactic<MethodCall>
+    | parameterReference
+    | functionReference
+    | name
+
+  ClassInstantiation = new name Parameters?
+  MethodCall = operand call name Parameters?
   ListOfObjects = ListHeader "[" UnnamedObject+ "]"
   ListHeader = headerOpen name+ headerClose
   BasicList = "[" name* "]"
@@ -31,21 +50,6 @@ PseudoCode {
     | messageBegin port name name name messageEnd -- withDebug
     | messageBegin port name messageEnd -- raw
 
-  expr =
-    | applySyntactic<Message>
-    | applySyntactic<ClassInstantiation>
-    | applySyntactic<BasicList>
-    | applySyntactic<ListOfObjects>
-    | applySyntactic<FieldRef>
-    | applySyntactic<MethodCall>
-    | symbol
-    | value
-
-  value=
-    | string
-    | parameterReference
-    | functionReference
-    | name
 
   SelfFieldDefinition = selfField "≣" expr
   SelfFieldUpdate = expr "⇒" selfField
