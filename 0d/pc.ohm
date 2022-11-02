@@ -10,7 +10,7 @@ PseudoCode {
   FunctionDefinition = "function" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? Block
 
-  Block = "{" Statement "}"
+  Block = "{" Statement+ "}"
 
   Statement =
     | "synonym" name "≣" expr Block -- synonym
@@ -19,36 +19,37 @@ PseudoCode {
     | expr -- expr
 
   ClassInstantiation = new name Parameters?
-  Parameters = "(" exprs ")"
-  FormalParameters = "(" names ")"
+  Parameters = "(" expr* ")"
+  FormalParameters = "(" name* ")"
   MethodCall = name call name Parameters?
-  listOfObjects = headerOpen names headerClose spaces "[" spaces unnamedObject+ spaces "]"
-  basicList = "[" spaces names spaces "]"
-  unnamedObject = "{" spaces exprs spaces "}" spaces
+  ListOfObjects = ListHeader "[" UnnamedObject+ "]"
+  ListHeader = headerOpen name+ headerClose
+  BasicList = "[" name* "]"
+  UnnamedObject = "{" expr* "}"
   Message =
-    | messageBegin name name name name messageEnd -- withDebug
-    | messageBegin name name messageEnd -- raw
+    | messageBegin port name name name messageEnd -- withDebug
+    | messageBegin port name messageEnd -- raw
 
-  names = (name spaces)*
-  
-  exprs = (expr spaces)*
   expr =
     | applySyntactic<Message>
     | applySyntactic<ClassInstantiation>
     | string
-    | basicList
-    | listOfObjects
+    | applySyntactic<BasicList>
+    | applySyntactic<ListOfObjects>
+    | applySyntactic<FieldRef>
     | symbol
     | name
     
   symbol = name "!"
 
   name =
-      compoundName
     | builtinName
     | basicName
 
-  compoundName = "❲" (~nameBracket any)* "❳"
+  port = symbol | name
+  FieldRef = name "." name
+  
+//  compoundName = "❲" (~nameBracket any)* "❳"
   basicName = nameFirst nameRest*
   
   delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
