@@ -15,7 +15,7 @@ constructor Leaf (𝜌func) {
 }
 
 function handle (𝜌message 𝜌sendFunction) {
-    cond š.state {
+    ≈cond š.state {
         armed! {
 	    function send (𝜌port 𝜌data 𝜌trace) {
 		š.outputs/push (⟪𝜌port 𝜌data š 𝜌trace⟫)

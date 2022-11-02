@@ -10,8 +10,13 @@ PseudoCode {
   FunctionDefinition = "function" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? Block
 
-  Block = "{" Statement+ "}"
+  Block = 
+    | "{" BlockStatement+ "}"
 
+  BlockStatement =
+    | FunctionDefinition
+    | Statement
+    
   Statement =
     | "synonym" name "≣" expr Block -- synonym
     | Block -- block
@@ -33,12 +38,21 @@ PseudoCode {
     | symbol
     
   value =
-    | applySyntactic<ClassInstantiation>
-    | applySyntactic<MethodCall>
-    | applySyntactic<FieldRef>
-    | parameterReference
-    | functionReference
-    | name
+    | applySyntactic<Funcall> -- funcall
+    | applySyntactic<ClassInstantiation> -- instantiation
+    | applySyntactic<MethodCall> -- methodCall
+    | applySyntactic<FieldRef> -- fieldRef
+    | parameterReference -- parameterRef
+    | functionReference -- functionRef
+    | else operand -- else
+    | condOperand -- cond
+    | name -- name
+
+  valueOperand = value
+
+  condOperand = cond operand applySyntactic<Block>
+
+  Funcall = callop operand Parameters?
 
   ClassInstantiation = new name Parameters?
   MethodCall = value call name Parameters?
@@ -47,8 +61,8 @@ PseudoCode {
   BasicList = "[" name* "]"
   UnnamedObject = "{" expr* "}"
   Message =
-    | messageBegin port name name name messageEnd -- withDebug
-    | messageBegin port name messageEnd -- raw
+    | messageBegin port operand operand operand messageEnd -- withDebug
+    | messageBegin port operand messageEnd -- raw
 
 
   SelfFieldDefinition = selfField "≣" expr
@@ -62,7 +76,8 @@ PseudoCode {
     | selfName
     | basicName
 
-  port = symbol | name
+  port = symbol | valueOperand
+
   FieldRef = value "." nonSpecialName
   selfField = selfName "." nonSpecialName
   parameterReference = "𝜌" nonSpecialName
@@ -98,6 +113,10 @@ PseudoCode {
 
   nameFirst = letter
   nameRest = alnum | "_"
+
+  callop = "≈call"
+  else = "≈else"
+  cond = "≈cond"
 
   space += comment
 }
