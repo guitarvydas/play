@@ -16,11 +16,13 @@ PseudoCode {
     | "synonym" name "≣" expr Block -- synonym
     | Block -- block
     | MethodCall -- call
+    | SelfFieldDefinition -- selfFieldDefinition
+    | SelfFieldUpdate -- selfFieldUpdate
     | expr -- expr
 
   ClassInstantiation = new name Parameters?
   Parameters = "(" expr* ")"
-  FormalParameters = "(" name* ")"
+  FormalParameters = "(" parameterDefinition* ")"
   MethodCall = name call name Parameters?
   ListOfObjects = ListHeader "[" UnnamedObject+ "]"
   ListHeader = headerOpen name+ headerClose
@@ -38,9 +40,14 @@ PseudoCode {
     | applySyntactic<ListOfObjects>
     | applySyntactic<FieldRef>
     | symbol
+    | parameterReference
+    | functionReference
     | name
-    
-  symbol = name "!"
+
+  SelfFieldDefinition = selfField "≣" expr
+  SelfFieldUpdate = expr "⇒" selfField
+
+  symbol = nonSpecialName "!"
 
   name =
     | compoundName
@@ -49,10 +56,15 @@ PseudoCode {
     | basicName
 
   port = symbol | name
-  FieldRef = name "." name
+  FieldRef = name "." nonSpecialName
+  selfField = selfName "." nonSpecialName
+  parameterReference = "𝜌" nonSpecialName
+  parameterDefinition = parameterReference
+  functionReference = "λ" nonSpecialName
   
   compoundName = "❲" (~nameBracket any)* "❳"
   basicName = nameFirst nameRest*
+  nonSpecialName = ~selfName ~builtinName name
   
   delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
   asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">" 
