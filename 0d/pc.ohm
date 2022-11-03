@@ -8,8 +8,8 @@ PseudoCode {
     | applySyntactic<ConstructorDefinition>
     | applySyntactic<Statement>
 
-  FunctionDefinition = "function" name FormalParameters? Block
-  ProcedureDefinition = "procedure" name FormalParameters? Block
+  FunctionDefinition = internal? "function" name FormalParameters? Block
+  ProcedureDefinition = internal? "procedure" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? States Block
 
   States = "{" stateDefinition* "}"
@@ -29,7 +29,11 @@ PseudoCode {
     | SelfStateUpdate -- selfStateUpdate
     | die operand* -- die
     | ForAll
+    | ExternalRoutine
+    | codeSnippet
     | expr -- expr
+
+  ExternalRoutine = lang basicName Parameters? verbatim
 
   ForAll = forAllPrefix value tempVariableDefinition Block
 
@@ -57,11 +61,13 @@ PseudoCode {
     | procedureReference -- procedureRef
     | tempVariableReference -- tempVariable
     | stateQuery -- stateQuery
+    | tagQuery -- tagQuery
     | name -- name
 
   valueOperand = value
 
   stateQuery = stateQ operand applySyntactic<Block>
+  tagQuery = tagQ operand applySyntactic<Block>
 
   Funcall = callop operand Parameters?
 
@@ -69,7 +75,7 @@ PseudoCode {
   MethodCall = value call name Parameters?
   ListOfObjects = ListHeader "[" UnnamedObject+ "]"
   ListHeader = headerOpen name+ headerClose
-  BasicList = "[" name* "]"
+  BasicList = "[" expr* "]"
   UnnamedObject = "{" expr* "}"
   Message =
     | messageBegin portOperand operand operand operand messageEnd -- withDebug
@@ -126,10 +132,23 @@ PseudoCode {
   nameFirst = ~unicodeCharacter letter
   nameRest = alnum | "_"
 
-  keywordName = callop | die | stateQ | yes | no
+  keywordName = callop | die | stateQ | yes | no | declare | tag
+      | lang | innerFunction | internal | clear
+      | codeSnippetJS | codeSnippetCL
+      | tagQ
+  codeSnippet = codeSnippetJS | codeSnippetCL
+  codeSnippetJS = snippetPrefix "js" spaces verbatim
+  codeSnippetCL = snippetPrefix "cl" spaces verbatim
+  internal = keywordPrefix "internal"
+  clear = keywordPrefix "clear"
+  innerFunction = keywordPrefix "inner"
+  lang = keywordPrefix "lang"
+  tag = keywordPrefix "tag"
+  declare = keywordPrefix "declare"
   callop = keywordPrefix "call"
   die = keywordPrefix "die"
   stateQ = keywordPrefix "state"
+  tagQ = keywordPrefix "tag"
   yes = keywordPrefix "yes"
   no = keywordPrefix "no"
 
@@ -140,7 +159,7 @@ PseudoCode {
   outport = "◦" nonSpecialName
   inport = "✕" nonSpecialName
   call = "/"
-  langExpression = "##"
+  snippetPrefix = "##"
   keywordPrefix = "#"
   tagPrefix = "▫"
   statePrefix = "✦"
@@ -155,5 +174,10 @@ PseudoCode {
   verbatimBegin = "«"
   verbatimEnd = "»"
 
+  verbatim = verbatimBegin verbatimInnards+ verbatimEnd
+  verbatimInnards =
+    | verbatimBegin expr verbatimEnd -- switchGrammars
+    | ~verbatimBegin ~verbatimEnd any -- flat
+    
   space += comment
 }

@@ -2,8 +2,6 @@ constructor Container (𝜌childrenArray 𝜌map)
     {✦armed ✦completed}
     {▫across ▫up ▫down ▫passThrough}
 {
-    // api for every Component
-
     š.reset ≣ žreset
     š.❲completed ?❳ ≣ λ❲completed ?❳
     š.handle ≣ λhandle
@@ -12,21 +10,21 @@ constructor Container (𝜌childrenArray 𝜌map)
     š.setRoutings ≣ λsetRoutings
     š.outputs ≣ []
 
-    // helper functions
-    š.internal_acceptInput ≣ žacceptInput
-    š.internal_mergeOutputs ≣ λmergeOutputs
-    š.internal_route ≣ žroute
-    š.internal_runToCompletion ≣ žrunToCompletion
+    /* helper functions */
+    š.acceptInput ≣ žacceptInput
+    š.mergeOutputs ≣ λmergeOutputs
+    š.route ≣ žroute
+    š.runToCompletion ≣ žrunToCompletion
 
     š.children ≣ 𝜌childrenArray
-    ❲set parent of children❳ (š)
+    š/❲set parent of children❳ (š)
     š.routingMap ≣ 𝜌map
 }
 
-#declare procedure ❲set parent of children❳ (self) {
+#declare procedure ❲set parent of children❳ {
   #lang js (self) «
     self.children.forEach (child => {
-	child.container = self;
+        child.container = self;
     });
   »
 }
@@ -41,7 +39,7 @@ procedure reset () {
   #lang js (self) «
     var done = true;
     self.children.forEach (child => {
-	done = done & child.jsmangle ('❲completed ?❳') ();
+        done = done & child.jsmangle ('❲completed ?❳') ();
     });
     return done;
   »
@@ -51,15 +49,16 @@ procedure handle (𝜌message) {
     š/reset
     #state š {
         ✦completed {
-	    die 'internal error: container.handle called on completed container'
-        }}    
-        ✦completed {}}
+            die 'internal error: container.handle called on completed container'
+        } 
+        ✦completed {}
+    }
     š/acceptInput (𝜌message)
-    #inner function send (𝜌port, 𝜌data) {
-	š.outputs/push (⟪𝜌port 𝜌data š 𝜌message⟫)
+    #inner function send (𝜌port 𝜌data) {
+        š.outputs/push (⟪𝜌port 𝜌data š 𝜌message⟫)
     }
     š/runToCompletion (žsend)
-    š.outputs.push (⟪◦out ϕ š 𝜌message⟫)
+    š.outputs/push (⟪◦out ϕ š 𝜌message⟫)
 }
 
 #internal procedure acceptInput (𝜌message) {
@@ -67,20 +66,20 @@ procedure handle (𝜌message) {
     ∀ š.routingMap 𝜏connection {
         #tag 𝜏connection {
           ▫down {
-	    synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫, žsendProcedure) {
+            synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫ žsendProcedure) {
                 š/mergeOutputs (childOutputs)
             }
 }
-	  ▫passthrough {
-	    synonym childOutputs ≣ [⟪𝜏connection.port 𝜌message.data š 𝜌message⟫, žsendProcedure)] {
+          ▫passthrough {
+            synonym childOutputs ≣ [⟪𝜏connection.port 𝜌message.data š 𝜌message⟫] {
                 š/mergeOutputs (childOutputs)
             }
-	  }
-	  ▫across ▫up {}
+          }
+          ▫across ▫up {}
     }
 }
 
-#internal function mergeOutputs (childOutputs) {
+#internal function mergeOutputs (𝜌childOutputs) {
     /* merge childOutputs with self.outputs in situ */
     /* outputs & childOutputs are queues
        copy from least recent to most recent */
@@ -88,33 +87,33 @@ procedure handle (𝜌message) {
     var clonedOuts = Array.from (self.outputs);
     var childOuts = childOutputs.reverse ();
     childOuts.forEach (cout => {
-	clonedOutputs.push (cout);
+        clonedOutputs.push (cout);
     });
     return clonedOutputs;
   »
 }
 
-#internal procedure runToCompletion (žsendProcedure) {
+#internal procedure runToCompletion (𝜌sendProcedure) {
      ##js «
          while (! «š/completed») {
-             «š/step (žsendProcedure)»
-             «š/route (žsendProcedure)»
+             «š/step (𝜌sendProcedure)»
+             «š/route (𝜌sendProcedure)»
          }
      »
      ##cl «
          (loop while (not «š/completed»)
-             do (progn «š/step (žsendProcedure)»
-                       «š/route (žsendProcedure)»))
+             do (progn «š/step (𝜌sendProcedure)»
+                       «š/route (𝜌sendProcedure)»))
      »
 }
 
-procedure step (žsendProcedure) {
+procedure step (𝜌sendProcedure) {
     ∀ š.children 𝜏child {
-	𝜏child/step (žsendProcedure)
+        𝜏child/step (𝜌sendProcedure)
     }
 }
 
-function route (žsendProcedure) {
+function route (𝜌sendProcedure) {
     ∀ š.routingMap 𝜏connection {
         synonym ❲deferred message stack❳ [] {
             #tag 𝜏connection.direction {
@@ -127,7 +126,7 @@ function route (žsendProcedure) {
          }
     }
     ∀ ❲deferred message stack❳ 𝜏pair {
-        𝜏pair.target/handle (𝜏pair.message, žsendProcedure)
+        𝜏pair.target/handle (𝜏pair.message 𝜌sendProcedure)
     }
 }
 
