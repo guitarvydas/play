@@ -10,7 +10,9 @@ PseudoCode {
 
   FunctionDefinition = "function" name FormalParameters? Block
   ProcedureDefinition = "procedure" name FormalParameters? Block
-  ConstructorDefinition = "constructor" name FormalParameters? Block
+  ConstructorDefinition = "constructor" name FormalParameters? States Block
+
+  States = "{" symbol* "}"
 
   Block = 
     | "{" BlockStatement* "}"
@@ -48,6 +50,7 @@ PseudoCode {
     | applySyntactic<FieldRef> -- fieldRef
     | parameterReference -- parameterRef
     | functionReference -- functionRef
+    | procedureReference -- procedureRef
     | else operand -- else
     | stateQuery -- stateQuery
     | name -- name
@@ -92,7 +95,8 @@ PseudoCode {
   selfState = selfName
   parameterReference = "𝜌" nonSpecialName
   parameterDefinition = parameterReference
-  functionReference = "λ" nonSpecialName
+  functionReference = lambda nonSpecialName
+  procedureReference = proc nonSpecialName
   
   compoundName = "❲" (~nameBracket any)* "❳"
   basicName = nameFirst nameRest*
@@ -110,8 +114,11 @@ PseudoCode {
   headerOpen = "⎨"
   headerClose = "⎬"
   nameBracket = "❲" | "❳"
-  unicodeCharacter = new | builtinChar
+  unicodeCharacter = new | builtinChar | lambda | proc | "◦"| "✕"
+
   new = "↵"
+  lambda = "λ"
+  proc = "ž"
 
   string = sq (~sq any)* sq
   sq = "'"
@@ -121,7 +128,7 @@ PseudoCode {
     | "/*" commentInnards* "*/" -- rec
     | ~"/*" ~"*/" any -- flat
 
-  nameFirst = letter
+  nameFirst = ~unicodeCharacter letter
   nameRest = alnum | "_"
 
   builtinName = callop | die | else | stateQ | yes | no
