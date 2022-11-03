@@ -10,9 +10,10 @@ PseudoCode {
 
   FunctionDefinition = internal? "function" name FormalParameters? Block
   ProcedureDefinition = internal? "procedure" name FormalParameters? Block
-  ConstructorDefinition = "constructor" name FormalParameters? States Block
+  ConstructorDefinition = "constructor" name FormalParameters? States Tags Block
 
   States = "{" stateDefinition* "}"
+  Tags = "{" tagDefinition* "}"
 
   Block = 
     | "{" BlockStatement* "}"
@@ -120,6 +121,8 @@ PseudoCode {
   tempVariableReference = tempVariablePrefix nonSpecialName
   stateDefinition = statePrefix nonSpecialName
   stateReference = statePrefix nonSpecialName
+  tagDefinition = tagPrefix nonSpecialName
+  tagReference = tagPrefix nonSpecialName
 
   string = sq (~sq any)* sq
   sq = "'"
@@ -155,7 +158,6 @@ PseudoCode {
   new = "↵"
   lambda = "λ"
   proc = "ž"
-  tagReference = tagPrefix nonSpecialName
   outport = "◦" nonSpecialName
   inport = "✕" nonSpecialName
   call = "/"

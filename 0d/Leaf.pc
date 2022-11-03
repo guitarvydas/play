@@ -1,4 +1,4 @@
-constructor Leaf (𝜌func) { ✦armed ✦completed } {
+constructor Leaf (𝜌func) { ✦armed ✦completed } {} {
     š.func ≣ 𝜌func
     š.reset ≣ žreset
     š.❲completed ?❳ ≣ λ❲completed ?❳

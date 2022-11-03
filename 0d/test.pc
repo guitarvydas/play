@@ -1,14 +1,8 @@
-/*
-include './container.pc'
-include './leaf.pc'
-include './message.js'
-*/
-
-function helloWorld () {
+function helloWorld {
     'Hello World'
 }
 
-constructor Top () {
+constructor Top {
     synonym top ≣ ↵Container {
         synonym ❲leaf 1❳ ≣ ↵Leaf (helloWorld) {
             synonym routings ≣ ⎨direction receiver port⎬ 
@@ -20,7 +14,7 @@ constructor Top () {
                 top/setRoutings (routings)
                 top }}}}
 
-synonym top ≣ ↵Top () {
+synonym top ≣ ↵Top {
   top/handle (⟪in! true⟫)
   top/runToCompletion 
   ≈/display (top.outputs)
