@@ -69,13 +69,14 @@ procedure handle (𝜌message) {
             synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫ žsendProcedure) {
                 š/mergeOutputs (childOutputs)
             }
-}
+          }
           ▫passthrough {
             synonym childOutputs ≣ [⟪𝜏connection.port 𝜌message.data š 𝜌message⟫] {
                 š/mergeOutputs (childOutputs)
             }
           }
           ▫across ▫up {}
+        }
     }
 }
 
@@ -121,6 +122,7 @@ function route (𝜌sendProcedure) {
                     synonym ❲output message❳ 𝜏connection.sender.outputs {
                         ❲deferred message stack❳/push (⎨target message⎬ [{connection.receiver message}])
                     }
+		}
                 ▫down ▫passThrough {}
             }
          }

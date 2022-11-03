@@ -129,7 +129,7 @@ PseudoCode {
     | "/*" commentInnards* "*/" -- rec
     | ~"/*" ~"*/" any -- flat
 
-  nameFirst = ~unicodeCharacter letter
+  nameFirst = ~unicodeCharacter ~keywordName letter
   nameRest = alnum | "_"
 
   keywordName = callop | die | stateQ | yes | no | declare | tag
