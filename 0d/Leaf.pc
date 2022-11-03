@@ -2,8 +2,8 @@ constructor Leaf (𝜌func) { #armed #completed } {
     š.func ≣ 𝜌func
     š.reset ≣ žreset
     š.❲completed ?❳ ≣ λ❲completed ?❳
-    š.handle ≣ λhandle
-    š.step ≣ λstep
+    š.handle ≣ žhandle
+    š.step ≣ žstep
     š.outputs ≣ []
 
     š/reset
@@ -27,7 +27,7 @@ function handle (𝜌message 𝜌sendFunction) {
     }
 }
 
-function step (𝜌sendFunction) {
+procedure step (𝜌sendFunction) {
     /*
     nothing to do
     Leaf calls its function once, then doesn't call it again until reset() has been called

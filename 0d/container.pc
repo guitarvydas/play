@@ -1,107 +1,129 @@
 constructor Container (𝜌childrenArray 𝜌map) {
     // api for every Component
-    š.reset = λreset
-    š.isCompleted = λisCompleted
-    š.handle = λhandle
-    š.step = λstep
-    š.setChildren = λsetChildren
-    š.setRoutings = λsetRoutings
-    š.outputs = []
+    š.reset ≣ žreset
+    š.❲completed ?❳ ≣ λ❲completed ?❳
+    š.handle ≣ λhandle
+    š.step ≣ λstep
+    š.setChildren ≣ λsetChildren
+    š.setRoutings ≣ λsetRoutings
+    š.outputs ≣ []
 
     // helper functions
-    š.internal_acceptInput = λacceptInput
-    š.internal_mergeOutputs = λmergeOutputs
-    š.internal_route = λroute
-    š.internal_runToCompletion = λrunToCompletion
+    š.internal_acceptInput ≣ žacceptInput
+    š.internal_mergeOutputs ≣ λmergeOutputs
+    š.internal_route ≣ žroute
+    š.internal_runToCompletion ≣ žrunToCompletion
 
-    ∀ 𝜌childrenArray child {
-	š ⇒ child.container
-    }
-    𝜌childrenArray ⇒ š.children
+    š.children ≣ 𝜌childrenArray
+    ❲set parent of children❳ (š)
+    š.routingMap ≣ 𝜌map
+}
 
-    𝜌map ⇒ š.routingMap
+≈declare procedure ❲set parent of children❳ (self) {
+  ≈lang js (self) «
+    self.children.forEach (child => {
+	child.container = self;
+    });
+  »
 }
 
 procedure reset () {
-    ∀ š.children.forEach child {
-	child/reset
+  ∀ š.children 𝜏child {
+    𝜏child/reset
+  }
+}
+
+≈declare function ❲completed ?❳ {
+  ≈lang js (self) «
+    var done = true;
+    self.children.forEach (child => {
+	done = done & child.jsmangle ('❲completed ?❳') ();
+    });
+    return done;
+  »
+}
+
+procedure handle (𝜌message) {
+    š/reset
+    ≈state š {
+        #completed {
+	    die 'internal error: container.handle called on completed container'
+        }}    
+    ≈else {}}
+    š/acceptInput (𝜌message)
+    ≈inner function send (𝜌port, 𝜌data) {
+	š.outputs/push (⟪𝜌port 𝜌data š 𝜌message⟫)
+    }
+    š/runToCompletion (žsend)
+    š.outputs.push (⟪◦out ϕ š 𝜌message⟫)
+}
+
+≈internal procedure acceptInput (𝜌message) {
+    ≈clear š.outputs
+    ∀ š.routingMap 𝜏connection {
+        ≈tag 𝜏connection {
+          ▫down {
+	    synonym childOutputs ≣ 𝜏connection.receiver/handle (⟪𝜏connection.port 𝜌message.data š 𝜌message⟫, žsendProcedure) {
+                š/mergeOutputs (childOutputs)
+            }
+}
+	  ▫passthrough {
+	    synonym childOutputs ≣ [⟪𝜏connection.port 𝜌message.data š 𝜌message⟫, žsendProcedure)] {
+                š/mergeOutputs (childOutputs)
+            }
+	  }
+	  ≈else {}
     }
 }
 
-function ❲completed ?❳ {
-    var done = true
-    ∀ š.children child {
-	done = done & child.❲completed ?❳
-    }
-    done
-}
-
-function handle (message) {
-    š.reset ()
-    if (š.isCompleted ()) {
-	throw "internal error: container.handle called on completed container"
-    }
-    š.internal_acceptInput (message)
-    function send (port, data) {
-	š.outputs.push (new messageClass.Message (port, data, this, message))
-    }
-    š.internal_runToCompletion (send)
-    š.outputs.push (new messageClass.Message ('$out', null, this, message))
-}
-
-function acceptInput (message) {
-    š.outputs = []
-    š.routingMap.forEach (connection => {
-	if ("down" == connection.direction) {
-	    var m = new messageClass.Message (connection.port, message.data, this, message)
-	    var childOutputs = connection.receiver.handle (m, sendFunction)
-	    š.outputs = š.internal_mergeOutputs (outputs, childOutputs)
-	} else if ("passthrough" == connection.direction) {
-	    var childOutputs = new messageClass.Message (connection.port, message.data, this, message)
-	    š.outputs = š.internal_mergeOutputs (š.outputs, childOutputs)
-	}
-    })    
-}
-
-function mergeOutputs (outputs, childOutputs) {
-    // outputs & childOutputs are queues
-    // copy from least recent to most recent
-    var clonedOuts = Array.from (outputs)
-    var childOuts = childOutputs.reverse ()
+≈internal function mergeOutputs (childOutputs) {
+    /* merge childOutputs with self.outputs in situ */
+    /* outputs & childOutputs are queues
+       copy from least recent to most recent */
+  ≈lang js (childOutputs) «
+    var clonedOuts = Array.from (self.outputs);
+    var childOuts = childOutputs.reverse ();
     childOuts.forEach (cout => {
-	clonedOutputs.push (cout)
-    })
-    return clonedOutputs
+	clonedOutputs.push (cout);
+    });
+    return clonedOutputs;
+  »
 }
 
-function runToCompletion (sendFunction) {
-    while (! š.completed ()) {
-	š.step (sendFunction)
-	š.route (sendFunction)
+≈internal procedure runToCompletion (žsendProcedure) {
+     ≈js≈ «
+         while (! «š/completed») {
+             «š/step (žsendProcedure)»
+             «š/route (žsendProcedure)»
+         }
+     »
+     ≈cl≈ «
+         (loop while (not «š/completed»)
+             do (progn «š/step (žsendProcedure)»
+                       «š/route (žsendProcedure)»))
+     »
+}
+
+procedure step (žsendProcedure) {
+    ∀ š.children 𝜏child {
+	𝜏child/step (žsendProcedure)
     }
 }
 
-function step (sendFunction) {
-    š.children.forEach (child => {
-	child.step (sendFunction)
-    })
-}
-
-function route (sendFunction) {
-    š.routingMap.forEach (connection => {
-	var deferredMessageStack = []
-	if ("across" == connection.direction) {
-	    var outputMessage = connection.sender.outputQueue [connection.sender.port]
-	    var message = new messageClass.Message (connection.receiver.port, outputMessage.data, connection.sender, outputMessage)
-	    deferredMessageStack.push ({'target': connection.receiver, 'message': message})
-	} else if ("up" == connection.direction) {
-	    var outputMessage = connection.sender.outputQueue [connection.sender.port]
-	    var message = new messageClass.Message (connection.receiver.port, outputMessage.data, connection.sender, outputMessage)
-	    send (connection.receiver.port, message)
-	}
-	deferredMessageStack.forEach (pair => {
-	    pair.target.handle (pair.message, sendFunction)
-	})
-    })
+function route (žsendProcedure) {
+    ∀ š.routingMap 𝜏connection {
+        synonym ❲deferred message stack❳ [] {
+            ≈tag 𝜏connection.direction {
+                ▫across ▫up {
+                    synonym ❲output message❳ 𝜏connection.sender.outputs {
+                        ❲deferred message stack❳/push (⎨target message⎬ [{connection.receiver message}])
+                    }
+                ▫down ▫passThrough {}
+            }
+         }
+    }
+    ∀ ❲deferred message stack❳ 𝜏pair {
+        𝜏pair.target/handle (𝜏pair.message, žsendProcedure)
+    }
 }
 

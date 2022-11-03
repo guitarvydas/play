@@ -1,4 +1,9 @@
 š. self:
+š/ self:/
+š  self:self
 𝜌  parameter:
 ◦  out:
 ✕  in:
+𝜏  temp:
+ϕ  null:null
+↵  instance:

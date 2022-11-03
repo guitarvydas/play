@@ -77,9 +77,6 @@ PseudoCode {
   SelfStateUpdate = expr "⇒" selfState
   selfFieldName = selfName "." fieldName
 
-  symbol = "#" nonSpecialName
-  outport = "◦" nonSpecialName
-  inport = "✕" nonSpecialName
 
   name =
     | compoundName
@@ -116,10 +113,6 @@ PseudoCode {
   nameBracket = "❲" | "❳"
   unicodeCharacter = new | builtinChar | lambda | proc | "◦"| "✕"
 
-  new = "↵"
-  lambda = "λ"
-  proc = "ž"
-
   string = sq (~sq any)* sq
   sq = "'"
 
@@ -138,6 +131,13 @@ PseudoCode {
   stateQ = builtinChar "state"
   yes = builtinChar "yes"
   no = builtinChar "no"
+
+  new = "↵"
+  lambda = "λ"
+  proc = "ž"
+  tag = "▫" nonSpecialName
+  outport = "◦" nonSpecialName
+  inport = "✕" nonSpecialName
 
   space += comment
 }
