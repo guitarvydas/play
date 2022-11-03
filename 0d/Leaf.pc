@@ -2,7 +2,7 @@ constructor Leaf (𝜌func) {
     { #armed #completed }
     š.func ≣ 𝜌func
     š.reset ≣ λreset
-    š.isCompleted ≣ λisCompleted
+    š.❲completed ?❳ ≣ λ❲completed ?❳
     š.handle ≣ λhandle
     š.step ≣ λstep
     š.outputs ≣ []
