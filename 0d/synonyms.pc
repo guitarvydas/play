@@ -7,3 +7,10 @@
 𝜏  temp:
 ϕ  null:null
 ↵  instance:
+«  verbatimBegin:
+»  verbatimEnd:
+## langexpr:
+#  keyword:
+▫  tag
+✦  state
+∀  forall:

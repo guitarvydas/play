@@ -12,7 +12,7 @@ PseudoCode {
   ProcedureDefinition = "procedure" name FormalParameters? Block
   ConstructorDefinition = "constructor" name FormalParameters? States Block
 
-  States = "{" symbol* "}"
+  States = "{" stateDefinition* "}"
 
   Block = 
     | "{" BlockStatement* "}"
@@ -28,7 +28,10 @@ PseudoCode {
     | SelfStateDefinition -- selfStateDefinition
     | SelfStateUpdate -- selfStateUpdate
     | die operand* -- die
+    | ForAll
     | expr -- expr
+
+  ForAll = forAllPrefix value tempVariableDefinition Block
 
   Parameters = "(" operand* ")"
   FormalParameters = "(" parameterDefinition* ")"
@@ -40,8 +43,9 @@ PseudoCode {
     | applySyntactic<Message>
     | applySyntactic<BasicList>
     | applySyntactic<ListOfObjects>
+    | stateReference
+    | tagReference
     | string
-    | symbol
     
   value =
     | applySyntactic<Funcall> -- funcall
@@ -51,7 +55,7 @@ PseudoCode {
     | parameterReference -- parameterRef
     | functionReference -- functionRef
     | procedureReference -- procedureRef
-    | else operand -- else
+    | tempVariableReference -- tempVariable
     | stateQuery -- stateQuery
     | name -- name
 
@@ -80,7 +84,7 @@ PseudoCode {
 
   name =
     | compoundName
-    | builtinName
+    | keywordName
     | selfName
     | basicName
 
@@ -97,21 +101,19 @@ PseudoCode {
   
   compoundName = "❲" (~nameBracket any)* "❳"
   basicName = nameFirst nameRest*
-  nonSpecialName = ~selfName ~builtinName name
+  nonSpecialName = ~selfName ~keywordName name
   
   delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
   asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">" 
   asciiCharacter = "#" | call | "." 
-  call = "/"
-  builtinChar = "≈"
-  selfName = "š"
   unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
-  messageBegin = "⟪"
-  messageEnd = "⟫"
-  headerOpen = "⎨"
-  headerClose = "⎬"
-  nameBracket = "❲" | "❳"
-  unicodeCharacter = new | builtinChar | lambda | proc | "◦"| "✕"
+    | verbatimBegin | verbatimEnd
+  unicodeCharacter = new | keywordPrefix | lambda | proc | "◦"| "✕" | tagPrefix
+
+  tempVariableDefinition = tempVariablePrefix nonSpecialName
+  tempVariableReference = tempVariablePrefix nonSpecialName
+  stateDefinition = statePrefix nonSpecialName
+  stateReference = statePrefix nonSpecialName
 
   string = sq (~sq any)* sq
   sq = "'"
@@ -124,20 +126,34 @@ PseudoCode {
   nameFirst = ~unicodeCharacter letter
   nameRest = alnum | "_"
 
-  builtinName = callop | die | else | stateQ | yes | no
-  callop = builtinChar "call"
-  die = builtinChar "die"
-  else = builtinChar "else"
-  stateQ = builtinChar "state"
-  yes = builtinChar "yes"
-  no = builtinChar "no"
+  keywordName = callop | die | stateQ | yes | no
+  callop = keywordPrefix "call"
+  die = keywordPrefix "die"
+  stateQ = keywordPrefix "state"
+  yes = keywordPrefix "yes"
+  no = keywordPrefix "no"
 
   new = "↵"
   lambda = "λ"
   proc = "ž"
-  tag = "▫" nonSpecialName
+  tagReference = tagPrefix nonSpecialName
   outport = "◦" nonSpecialName
   inport = "✕" nonSpecialName
+  call = "/"
+  langExpression = "##"
+  keywordPrefix = "#"
+  tagPrefix = "▫"
+  statePrefix = "✦"
+  selfName = "š"
+  messageBegin = "⟪"
+  messageEnd = "⟫"
+  headerOpen = "⎨"
+  headerClose = "⎬"
+  nameBracket = "❲" | "❳"
+  tempVariablePrefix = "𝜏"
+  forAllPrefix = "∀"
+  verbatimBegin = "«"
+  verbatimEnd = "»"
 
   space += comment
 }
