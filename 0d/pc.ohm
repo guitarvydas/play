@@ -21,9 +21,10 @@ PseudoCode {
     
   Statement =
     | "synonym" name "≣" expr Block -- synonym
+    | selfFieldName "≣" expr -- constructorsynonym
     | Block -- block
-    | SelfFieldDefinition -- selfFieldDefinition
-    | SelfFieldUpdate -- selfFieldUpdate
+    | SelfStateDefinition -- selfStateDefinition
+    | SelfStateUpdate -- selfStateUpdate
     | die operand* -- die
     | expr -- expr
 
@@ -48,12 +49,12 @@ PseudoCode {
     | parameterReference -- parameterRef
     | functionReference -- functionRef
     | else operand -- else
-    | condOperand -- cond
+    | stateQuery -- stateQuery
     | name -- name
 
   valueOperand = value
 
-  condOperand = cond operand applySyntactic<Block>
+  stateQuery = stateQ operand applySyntactic<Block>
 
   Funcall = callop operand Parameters?
 
@@ -64,14 +65,18 @@ PseudoCode {
   BasicList = "[" name* "]"
   UnnamedObject = "{" expr* "}"
   Message =
-    | messageBegin port operand operand operand messageEnd -- withDebug
-    | messageBegin port operand messageEnd -- raw
+    | messageBegin portOperand operand operand operand messageEnd -- withDebug
+    | messageBegin portOperand operand messageEnd -- raw
 
+  portOperand = port | valueOperand
 
-  SelfFieldDefinition = selfField "≣" expr
-  SelfFieldUpdate = expr "⇒" selfField
+  SelfStateDefinition = selfState "≣" expr
+  SelfStateUpdate = expr "⇒" selfState
+  selfFieldName = selfName "." fieldName
 
-  symbol = nonSpecialName "!"
+  symbol = "#" nonSpecialName
+  outport = "◦" nonSpecialName
+  inport = "✕" nonSpecialName
 
   name =
     | compoundName
@@ -79,10 +84,12 @@ PseudoCode {
     | selfName
     | basicName
 
-  port = symbol | valueOperand
+  fieldName = nonSpecialName
+
+  port = outport | inport
 
   FieldRef = value "." nonSpecialName
-  selfField = selfName "." nonSpecialName
+  selfState = selfName
   parameterReference = "𝜌" nonSpecialName
   parameterDefinition = parameterReference
   functionReference = "λ" nonSpecialName
@@ -93,9 +100,9 @@ PseudoCode {
   
   delimiter = asciiBracket | asciiCharacter | unicodeBracket | unicodeCharacter
   asciiBracket = "(" | ")" | "{" | "}" | "[" | "]" | "<" | ">" 
-  asciiCharacter = "!" | call | "." | builtinName
+  asciiCharacter = "#" | call | "." 
   call = "/"
-  builtinName = "≈"
+  builtinChar = "≈"
   selfName = "š"
   unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
   messageBegin = "⟪"
@@ -103,7 +110,7 @@ PseudoCode {
   headerOpen = "⎨"
   headerClose = "⎬"
   nameBracket = "❲" | "❳"
-  unicodeCharacter = new
+  unicodeCharacter = new | builtinChar
   new = "↵"
 
   string = sq (~sq any)* sq
@@ -117,10 +124,13 @@ PseudoCode {
   nameFirst = letter
   nameRest = alnum | "_"
 
-  callop = "≈call"
-  die = "≈die"
-  else = "≈else"
-  cond = "≈cond"
+  builtinName = callop | die | else | stateQ | yes | no
+  callop = builtinChar "call"
+  die = builtinChar "die"
+  else = builtinChar "else"
+  stateQ = builtinChar "state"
+  yes = builtinChar "yes"
+  no = builtinChar "no"
 
   space += comment
 }

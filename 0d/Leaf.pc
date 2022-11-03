@@ -1,4 +1,5 @@
 constructor Leaf (𝜌func) {
+    { #armed #completed }
     š.func ≣ 𝜌func
     š.reset ≣ λreset
     š.isCompleted ≣ λisCompleted
@@ -7,22 +8,22 @@ constructor Leaf (𝜌func) {
     š.outputs ≣ []
 
     š/reset
-    armed! ⇒ š.state
+    #armed ⇒ š
 }
 
 function handle (𝜌message 𝜌sendFunction) {
-    ≈cond š.state {
-        armed! {
+    ≈state š {
+        #armed {
             function send (𝜌port 𝜌data 𝜌trace) {
-                š.outputs/push (⟪𝜌port 𝜌data š 𝜌trace⟫)
+                š.outputs/push (⟪ 𝜌port 𝜌data š 𝜌trace ⟫)
             }
             synonym val ≣ ≈call š.func (𝜌message  𝜌send) {
-                š.outputs/push (⟪out! val š 𝜌message⟫)
-                completed! ⇒ š.state
+                š.outputs/push (⟪ ◦out val š 𝜌message ⟫)
+                #completed ⇒ š
             }
         }
         ≈else {
-            die 'Leaf not armed'
+            ≈die 'Leaf not armed'
         }        
     }
 }
@@ -35,8 +36,8 @@ function step (𝜌sendFunction) {
     in a Leaf, (3) step should only be called after (2) handle has been called, hence, there is nothing left to do in step
     in a Leaf (3) step is called only after the Leaf is in the completed state - step is a no-op in Leaf
     */
-    cond š.state {
-        completed! {}
+    ≈state š {
+        #completed {}
         ≈else {
             die 'internal error: Leaf/step called on armed leaf'
         }
@@ -44,9 +45,12 @@ function step (𝜌sendFunction) {
 }
 
 procedure reset {
-    armed! ⇒ š.state /* armed => ready to run function, completed => function already executed once */
+    #armed ⇒ š /* armed => ready to run function, completed => function already executed once */
 }
 
-function isCompleted {
-   completed! ⇒ š.state
+function ❲completed ?❳ {
+    ≈state š {
+        #armed     {≈no}
+        #completed {≈yes}
+   }
 }
