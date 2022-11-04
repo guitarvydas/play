@@ -5,20 +5,20 @@ PseudoCode {
   toplevel [x] = ‛«x»’
 
   FunctionDefinition [internal? kfunction name FormalParameters? Block] = 
-    ‛function «name» («FormalParameters») { «Block» }’
+    ‛\nfunction «name» («FormalParameters») {«Block»\n}’
   ProcedureDefinition [internal? kprocedure name FormalParameters? Block] =
-    ‛function «name» («FormalParameters») { «Block» }’
+    ‛\nfunction «name» («FormalParameters») {«Block»\n}’
   ConstructorDefinition [kconstructor name FormalParameters? States Tags Block] =
-    ‛function «name» («FormalParameters») { «Block» }’
+    ‛\nfunction «name» («FormalParameters») {«Block»\n}’
 
   States [klb stateDefinition* krb] = ‛’
   Tags [klb tagDefinition* krb] = ‛’
 
-  Block [klb BlockStatement* krb] = ‛{ «BlockStatement» }’
+  Block [klb BlockStatement* krb] = ‛\n«BlockStatement»’
 
   BlockStatement [x] = ‛«x»’
     
-  Statement_synonym [ksynonym name keq expr Block] = ‛\n{ var «name» = «expr»;\n«Block» }’
+  Statement_synonym [ksynonym name keq expr Block] = ‛\n{\nvar «name» = «expr»;\n«Block»\n}’
   Statement_constructorsynonym [selfFieldName keq expr] = ‛\n«selfFieldName» = «expr»;’
   Statement_block [x] = ‛\n{«x»}’
   Statement_selfStateDefinition [x] = ‛\nthis.state = «x»;’
@@ -28,13 +28,13 @@ PseudoCode {
   Statement_forall [x] = ‛«x»’
   Statement_externRoutine [x] = ‛«x»’
   Statement_codeSnippet [x] = ‛«x»’
-  Statement_expr [x] = ‛«x»’
+  Statement_expr [x] = ‛\n«x»;’
 
   ExternalRoutine [lang basicName Parameters? verbatim] = ‛\nfunction «basicName» («Parameters») {\n«verbatim»}’
 
   ForAll [forAllPrefix value tempVariableDefinition Block] = ‛\n«value».forAll («tempVariableDefinition» => {\n«Block»\n});’
 
-  Parameters [klb operand* krb] = ‛<<«operand»>>’
+  Parameters [klb operand* krb] = ‛«operand»’
   FormalParameters [klb parameterDefinition* krb] = ‛<<«parameterDefinition»>>’
 
   operand [x] = ‛«x»’
@@ -73,20 +73,20 @@ PseudoCode {
   ListHeader [headerOpen name+ headerClose] = ‛«name»’
   BasicList [klb expr* krb] = ‛[«expr»]’
   UnnamedObject [klb expr* krb] = ‛{«expr»}’
-  Message_raw [messageBegin portOperand operand messageEnd] = ‛new Message («portOperand», «operand», null, null)’
-  Message_withDebug [messageBegin portOperand operand2 operand3 operand4 messageEnd] = ‛new Message («portOperand», «operand2», «operand3», «operand4»)’
+  Message_raw [messageBegin portOperand operand messageEnd] = ‛new Message ('«portOperand»', «operand», null, null)’
+  Message_withDebug [messageBegin portOperand operand2 operand3 operand4 messageEnd] = ‛new Message ('«portOperand»', «operand2», «operand3», «operand4»)’
 
 
   portOperand [x] = ‛«x»’
 
-  SelfStateDefinition [selfState keq expr] = ‛self.state = «expr»;
-  SelfStateUpdate [expr karrow selfState] = ‛self.state = «expr»;
-  selfFieldName [selfName kdot fieldName] = ‛self.«fieldName»’
+  SelfStateDefinition [selfState keq expr] = ‛this.state = «expr»;’
+  SelfStateUpdate [expr karrow selfState] = ‛this.state = «expr»;’
+  selfFieldName [selfName kdot fieldName] = ‛this.«fieldName»’
 
 
   name_compoundName [s] = ‛«s»’
   name_keywordName [n] = ‛«n»’
-  name_selfName [n] = ‛self’
+  name_selfName [n] = ‛this’
   name_basicName [n] = ‛«n»’
 
   fieldName [nonSpecialName] = ‛«nonSpecialName»’
@@ -129,7 +129,7 @@ PseudoCode {
   keywordName [x] = ‛«x»’
   codeSnippet [x] = ‛«x»’
   codeSnippetJS [snippetPrefix kjs spaces verbatim] = ‛«verbatim»’
-  codeSnippetCL [snippetPrefix kjs spaces verbatim] = ‛«verbatim»’
+  codeSnippetCL [snippetPrefix kjs spaces verbatim] = ‛’
   internal [keywordPrefix k] = ‛’
   clear [keywordPrefix k] = ‛’
   innerFunction [keywordPrefix k] = ‛’
