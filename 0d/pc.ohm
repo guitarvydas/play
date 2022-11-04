@@ -46,13 +46,13 @@ PseudoCode {
   expr = operand
 
   constant =
-    | applySyntactic<Message>
-    | applySyntactic<BasicList>
-    | applySyntactic<ListOfObjects>
-    | stateReference
-    | tagReference
-    | port
-    | string
+    | applySyntactic<Message> -- message
+    | applySyntactic<BasicList>  -- list
+    | applySyntactic<ListOfObjects> -- objectlist
+    | stateReference -- state
+    | tagReference -- tag
+    | port -- port
+    | string -- string
     
   value =
     | applySyntactic<Funcall> -- funcall
