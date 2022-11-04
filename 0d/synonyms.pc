@@ -14,3 +14,5 @@
 ▫  tag
 ✦  state
 ∀  forall:
+λ  lambda:
+ž  procedure:

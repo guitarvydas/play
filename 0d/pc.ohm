@@ -29,9 +29,10 @@ PseudoCode {
     | SelfStateDefinition -- selfStateDefinition
     | SelfStateUpdate -- selfStateUpdate
     | die operand* -- die
-    | ForAll
-    | ExternalRoutine
-    | codeSnippet
+    | displayop Parameters -- display
+    | ForAll -- forall
+    | ExternalRoutine -- externRoutine
+    | codeSnippet -- codeSnippet
     | expr -- expr
 
   ExternalRoutine = lang basicName Parameters? verbatim
@@ -50,6 +51,7 @@ PseudoCode {
     | applySyntactic<ListOfObjects>
     | stateReference
     | tagReference
+    | port
     | string
     
   value =
@@ -138,7 +140,7 @@ PseudoCode {
   keywordName = callop | die | stateQ | yes | no | declare | tag
       | lang | innerFunction | internal | clear
       | codeSnippetJS | codeSnippetCL
-      | tagQ
+      | tagQ | displayop
   codeSnippet = codeSnippetJS | codeSnippetCL
   codeSnippetJS = snippetPrefix "js" spaces verbatim
   codeSnippetCL = snippetPrefix "cl" spaces verbatim
@@ -152,6 +154,7 @@ PseudoCode {
   die = keywordPrefix "die"
   stateQ = keywordPrefix "state"
   tagQ = keywordPrefix "tag"
+  displayop = keywordPrefix call "display"
   yes = keywordPrefix "yes"
   no = keywordPrefix "no"
 

@@ -1,21 +1,17 @@
-function helloWorld {
+procedure helloWorld {
     'Hello World'
 }
 
-constructor Top {
-    synonym top ≣ ↵Container {
-        synonym ❲leaf 1❳ ≣ ↵Leaf (helloWorld) {
-            synonym routings ≣ ⎨direction receiver port⎬ 
-                              [
-                               {down!    ❲leaf 1❳  in!}
-                               {up!      top       out!}
-                              ] {
-                top/setChildren ([❲leaf 1❳])
-                top/setRoutings (routings)
-                top }}}}
-
-synonym top ≣ ↵Top {
-  top/handle (⟪in! true⟫)
-  top/runToCompletion 
-  ≈/display (top.outputs)
+synonym ❲leaf 1❳ ≣ ↵Leaf (žhelloWorld) {
+    synonym routings ≣     ⎨direction receiver port⎬ 
+                       [
+                           {▫down     ❲leaf 1❳ ✕in}
+                           {▫up       š        ◦out}
+                       ] {
+        synonym top ≣ ↵Container ([❲leaf 1❳] routings) {
+          top/handle (⟪✕in true⟫)
+          top/runToCompletion 
+          #/display (top.outputs)
+        }
+    }
 }
