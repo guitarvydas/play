@@ -74,7 +74,7 @@ PseudoCode {
 
   Funcall = callop operand Parameters?
 
-  ClassInstantiation = new name Parameters?
+  ClassInstantiation = knew name Parameters?
   MethodCall = value call name Parameters?
   ListOfObjects = ListHeader "[" UnnamedObject+ "]"
   ListHeader = headerOpen name+ headerClose
@@ -92,10 +92,10 @@ PseudoCode {
 
 
   name =
-    | compoundName
-    | keywordName
-    | selfName
-    | basicName
+    | compoundName -- compoundName
+    | keywordName -- keywordName
+    | selfName -- selfName
+    | basicName -- basicName
 
   fieldName = nonSpecialName
 
@@ -117,7 +117,7 @@ PseudoCode {
   asciiCharacter = "#" | call | "." 
   unicodeBracket = headerOpen | headerClose | messageBegin | messageEnd | nameBracket
     | verbatimBegin | verbatimEnd
-  unicodeCharacter = new | keywordPrefix | lambda | proc | "◦"| "✕" | tagPrefix
+  unicodeCharacter = knew | keywordPrefix | lambda | proc | "◦"| "✕" | tagPrefix
 
   tempVariableDefinition = tempVariablePrefix nonSpecialName
   tempVariableReference = tempVariablePrefix nonSpecialName
@@ -158,7 +158,7 @@ PseudoCode {
   yes = keywordPrefix "yes"
   no = keywordPrefix "no"
 
-  new = "↵"
+  knew = "↵"
   lambda = "λ"
   proc = "ž"
   outport = "◦" nonSpecialName

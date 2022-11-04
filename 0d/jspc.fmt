@@ -19,7 +19,7 @@ PseudoCode {
   BlockStatement [x] = ‛«x»’
     
   Statement_synonym [ksynonym name keq expr Block] = ‛\n{ var «name» = «expr»;\n«Block» }’
-  Statement_constructorsynonym [ksynonym name keq expr Block] = ‛\nthis.«name» = «expr»;\n«Block» }’
+  Statement_constructorsynonym [selfFieldName keq expr] = ‛\n«selfFieldName» = «expr»;’
   Statement_block [x] = ‛\n{«x»}’
   Statement_selfStateDefinition [x] = ‛\nthis.state = «x»;’
   Statement_selfStateUpdate [x] =  ‛\nthis.state = «x»;’
@@ -67,14 +67,14 @@ PseudoCode {
 
   Funcall [callop operand Parameters?] = ‛«operand» («Parameters»)’
 
-  ClassInstantiation [new name Parameters?] = ‛«name» («Parameters»)’
+  ClassInstantiation [knew name Parameters?] = ‛«name» («Parameters»)’
   MethodCall [value call name Parameters?] = ‛«value».«name» («Parameters»)’
   ListOfObjects [ListHeader klb UnnamedObject+ krb] = ‛???ListOfObjects{«ListHeader»}[«UnnamedObject»]’
-  ListHeader [headerOpen name+ headerClose] = ‛«ListHeader»’
+  ListHeader [headerOpen name+ headerClose] = ‛«name»’
   BasicList [klb expr* krb] = ‛[«expr»]’
   UnnamedObject [klb expr* krb] = ‛{«expr»}’
-  Message_raw [messageBegin portOperand operand messageEnd] = ‛new Message («portOperand», «operand», null, null)
-  Message_withDebug [messageBegin portOperand operand2 operand3 operand4 messageEnd] = ‛new Message («portOperand», «operand2», «operand3», «operand4»)
+  Message_raw [messageBegin portOperand operand messageEnd] = ‛new Message («portOperand», «operand», null, null)’
+  Message_withDebug [messageBegin portOperand operand2 operand3 operand4 messageEnd] = ‛new Message («portOperand», «operand2», «operand3», «operand4»)’
 
 
   portOperand [x] = ‛«x»’
@@ -100,7 +100,7 @@ PseudoCode {
   functionReference [lambda nonSpecialName] = ‛«nonSpecialName»’
   procedureReference [proc nonSpecialName] = ‛«nonSpecialName»’
   
-  compoundName [klb cs* krb] = ‛«jsmangle (cs)»’
+  compoundName [klb cs* krb] = ‛???jsmangle(«cs»)’
   basicName [nameFirst nameRest*] = ‛«nameFirst»«nameRest»’
   nonSpecialName [name] = ‛«name»’
   
@@ -117,15 +117,14 @@ PseudoCode {
   tagDefinition [tagPrefix nonSpecialName] = ‛«nonSpecialName»’
   tagReference [tagPrefix nonSpecialName] = ‛«nonSpecialName»’
 
-  string [sq1 cs* sq2] = ‛'«cs»'’
+  string [sq1 cs3* sq2] = ‛'«cs3»'’
   sq [c] = ‛’
 
-  comment [klb cs* krb] = ‛’
-  commentInnards_rec [klb cs* krb] = ‛’
+  commentInnards_rec [klb cs2* krb] = ‛’
   commentInnards_flat [c] = ‛«c»’
 
   nameFirst [c] = ‛«c»’
-  nameRest  [cs*] = ‛«c»’
+  nameRest  [c] = ‛«c»’
 
   keywordName [x] = ‛«x»’
   codeSnippet [x] = ‛«x»’
@@ -146,9 +145,9 @@ PseudoCode {
   no [keywordPrefix k] = ‛false’
 
   outport [k nonSpecialName] = ‛«nonSpecialName»’
-  inport [knonSpecialName] = ‛«nonSpecialName»’
+  inport [k nonSpecialName] = ‛«nonSpecialName»’
 
-  new [k] = ‛’
+  knew [k] = ‛’
   lambda [k] = ‛’
   proc [k] = ‛’
   call [k] = ‛’
@@ -171,6 +170,6 @@ PseudoCode {
   verbatimInnards_switchGrammars [verbatimBegin expr verbatimEnd] = ‛«expr»’
   verbatimInnards_flat [c] = ‛«c»’
 
-  spaces [cs*] = ‛ ’
+  spaces [ss*] = ‛ ’
   space [c] = ‛’
 }
