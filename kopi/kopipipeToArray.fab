@@ -1,0 +1,7 @@
+kopipipe {
+  ToArrayAssign [name op c pc*] = ‛«name» = «c» «pc» | toArray’
+  name [letter alnum*] = ‛«letter»«alnum»’
+  command [cs*] = ‛«cs»’
+  PipedCommand [k c] = ‛| «c»’
+}
+

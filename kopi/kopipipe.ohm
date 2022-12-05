@@ -1,0 +1,7 @@
+kopipipe {
+  ToArrayAssign = name "=[]" command PipedCommand*
+  name = letter alnum*
+  command = (~"|" any)*
+  PipedCommand = "|" command
+}
+

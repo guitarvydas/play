@@ -1,0 +1,7 @@
+#class C {
+  #method f {
+    #synonym v ≣ 1 {
+      #print v
+    }
+  }
+}

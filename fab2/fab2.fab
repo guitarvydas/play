@@ -1,0 +1,25 @@
+Top {
+  Main = "dont care - redefine me"
+}
+  
+Name <: Top {
+  name = letter alnum*
+}
+
+Number <: Name {
+  number = digit+
+}
+  
+Basic <: Number {
+}
+
+fab2 <: Basic {
+  name [first rest*] = ‛«first»«rest»’
+  number [ds+] = ‛«ds»’
+  Main [k k2 name lb Method+ rb] = ‛«k»«k2»«name»«lb»«Method»«rb»’
+  Method [k k2 name Block] = ‛«k»«k2»«name»«Block»’
+  Block [lb s rb] = ‛«lb»«s»«rb»’
+  Statement_synonym [k k2 name k3 Block?] = ‛«k»«k2»«name»«k3»«Block»’
+  Statement_print [k k2 name Block?] = ‛«k»«k2»«name»«Block»’
+  RHS [n] = ‛«n»’
+}

@@ -1,0 +1,19 @@
+SVG {
+  Blueprint = SVGHeader GrayRectangle RedRectangle SVGTrailer
+  SVGHeader = "<svg" (~">" any)+ ">"
+  SVGTrailer = "</svg>"
+  GraphicObject =
+    | Rect
+  Rect = "<rect" Width? Height? Fill? Stroke? "/>"
+  Width = "width=" string
+  Height = "height=" string
+  Fill = "fill=" Color
+  Stroke = "stroke=" Color
+  Color = black | gray | red
+  black = dq "black" dq
+  gray = dq "gray" dq
+  red = dq "red" dq
+  dq = "\""
+  string = dq (~dq any)* dq
+}
+

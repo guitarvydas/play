@@ -1,0 +1,25 @@
+Top {
+  Main = "dont care - redefine me"
+}
+  
+Name <: Top {
+  name = letter alnum*
+}
+
+Number <: Name {
+  number = digit+
+}
+  
+Basic <: Number {
+}
+
+fab2 <: Basic {
+  Main := "#" "class" name "{" Method+ "}"
+  Method = "#" "method" name Block
+  Block = "{" Statement "}"
+  Statement =
+    | "#" "synonym" name "≣" RHS Block? -- synonym
+    | "#" "print" name Block?           -- print
+  RHS = 
+    | number
+}
