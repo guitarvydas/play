@@ -4,4 +4,9 @@
       #print v
     }
   }
+  #method g {
+    #synonym v ≣ 1 {
+      #print v
+    }
+  }
 }

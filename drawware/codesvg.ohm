@@ -1,0 +1,24 @@
+CodeDrawing {
+  Main = "<html>" "<body>" H1 Drawing "</body>" "</html>"
+  H1 = "<h1>" stuff "</h1>"
+
+  Drawing = "<svg" stuff ">" CodeContainer "</svg>"
+  
+  CodeContainer = "<g" FunctionName ">" Boundary Title CodeBlock "</g>"
+  
+  Boundary = "<rect" stuff "/>"
+  Title = "<text" stuff ">" name "</text>"
+  CodeBlock = "<g>" RedRect Text+ "</g>"
+  RedRect = "<rect" (~AttrRed any)* AttrRed stuff "/>"
+
+  FunctionName = "id=" sq name sq
+  Text = "<text" stuff ">" stuff "</text>"
+  AttrRed = "fill=" dq "#f8cecc" dq
+
+  stuff = notElementChar+
+  notElementChar = ~"<" ~">" ~"/>" any
+  name = letter alnum*
+  sq = "'"
+  dq = "\""
+}
+

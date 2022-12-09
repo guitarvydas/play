@@ -1,0 +1,67 @@
+Program:
+  @Main
+
+Main:
+  tClass					$Class.pushNewScope
+  tName						$Class.setName
+  tLbrace
+  @ListOfMethods				$Class.setField ('MethodList')
+  tRbrace
+						$Class.return
+
+ListOfMethods:
+						$MethodList.pushNew
+  @Method					$MethodList.append ('Method')
+  {[* | tMethod: @Method  			$MethodList.append ('Method')
+     | *: >
+  ]}
+						$MethodList.return
+
+Method:
+						$Method.pushNew
+  tMethod
+  tName						$Method.setName
+  @Block					$Method.setField ('Block'))
+						$Method.return
+
+Block:
+						$Block.pushNew
+  tLbrace
+  @Statement					$Block.setField ('Statement')
+  tRbrace
+						$Block.return
+
+Statement:
+						$Statement.pushNew
+  [
+    | tSynonym:					$Statement.setTag (tagSynonym)
+      tName					$Statement.setField (Name)
+      tDefine
+      @RHS					$Statement.setField (RHS)
+      @OptionalBlock				$Statement.setField (Block)
+
+    | tPrint:					$Statement.setTag (tagPrint)
+      tName					$Statement.setField (Name)
+      @OptionalBlock				$Statement.setField (Block)
+
+    | * :
+
+      >    
+  ]
+						$Statement.return
+
+OptionalBlock:
+						$OptionalBlock.pushNew
+  [* 
+    | tLbrace: @Block				$OptionalBlock.setField ('Block')
+    | *: >
+  ]
+						$OptionalBlock.return
+
+RHS:
+						$RHS.pushNew
+  [
+    | tNumber:					$RHS.coerce ('Number')
+  ]
+						$RHS.return
+						

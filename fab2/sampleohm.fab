@@ -1,0 +1,38 @@
+fab2 {
+  Main = "#" "class" name "{" Method+ "}"
+
+  type Class = { name [methods] }
+  Class [koctothorpe kclass name lb Methods+ rb] =
+    .name = «name»
+    .methods = «Methods»
+
+  type Method = { name Block }
+  Method = "#" "method" name Block
+
+  type Block = { Statement }
+  Block = "{" Statement "}"
+
+
+  dtype ⟨#kind synonym print⟩
+  type Statement = synonymStatement | printStatement
+  type synonymStatement = { kind name RHS Block }
+  type printStatement = { kind name Block }
+  type kind = ⟨#kind⟩
+  Statement_synonym [koctothorpe ksynonym name kequiv RHS Block?] =
+    as synonymStatement
+    .kind = ⟨#kind synonym⟩
+    .name = «name»
+    .RHS = «RHS»
+    .Block = Block
+  Statement_print [koctothorpe kprint name Block?] =
+    as synonymStatement
+    .kind = ⟨#kind print⟩
+    .name = «name»
+    .Block = Block
+
+  type RHS = { number }
+  RHS [number] = .number = «number»
+
+  name = letter alnum*
+  number = digit+
+}

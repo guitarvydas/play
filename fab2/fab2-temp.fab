@@ -1,0 +1,14 @@
+fab2 {
+  Main [k k2 name lb Method+ rb] = 
+    (class : name) {
+      ‛«k»«k2» «name» «lb»«Method»
+«rb»’
+    }
+  name [first rest*] = ‛«first»«rest»’
+  number [ds+] = ‛«ds»’
+  Method [k k2 name Block] = (method : name) {‛  «k»«k2» «name» «Block» ’}
+  Block [lb s rb] = ‛«lb»«s»«rb»’
+  Statement_synonym [k k2 name k3 RHS Block?] = (synonym : name) {‛«k»«k2» «name» «k3» «RHS» «Block»’}
+  Statement_print [k k2 name Block?] = ‛«k»«k2» «@class».«@method».«name» «Block»’
+  RHS [n] = ‛«n»’
+}

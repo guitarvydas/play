@@ -1,0 +1,25 @@
+CodeDrawing {
+  Main [khtml kbody H1 Drawing kbodyend khtmlend] = ‛«Drawing»’
+  H1 [kh1 stuff kh1end] = ‛«kh1»«stuff»«kh1end»’
+
+  Drawing [ksvg CodeContainer ksvgend] = ‛«CodeContainer»’
+  
+  CodeContainer [kgroup FunctionName k Boundary Title CodeBlock kgroupend] = ‛def «FunctionName» ():«CodeBlock»
+«FunctionName» ()’
+  
+  Boundary [krect stuff kend] = ‛«krect»«stuff»«kend»’
+  Title [ktext stuff k name ktextend] = ‛«ktext»«stuff»«k»«name»«ktextend»’
+  CodeBlock [kgroup RedRect Texts+ kgroupend] = ‛\n(-«Texts»-)’
+  RedRect [krect cs* AttrRed stuff kend] = ‛«krect»«cs»«AttrRed»«stuff»«kend»’
+
+  FunctionName [kid sq1 name sq2] = ‛«name»’
+  Text [ktext stuff kend stuff2 ktextend] = ‛\n«stuff2»’
+  AttrRed [kfill dq kred dq2] = ‛«kfill»«dq»«kred»«dq2»’
+
+  stuff [cs+] = ‛«cs»’
+  notElementChar [c] = ‛«c»’
+  name [c1 cs*] = ‛«c1»«cs»’
+  sq  [c] = ‛«c»’
+  dq  [c] = ‛«c»’
+}
+

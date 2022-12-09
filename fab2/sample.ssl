@@ -1,0 +1,62 @@
+Program:
+  @Main
+
+
+Main:
+  tClass
+  tName
+  tLbrace
+  @Method
+  {[ | tMethod:
+     | *: >
+  ]}
+  tRbrace
+
+Method:
+  tMethod
+  tName
+  @Block
+
+Block:
+  tLbrace
+  @Statement
+  tRbrace
+
+Statement:
+  [
+    | tSynonym: tName tDefine @RHS @OptionalBlock
+    | tPrint: tName @OptionalBlock
+    | * :
+  ]
+
+RHS:
+  [
+    | tNumber:
+  ]
+
+---
+
+
+
+Main: "#" "class" tName "{" @Method [ "#method" |
+
+name:
+  @letter
+  {[ @alnum
+     | yes:
+     | no:
+       >
+  ]}
+
+RHS:
+  @number
+
+number:
+  {[ 
+      | "0..9":
+          oNumberNew
+	  oNumberBuffer
+      | yes:
+      | no:
+        >
+  ]}
