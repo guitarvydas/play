@@ -2,7 +2,7 @@ CodeDrawing {
   Main = "<html>" "<body>" H1 Drawing "</body>" "</html>"
   H1 = "<h1>" stuff "</h1>"
 
-  Drawing = "<svg" stuff ">" CodeContainer "</svg>"
+  Drawing = "<svg>" CodeContainer "</svg>"
   
   CodeContainer = "<g" FunctionName ">" Boundary Title CodeBlock "</g>"
   
