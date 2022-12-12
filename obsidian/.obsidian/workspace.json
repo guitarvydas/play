@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "subdir/sub2.md",
+                "file": "base.md",
                 "mode": "source",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "subdir/sub2.md",
+                "file": "base.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "subdir/sub2.md",
+                "file": "base.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "subdir/sub2.md"
+                "file": "base.md"
               }
             }
           }
@@ -163,8 +163,8 @@
   },
   "active": "2d959198fac0eef9",
   "lastOpenFiles": [
+    "subdir/sub2.md",
     "subdir/sub.md",
-    "base.md",
-    "subdir/sub2.md"
+    "base.md"
   ]
 }

@@ -1,5 +1,5 @@
 file base
-[sub](sub.md)
+[sub](subdir/sub.md)
 base 
 base
 base
