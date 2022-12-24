@@ -1,7 +1,7 @@
 all: lisp
 
 lisp:
-	sbcl --noinform --load ex1.lisp --eval '(%main nil nil nil nil)' --quit 2>/dev/null
+	sbcl --noinform --load ex1.lisp --eval '(%test)' --quit 2>/dev/null
 
 
 ex1: ex1.c

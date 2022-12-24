@@ -46,3 +46,7 @@ is replaced with replacement."
                            :end (or pos (length string)))
           when pos do (write-string replacement out)
           while pos)))
+
+(defun %test ()
+  (%main nil nil nil nil))
+  
