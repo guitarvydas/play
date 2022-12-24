@@ -1,25 +1,3 @@
-(defun %identity (args temp code string)
-  (let ((c (first args)))
-    c))
-
-(defun %main (args temp code string)
-  (let ((args nil)
-	(temp nil))
-    (let ((temp (cons nil temp)))
-      (let ((string (cons #\x string)))
-	(let ((args (%append-arg (first string) args)))
-	  (let ((result (%invoke "identity" args temp code string)))
-	    (setf (first temp) result)
-	    (let ((args nil))
-	      (let ((temp (cons nil temp)))
-		(let ((string (cons "result = %c\n" string)))
-		  (let ((args (%append-arg (first string) args)))
-		    (let ((args (%append-arg (second temp) args)))
-		      (let ((result (%invoke "printf" args temp code string)))
-			(setf (first temp) result)
-			(values)))))))))))))
-
-
 ;; support
 (defun %append-arg (v args)
   (reverse (cons v (reverse args))))
@@ -53,7 +31,34 @@ is replaced with replacement."
                    (let ((s (first args)))
                      (let ((s2 (replace-all s "%c" "~a")))
                        (let ((format-string (replace-all s2 "\n" "~%")))
-                         (apply 'format *standard-output* format-string (rest args))))))))
-    (let ((code (cons (cons "printf" !printf) '(("identity" . %identity) ("main" . %main)))))
-      (%main nil nil code nil))))
+                         (apply 'format *standard-output* format-string (rest args)))))))
+        (!identity (lambda (args temp code string)
+                     (let ((c (first args)))
+                       c)))
+        
+        (!main (lambda (args temp code string)
+                 (let ((args nil)
+                       (temp nil))
+                   (let ((temp (cons nil temp)))
+                     (let ((string (cons #\x string)))
+                       (let ((args (%append-arg (first string) args)))
+                         (let ((result (%invoke "identity" args temp code string)))
+                           (setf (first temp) result)
+                           (let ((args nil))
+                             (let ((temp (cons nil temp)))
+                               (let ((string (cons "result = %c\n" string)))
+                                 (let ((args (%append-arg (first string) args)))
+                                   (let ((args (%append-arg (second temp) args)))
+                                     (let ((result (%invoke "printf" args temp code string)))
+                                       (setf (first temp) result)
+                                       (values))))))))))))))
+
+
+        )
+
+    (let ((code (list
+                 (cons "printf" !printf)
+                 (cons "identity"  !identity)
+                 (cons "main"  !main))))
+      (%invoke "main" nil nil code nil))))
   
