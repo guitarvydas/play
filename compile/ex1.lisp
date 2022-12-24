@@ -21,14 +21,6 @@
 
 
 ;; support
-(defun %printf (args temp code string)
-  ;; need to replace \n by ~%
-  ;; need to replace %c by ~a
-  (let ((s (first args)))
-    (let ((s2 (replace-all s "%c" "~a")))
-      (let ((format-string (replace-all s2 "\n" "~%")))
-        (apply 'format *standard-output* format-string (rest args))))))
-
 (defun %append-arg (v args)
   (reverse (cons v (reverse args))))
 
@@ -48,13 +40,21 @@ is replaced with replacement."
           while pos)))
 
 (defun %invoke (name args temp code string)
-  (let ((f (second (assoc name code :test 'string-equal))))
+  (let ((f (cdr (assoc name code :test 'string-equal))))
     (format *standard-output* "f=~a~%" f)
     (funcall f args temp code string)))
     
+(defun %!printf (args temp code string)
+  ;; need to replace \n by ~%
+  ;; need to replace %c by ~a
+  (let ((s (first args)))
+    (let ((s2 (replace-all s "%c" "~a")))
+      (let ((format-string (replace-all s2 "\n" "~%")))
+        (apply 'format *standard-output* format-string (rest args))))))
+
 ;; testing
 
 (defun %test ()
- (let ((code '(("printf" %printf) ("identity" %identity) ("main" %main))))
-   (%main nil nil code nil)))
+  (let ((code '(("printf". %!printf) ("identity" . %identity) ("main" . %main))))
+    (%main nil nil code nil)))
   
