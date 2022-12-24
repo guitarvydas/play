@@ -1,0 +1,21 @@
+#include <stdio.h>
+char identity (char c) {
+      $s.ensureInScope c
+  return c;
+}  
+
+int main (int argc, char **argv) {
+  char x = identity ('x');
+      $s.ensureInScope x
+      $s.ensureInScope identity
+      $s.ensureType identity ⟨function ⟨dd 0 code _ _⟩ 
+                                   ⟨*dd ⟨char 1 _ _⟩⟩
+                                   ⟨*dd ⟨char 1 _ _⟩⟩⟩
+  printf ("result = %c\n", x);
+      $s.ensureInScope x
+      $s.ensureInScope printf
+      $s.ensureType printf ⟨function ⟨dd 0 code _ _⟩ 
+                                   ⟨*dd ⟨char 1 _ _⟩ ⟨varargs _ _ _⟩⟩
+                                   ⟨*dd ⟨void 0 _ _⟩⟩⟩
+}
+
