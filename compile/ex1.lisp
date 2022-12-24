@@ -42,7 +42,7 @@ is replaced with replacement."
 (defun %invoke (name args temp code string)
   (let ((f (cdr (assoc name code :test 'string-equal))))
     (format *standard-output* "f=~a~%" f)
-    (funcall f args temp code string)))
+    (apply f (list args temp code string))))
     
 ;; testing
 
