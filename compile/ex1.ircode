@@ -10,11 +10,12 @@ $g.pushScope ()
 char identity (char c) {
       $g.defsynonym c ⟨char ⟨dd 1 param “c”⟩⟩
       $s.ensureInScope c
-      $ir.functionlabel “identity”
+      $ir.beginFunction “identity”
   return c;
       $ir.return ⟨char ⟨dd 1 param “c”⟩⟩
 }  
     $g.popScope ()
+      $ir.endFunction “identity” 1
 
 int main (int argc, char **argv) {
   $g.defsynonym main ⟨function ⟨dd 0 code main 0 1 “main”⟩
@@ -23,7 +24,7 @@ int main (int argc, char **argv) {
     $g.pushScope (main)
       $g.defsynonym argc ⟨int ⟨dd 1 param "argc"⟩⟩
       $g.defsynonym argv ⟨char ⟨dd 2 param "argv"⟩⟩
-      $ir.functionlabel “main”
+      $ir.beginFunction “main”
   char x = identity ('x');
       $s.ensureInScope x
       $s.ensureInScope identity
@@ -53,4 +54,5 @@ int main (int argc, char **argv) {
       $ir.returnVoid
 }
     $g.popScope ()
+      $ir.endFunction “main” 2
 

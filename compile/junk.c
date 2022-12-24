@@ -3,13 +3,14 @@
 #include <stdio.h>
 
 char identity (char c) {
-      $ir.functionlabel “identity”
+      $ir.functionBegin “identity” 1
   return c;
       $ir.return ⟨char ⟨dd 1 param “c”⟩⟩
+      $ir.functionEnd “identity” 1
 }  
 
 int main (int argc, char **argv) {
-      $ir.functionlabel “main”
+      $ir.functionBegin “main” 2
   char x = identity ('x');
       $ir.resetArgs
       $ir.createTemp “𝜏0” ⟨char ⟨dd 1 temp “𝜏0” “”⟩⟩
@@ -27,4 +28,5 @@ int main (int argc, char **argv) {
       $ir.assignReturnInto 0 ⟨void ⟨dd 0 temp “𝜏1” _⟩⟩
       $ir.returnVoid
 }
+      $ir.functionEnd “main” 2
 

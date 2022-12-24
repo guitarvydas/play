@@ -7,6 +7,7 @@ char identity (char c) {
   return c;
     $ir.return ⟨char ⟨dd 1 param “c”⟩⟩
 }  
+    $ir.functionEnd “identity” 1
 
 int main (int argc, char **argv) {
     $ir.functionlabel “main”
@@ -27,6 +28,7 @@ int main (int argc, char **argv) {
     $ir.assignReturnInto 0 ⟨void ⟨dd 0 temp “𝜏1” _⟩⟩
     $ir.returnVoid
 }
+    $ir.functionEnd “main” 2
 ```
 
 Combined code:
@@ -48,6 +50,7 @@ char identity (char c) {
       $ir.return ⟨char ⟨dd 1 param “c”⟩⟩
 }  
     $g.popScope ()
+    $ir.functionEnd “identity” 1
 
 int main (int argc, char **argv) {
   $g.defsynonym main ⟨function ⟨dd 0 code main 0 1 “main”⟩
@@ -86,5 +89,6 @@ int main (int argc, char **argv) {
       $ir.returnVoid
 }
     $g.popScope ()
-
+    $ir.functionEnd “main” 2
+   
 ```
