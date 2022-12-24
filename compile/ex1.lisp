@@ -22,17 +22,18 @@ is replaced with replacement."
     (format *standard-output* "f=~a~%" f)
     (apply f (list args temp code string))))
     
-;; testing
+(defun %printf (args temp code string)
+  ;; need to replace \n by ~%
+  ;; need to replace %c by ~a
+  (let ((s (first args)))
+    (let ((s2 (replace-all s "%c" "~a")))
+      (let ((format-string (replace-all s2 "\n" "~%")))
+        (apply 'format *standard-output* format-string (rest args))))))
+
+        ;; testing
 
 (defun %test ()
-  (let ((!printf (lambda (args temp code string)
-                   ;; need to replace \n by ~%
-                   ;; need to replace %c by ~a
-                   (let ((s (first args)))
-                     (let ((s2 (replace-all s "%c" "~a")))
-                       (let ((format-string (replace-all s2 "\n" "~%")))
-                         (apply 'format *standard-output* format-string (rest args)))))))
-        (!identity (lambda (args temp code string)
+  (let ((!identity (lambda (args temp code string)
                      (let ((c (first args)))
                        c)))
         
@@ -57,7 +58,7 @@ is replaced with replacement."
         )
 
     (let ((code (list
-                 (cons "printf" !printf)
+                 (cons "printf" #'%printf)
                  (cons "identity"  !identity)
                  (cons "main"  !main))))
       (%invoke "main" nil nil code nil))))
