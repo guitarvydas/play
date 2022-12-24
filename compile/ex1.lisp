@@ -8,14 +8,14 @@
     (let ((temp (cons nil temp)))
       (let ((string (cons #\x string)))
 	(let ((args (%append-arg (first string) args)))
-	  (let ((result (funcall '%identity args temp code string)))
+	  (let ((result (%invoke "identity" args temp code string)))
 	    (setf (first temp) result)
 	    (let ((args nil))
 	      (let ((temp (cons nil temp)))
 		(let ((string (cons "result = %c\n" string)))
 		  (let ((args (%append-arg (first string) args)))
 		    (let ((args (%append-arg (second temp) args)))
-		      (let ((result (funcall '%printf args temp code string)))
+		      (let ((result (%invoke "printf" args temp code string)))
 			(setf (first temp) result)
 			(values)))))))))))))
 
@@ -47,6 +47,14 @@ is replaced with replacement."
           when pos do (write-string replacement out)
           while pos)))
 
+(defun %invoke (name args temp code string)
+  (let ((f (second (assoc name code :test 'string-equal))))
+    (format *standard-output* "f=~a~%" f)
+    (funcall f args temp code string)))
+    
+;; testing
+
 (defun %test ()
-  (%main nil nil nil nil))
+ (let ((code '(("printf" %printf) ("identity" %identity) ("main" %main))))
+   (%main nil nil code nil)))
   
