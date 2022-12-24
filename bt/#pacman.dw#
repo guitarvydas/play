@@ -1,0 +1,37 @@
+❲Take a Turn❳ {
+  [ ❲Does any food remain?❳:
+    | no:
+      *
+    | yes:
+      ❲Avoid Ghosts if Necessary❳
+      one of ❲Step Toward Pill if any❳ {
+        ❲Step Towards Food❳
+      }
+   ]
+}
+❲❳
+
+
+Rectangle {
+  text “Take a Turn” x:927.1 y:-133.7 w:131 h:25 id:
+  circle x: y: color:green id:
+  circle x: y: color:yellow id:
+  arrow source: vwvWBmc9GIW6cUMRAyiYz target:jqa2IHhOtlmOZUjTE-jtm id:hQMZ19ZMqUMVNoq36TdRD
+  arrow bx: by: ex: ey: id:
+  arrow bx: by: ex: ey: id:
+  arrow bx: by: ex: ey: id:
+  arrow bx: by: ex: ey: id:
+  arrow bx: by: ex: ey: id:
+  arrow bx: by: ex: ey: id:
+  arrow bx: by: ex: ey: id:
+  
+  Test ❲Does any food remain?❳ {
+    | no:
+      *
+    | yes:
+      ❲Avoid Ghosts if Necessary❳
+      one of ❲Step Toward Pill if any❳ {
+        ❲Step Towards Food❳
+      }
+   }
+}

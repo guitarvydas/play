@@ -1,0 +1,35 @@
+𝛿
+→
+→*
+?
+❲❳
+«»
+
+❲GOTO Behviour Tree❳ {
+  unless «InRoom2» {
+    ❲Enter Room 2❳
+  }
+}
+
+❲Enter Room 2❳ {
+  ❲GOTO Door❳ {
+    ❲Open Door❳ {
+      «Enter The Room»
+    }
+  }
+}
+
+❲GOTO Door❳ {
+  unless «At The Door» {
+    «Move To Door»
+  }
+}
+
+❲Open Door❳ {
+  unless «Door Is Opened» {
+    «Open The Door»
+  }
+}
+
+
+

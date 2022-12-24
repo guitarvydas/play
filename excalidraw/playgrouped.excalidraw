@@ -1,0 +1,98 @@
+{
+  "type": "excalidraw",
+  "version": 2,
+  "source": "https://excalidraw.com",
+  "elements": [
+    {
+      "id": "RWW6_hlAioQ0KxwZjXGLs",
+      "type": "rectangle",
+      "x": 302,
+      "y": 149,
+      "width": 181,
+      "height": 97,
+      "angle": 0,
+      "strokeColor": "#000000",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [
+        "bLGx5QW5FZE5a-9zIbZNm"
+      ],
+      "roundness": {
+        "type": 3
+      },
+      "seed": 2090395633,
+      "version": 11,
+      "versionNonce": 1937074847,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1670934694709,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "fiD4Mkj4JUDSHZWG5GKvr",
+      "type": "rectangle",
+      "x": 327,
+      "y": 274,
+      "width": 187,
+      "height": 104,
+      "angle": 0,
+      "strokeColor": "#a61e4d",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "bLGx5QW5FZE5a-9zIbZNm"
+      ],
+      "roundness": null,
+      "seed": 1203119327,
+      "version": 48,
+      "versionNonce": 954421969,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1670934694709,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "mdF3TgJWcDgqXQIv2cozC",
+      "type": "ellipse",
+      "x": 214,
+      "y": 102,
+      "width": 395,
+      "height": 338,
+      "angle": 0,
+      "strokeColor": "#a61e4d",
+      "backgroundColor": "transparent",
+      "fillStyle": "hachure",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [
+        "bLGx5QW5FZE5a-9zIbZNm"
+      ],
+      "roundness": null,
+      "seed": 1181488895,
+      "version": 37,
+      "versionNonce": 936165055,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1670934694709,
+      "link": null,
+      "locked": false
+    }
+  ],
+  "appState": {
+    "gridSize": null,
+    "viewBackgroundColor": "#ffffff"
+  },
+  "files": {}
+}

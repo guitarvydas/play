@@ -1,0 +1,32 @@
+unless FoodsAvailable {
+  seq* {
+    cond {
+      [not PillsAvailable] {
+        seq {
+          cond {
+            [GhostsTooClose] {
+                AvoidGhosts
+	      }
+	    }
+          seq* {
+              FindClosestPill
+              PlanAPath
+	      ExecutePlannedPath
+	    } seq*
+	  } seq
+        }
+      }
+      seq {
+	cond {
+	  [GhostsTooClose] {
+	      AvoidGhosts
+	    }
+	  }
+	seq* {
+	    FindClosestPill
+	    PlanAPath
+	    ExecutePlannedPath
+	  } seq*
+	} seq
+      }
+  }

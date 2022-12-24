@@ -1,0 +1,26 @@
+❲Take a Turn❳ {
+  [ ❲Does any food remain?❳:
+    | no:
+      *
+    | yes:
+      ❲Avoid Ghosts if Necessary❳
+      one of ❲Step Toward Pill if any❳ {
+        ❲Step Towards Food❳
+      }
+   ]
+}
+❲❳
+
+
+Rectangle {
+  text “Take a Turn”
+  Test ❲Does any food remain?❳ {
+    | no:
+      *
+    | yes:
+      ❲Avoid Ghosts if Necessary❳
+      one of ❲Step Toward Pill if any❳ {
+        ❲Step Towards Food❳
+      }
+   }
+}
