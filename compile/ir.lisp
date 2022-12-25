@@ -1,4 +1,4 @@
-;; $ir0.initialize
+; $ir0.initialize
 ;; $ir.appendArg
 ;; $ir.assignArg
 ;; $ir.assignReturnInto
@@ -15,7 +15,7 @@
 
 (defparameter *args* nil)
 (defparameter *code* nil)
-(defparameter *bytes* nil)
+(defparameter *bytes* (make-array 128))
 (defparameter *temp* nil)
 (defparameter *return* nil)
 
@@ -33,6 +33,17 @@
   (setf *args* (nthcdr n *args*)))
 
 (defun $ir.functionBegin (name n)
-  (setf *code* (cons name 
   )
-  
+
+(defun $ir.createTemp (name ty)
+  (let ((newtemp `(name . ((name ,name) (type ,ty) (value ,nil)))))
+    (push newtemp *temp*)))
+
+(defun $ir0.initialize (dd val)
+  (if (eq 'bytes (base dd))
+      (let ((ix (displacement dd)))
+	(setf (aref *bytes* ix) val))
+    (assert nil))) ;; this version doesn't handle initializing anything but *bytes*
+
+(defun operand (dd)
+  (let ((base (base dd)))

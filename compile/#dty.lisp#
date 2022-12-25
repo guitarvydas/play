@@ -1,0 +1,12 @@
+(defclass declarative-type ()
+  ((typename :accessor typename :initarg :typename)
+   (indirection :accessor indirection :initarg :indirection)
+   (base :accessor base :initarg :base)
+   (displacement :accessor displacement :initarg :displacement)
+   (src :accessor src :initarg :src)))
+
+(defun dty (ty k b d src)
+  (make-instance 'declarative-type :typename ty :indirection k :base b :displacement d :src src))
+
+
+   
