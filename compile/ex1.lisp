@@ -1,65 +1,57 @@
-;; support
-(defun %append-arg (v args)
-  (reverse (cons v (reverse args))))
 
-(defun replace-all (string part replacement &key (test #'char=))
-  "Returns a new string in which all the occurences of the part 
-is replaced with replacement."
-  (with-output-to-string (out)
-    (loop with part-length = (length part)
-          for old-pos = 0 then (+ pos part-length)
-          for pos = (search part string
-                            :start2 old-pos
-                            :test test)
-          do (write-string string out
-                           :start old-pos
-                           :end (or pos (length string)))
-          when pos do (write-string replacement out)
-          while pos)))
+$g.pushScope ()
 
-(defun %invoke (name args temp code string)
-  (let ((f (cdr (assoc name code :test 'string-equal))))
-    (format *standard-output* "f=~a~%" f)
-    (apply f (list args temp code string))))
+;;#include <stdio.h>
+
+  $g.defsynonym identity (od-function "identity"
+                                   (list (od-char @1 :_ :_)) ;; param - c
+                                   (list (od-char @1 :_ :_))) ;; return type - char
     
-(defun %printf (args temp code string)
-  ;; need to replace \n by ~%
-  ;; need to replace %c by ~a
-  (let ((s (first args)))
-    (let ((s2 (replace-all s "%c" "~a")))
-      (let ((format-string (replace-all s2 "\n" "~%")))
-        (apply 'format *standard-output* format-string (rest args))))))
+     $g.pushScope (identity) 
+;;char identity (char c) {
+     $g.defsynonym c (od-char @1 param 1)) 
+     $s.ensureInScope c 
+     $ir.beginFunction identity 
+;;  return c;
+     $ir.return c
+;;}
+     $g.popScope () 
+     $ir.endFunction identity
 
-        ;; testing
-
-(defun %test ()
-  (let ((!identity (lambda (args temp code string)
-                     (let ((c (first args)))
-                       c)))
-        
-        (!main (lambda (args temp code string)
-                 (let ((args nil)
-                       (temp nil))
-                   (let ((temp (cons nil temp)))
-                     (let ((string (cons #\x string)))
-                       (let ((args (%append-arg (first string) args)))
-                         (let ((result (%invoke "identity" args temp code string)))
-                           (setf (first temp) result)
-                           (let ((args nil))
-                             (let ((temp (cons nil temp)))
-                               (let ((string (cons "result = %c\n" string)))
-                                 (let ((args (%append-arg (first string) args)))
-                                   (let ((args (%append-arg (second temp) args)))
-                                     (let ((result (%invoke "printf" args temp code string)))
-                                       (setf (first temp) result)
-                                       (values))))))))))))))
-
-
-        )
-
-    (let ((code (list
-                 (cons "printf" #'%printf)
-                 (cons "identity"  !identity)
-                 (cons "main"  !main))))
-      (%invoke "main" nil nil code nil))))
-  
+;;int main (int argc, char **argv) {
+  $g.defsynonym main (od-function "main"
+                               (list (od-int @1 :_ :_)(od-char @2 :_ :_)) ;; params - argc, argv
+                               (list (od-void :_ :_ :_))) ;; return type - none (void) 
+    $g.pushScope (main) 
+      $g.defsynonym "argc" (od-int @1 param 1)) 
+      $g.defsynonym "argv" (od-char @2 param 2)) 
+      $ir.beginFunction "main" 2 
+;;  char x = identity ('x');
+      $s.ensureInScope x 
+      $s.ensureInScope identity 
+      $s.ensureType identity (od-function :_ (list (od-char @1 :_ :_)) (list (od-char @1 :_ :_))) 
+      $g.defsynonym x (od-char @1 temp 1)) 
+      $ir.resetArgs 
+      $ir.mutate x (od-char @0 temp "x")  
+      $ir.pushArg x
+      $ir.defsynonym 𝜏0 (od-char @1 temp 2) 
+      $ir.createTemp 𝜏0
+      $ir.call identity
+      $ir.mutate 𝜏0 (od-char @1 result 1) 
+;;  printf ("result = %c\n", x);
+      $s.ensureInScope x 
+      $s.ensureInScope printf 
+      $g.defsynonym printf (od-bifunction :_ (list (od-char @1 :_ :_) (od-varargs :_ :_ :_)) (list (od-void :_ :_ :_))) 
+      $s.ensureType printf (od-bifunction :_ (list (od-char @1 :_ :_) (od-varargs :_ :_ :_)) (list (od-void :_ :_ :_))) 
+      $ir.resetArgs 
+      $ir.defsynonym 𝜏1 (od-char @1 temp 2) 
+      $ir.createTemp 𝜏1
+      $ir.mutate 𝜏1 (od-char @0 temp "result = %c\n") 
+      $ir.pushArg 𝜏1
+      $ir.pushArg x 
+      $ir.call printf 
+      $ir.mutate 𝜏1 (od-char @1 result 1) 
+      $ir.return (od-void :_ :_ :_) 
+;;}
+    $g.popScope 
+      $ir.endFunction "main" 2 
