@@ -1,0 +1,1 @@
+     $g.defsynonym c ⟨char @¹ param 1⟩⟩ 
