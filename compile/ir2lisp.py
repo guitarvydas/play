@@ -34,8 +34,9 @@ r = lc.tr ('@¹', '@1')\
       .tr ('⟨int ', '(od-int ')\
       .tr ('⟨void ', '(od-void ')\
       .tr ('⟨char ', '(od-char ')\
-      .tr ('⟨varargs', '(od-varargs')\
+      .tr ('⟨varargs ', '(od-varargs ')\
       .tr ('⟨function ', '(od-function ')\
       .tr ('⟨bifunction ', '(od-bifunction ')\
+      .tr ('//', ';;')\
       .tr ('⟩', ')')
 r.pr ()

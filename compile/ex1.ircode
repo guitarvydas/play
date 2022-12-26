@@ -1,24 +1,24 @@
 
 $g.pushScope ()
 
-#include <stdio.h>
+//#include <stdio.h>
 
   $g.defsynonym identity ⟨function “identity”
                                    ⟨*od ⟨char @¹ _ _⟩⟩ // param - c
                                    ⟨*od ⟨char @¹ _ _⟩⟩⟩ // return type - char
     
      $g.pushScope (identity) 
-char identity (char c) {
+//char identity (char c) {
      $g.defsynonym c ⟨char @¹ param 1⟩⟩ 
      $s.ensureInScope c 
      $ir.beginFunction identity 
-  return c;
+//  return c;
      $ir.return c
-}
+//}
      $g.popScope () 
      $ir.endFunction identity
 
-int main (int argc, char **argv) {
+//int main (int argc, char **argv) {
   $g.defsynonym main ⟨function “main”
                                ⟨*od ⟨int @¹ _ _⟩⟨char @² _ _⟩⟩ // params - argc, argv
                                ⟨*od ⟨void _ _ _⟩⟩⟩ // return type - none (void) 
@@ -26,7 +26,7 @@ int main (int argc, char **argv) {
       $g.defsynonym “argc” ⟨int @¹ param 1⟩⟩ 
       $g.defsynonym “argv” ⟨char @² param 2⟩⟩ 
       $ir.beginFunction “main” 2 
-  char x = identity ('x');
+//  char x = identity ('x');
       $s.ensureInScope x 
       $s.ensureInScope identity 
       $s.ensureType identity ⟨function _ ⟨*od ⟨char @¹ _ _⟩⟩ ⟨*od ⟨char @¹ _ _⟩⟩⟩ 
@@ -38,11 +38,11 @@ int main (int argc, char **argv) {
       $ir.createTemp 𝜏0
       $ir.call identity
       $ir.mutate 𝜏0 ⟨char @¹ result 1⟩ 
-  printf ("result = %c\n", x);
+//  printf ("result = %c\n", x);
       $s.ensureInScope x 
       $s.ensureInScope printf 
-      $g.defsynonym printf ⟨bifunction _ ⟨*od ⟨char @¹ _ _⟩ ⟨varargs⟩⟩ ⟨*od ⟨void _ _ _⟩⟩⟩ 
-      $s.ensureType printf ⟨bifunction _ ⟨*od ⟨char @¹ _ _⟩ ⟨varargs⟩⟩ ⟨*od ⟨void _ _ _⟩⟩⟩ 
+      $g.defsynonym printf ⟨bifunction _ ⟨*od ⟨char @¹ _ _⟩ ⟨varargs _ _ _⟩⟩ ⟨*od ⟨void _ _ _⟩⟩⟩ 
+      $s.ensureType printf ⟨bifunction _ ⟨*od ⟨char @¹ _ _⟩ ⟨varargs _ _ _⟩⟩ ⟨*od ⟨void _ _ _⟩⟩⟩ 
       $ir.resetArgs 
       $ir.defsynonym 𝜏1 ⟨char @¹ temp 2⟩ 
       $ir.createTemp 𝜏1
@@ -52,6 +52,6 @@ int main (int argc, char **argv) {
       $ir.call printf 
       $ir.mutate 𝜏1 ⟨char @¹ result 1⟩ 
       $ir.return ⟨void _ _ _⟩ 
-}
+//}
     $g.popScope 
       $ir.endFunction “main” 2 
