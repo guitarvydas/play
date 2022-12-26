@@ -7,7 +7,7 @@ $g.pushScope ()
                                    ⟨dd* ⟨char 1 _ _⟩⟩ // return type - char
     $g.pushScope (identity)
 char identity (char c) {
-      $d.defsynonym c ⟨char @¹ param⟩
+      $g.defsynonym c ⟨char @¹ param⟩
   return c;
 }  
     $g.popScope ()
