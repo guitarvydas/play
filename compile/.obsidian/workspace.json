@@ -13,13 +13,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "coder1.md",
+                "file": "Bases.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "59b84d46428e17c2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4d06fd25662b4b06",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Declarative Types.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -85,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "coder1.md",
+                "file": "Declarative Types.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "coder1.md",
+                "file": "Declarative Types.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "coder1.md"
+                "file": "Declarative Types.md"
               }
             }
           }
@@ -143,9 +168,21 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "obsidian-excalidraw-plugin:New Excalidraw drawing": false
     }
   },
-  "active": "9c78f69bc5a704e4",
-  "lastOpenFiles": []
+  "active": "4d06fd25662b4b06",
+  "lastOpenFiles": [
+    "coder1.md",
+    "Binding Parameters in a Function.md",
+    "Bases.md",
+    "README.md",
+    "Excalidraw/Bases Drawing 2023-01-06 23.31.21.excalidraw.md",
+    "Excalidraw/Scoped Stack for Parameter Space Drawing 2023-01-04 15.45.15.excalidraw.md",
+    "Excalidraw/Drawing 2022-12-31 10.29.51.excalidraw.md",
+    "Excalidraw/Drawing 2022-12-28 08.50.20.excalidraw.md",
+    "Excalidraw/Drawing 2022-12-21 10.34.32.excalidraw.md",
+    "Excalidraw/Constants Drawing 2022-12-31 15.43.15.excalidraw.md"
+  ]
 }

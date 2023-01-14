@@ -1,5 +1,4 @@
 file sub 
-[sub2](sub2.md)
-sub
+[[sub2]]
 sub
 sub
