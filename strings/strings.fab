@@ -1,0 +1,20 @@
+strings {
+  toplevel [x] = ‛«x»’
+  macro [x] = ‛«x»’
+
+stringBegin [q] = ‛"’
+stringEnd [q] = ‛"’
+innerStringBegin [q] = ‛\\\"’
+innerStringEnd [q] = ‛\\\"’
+
+stringDelimiter [x] = ‛«x»’
+
+nestedString_nested [b m e] = ‛«b»«m»«e»’
+nestedString_empty [b e] = ‛«b»«e»’
+
+recursiveString_nested [b m e] = ‛«b»«m»«e»’
+recursiveString_empty [b e] = ‛«b»«e»’
+recursiveString_leaf [c] = ‛«c»’
+
+}
+  

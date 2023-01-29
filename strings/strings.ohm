@@ -1,0 +1,25 @@
+strings {
+  toplevel = macro+
+  macro =
+    | nestedString
+    | ~stringDelimiter any
+
+stringBegin = "“"
+stringEnd = "”"
+innerStringBegin = stringBegin
+innerStringEnd = stringEnd
+
+stringDelimiter = stringBegin | stringEnd
+
+nestedString =
+  | stringBegin recursiveString+ stringEnd -- nested
+  | stringBegin stringEnd -- empty
+
+recursiveString =
+  | innerStringBegin recursiveString+ innerStringEnd -- nested
+  | innerStringBegin innerStringEnd -- empty
+  | ~stringDelimiter any -- leaf
+
+
+}
+  
