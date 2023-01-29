@@ -1,0 +1,1 @@
+bash <(curl -sL get-comby.netlify.app)
