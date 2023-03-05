@@ -1,0 +1,17 @@
+simple {
+  Top = Statement+
+
+  Statement =
+    | AssignmentStatement
+
+  AssignmentStatement = ???
+  Expression = 
+    | Operand Operator Expression
+    | Operand
+
+Operand = variable
+Operator = infixOperator
+
+variable = letter
+infixOperator = "+"
+}

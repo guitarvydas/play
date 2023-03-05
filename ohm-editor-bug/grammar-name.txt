@@ -1,0 +1,7 @@
+issue: grammar name of pre-existing test example does not track grammar name changes
+
+how:
+1) create a working grammar and test case - in this example, I created a grammar called CSS
+2) change the name of the grammar - in this case, I changed it to newCSS
+
+result: the previously-working test case now fails ; the previously-working test case still refers to a "Start rule:" of the previous grammar (CSS) and not the new grammar (newCSS).

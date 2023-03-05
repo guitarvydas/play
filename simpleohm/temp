@@ -1,0 +1,12 @@
+simple {
+  Top = Expression
+  Expression = 
+    | Operand Operator Expression
+    | Operand
+
+Operand = variable
+Operator = infixOperator
+
+variable = letter
+infixOperator = "+"
+}
