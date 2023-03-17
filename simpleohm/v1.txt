@@ -1,3 +1,4 @@
+```
 var ohm = require ('ohm-js');
 
 const g = ohm.grammar (`
@@ -18,3 +19,4 @@ var cst = g.match ("a = b + c");
 var transpiled = semantics (cst).js ();
 console.log (transpiled);
 
+```
