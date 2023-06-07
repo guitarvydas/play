@@ -1,3 +1,0 @@
-all:
-	odin build . -debug
-
