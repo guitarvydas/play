@@ -2,6 +2,7 @@ package conv
 import "core:fmt"
 import "core:time"
 import "core:runtime"
+import "core:strings"
 
 Bytr :: struct {
     btr : rawptr,
@@ -46,6 +47,11 @@ main :: proc () {
     bp3 := clone_bytr (bp)
     data3_p := transmute(^Data) bp3.btr
     fmt.println (data3_p^)
+
+    cs := "abcdefg"
+    s := strings.clone (cs)
+    s[3] = 'D'
+    fmt.println (cs, s)
     
     // data := Data { a = 5 }
     // fmt.println(data)
