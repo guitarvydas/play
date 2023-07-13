@@ -33,10 +33,13 @@ aside: In essence, the code hard-codes knowledge of the data structure into the 
 
 So, I've modified the code to dump out the final environment (see modified testit):
 
+```
 (((FACT-ITER . #<CLOSURE 402000269B>) (FACT . #<CLOSURE 4020002663>) (FIB . #<CLOSURE 402000262B>) (ADD . #<Function + 40F0044AD4>) (LESSP . #<Function < 40F006EFD4>) (MULT . #<Function * 40F006D2E4>) (PRINT . #<Function PRINT 40F00AACAC>) (SUB . #<Function - 40F006D4E4>) (SUB1 . #<Function 1- 40F00A8B4C>) (ZEROP . #<Function ZEROP 40F006EF54>)))
+```
 
 which, when pretty-printed is:
 
+```
 (
  (
   (FACT-ITER . #<CLOSURE 402000269B>) 
@@ -51,6 +54,7 @@ which, when pretty-printed is:
   (ZEROP . #<Function ZEROP 40F006EF54>)
   )
  )
+```
 
 Ahh, so an environment is a list containing one list (an alist).  So the mysterious line of code `(setf (car environment) ...)` just replaces the alist with a new alist.  There is only 1 `car` of the above environment.  Mutating the `car` (with `setf`) replaces that 1 `car` with a different value (another alist).
 
