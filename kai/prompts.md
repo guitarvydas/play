@@ -425,3 +425,445 @@ Chapter 10: Experimenting with Obsidian for `README.md`
 Section 10.1: Coordination Challenges with Multiple Vaults
 I experimented with using Obsidian to create `REAMDE.md` files for projects, but managing multiple vaults proved to be a time-consuming task.
 ```
+
+---
+
+the following contains a series of slides
+
+slides are separated by single lines containing nothing other than three dashes `---`
+
+each slide contains a title which is a line of text with no preceding dashes
+
+lines of text that begin with dashes are point-form contents of the slide with the number of dashes representing the indentation level of the line
+
+expand each slide into a section for a chapter in a book where eac chapter title begins with two octothorpes and each section begins with three octhorpes
+
+---
+
+initial attraction
+- backlinks
+- promise of slapping ideas down and linking them
+
+---
+
+current usage
+- markdown editor
+- Excalidraw plugin to create cketcher and drawings to communicate ideas
+-- using draw.io for odin0D work (drawing compiler)
+- publish for bloggint
+
+---
+
+plugins tried
+
+---
+
+plugins used
+- Exalidraw
+-- I draw a lot of drawings
+--- I use draw.io (standalone) for tech work
+--- I use Excalidraw to make sketches and to communicate ideas
+- Publish
+- Advanced Slides
+-- built-in slides plugin is enough for my purposes
+--- probably subsumes by the tool Slider
+
+---
+
+YouTube series
+- Nicole van der Hoeven
+
+---
+
+Kinopio
+- very helpful discord support
+- slap ideas down, impose order later
+- use "/" to link pages
+
+---
+
+ChatGPT
+
+---
+
+Drafts
+
+---
+
+Canvas
+- I don't think that an infinite canvas is a useful idea
+-- I want some kinf of layering
+
+---
+
+Experiments in creating `README.md` files
+- experimented with using Objsidian to create `REAMDE.md` for projects
+-- too much work to coordianate multiple vaults
+
+---
+
+```
+Chapter 1: Initial Attraction
+
+Section 1.1: Backlinks
+The initial attraction to slides stemmed from the feature of backlinks, which allows for easy navigation and the establishment of connections between ideas.
+
+Section 1.2: Promise of Slapping Ideas Down and Linking Them
+Another appealing aspect was the promise of quickly jotting down ideas and easily linking them together, enabling a fluid thought process and efficient organization of thoughts.
+
+Chapter 2: Current Usage
+
+Section 2.1: Markdown Editor
+In my current usage, a markdown editor forms the foundation of my slide creation process. Markdown provides simplicity and readability for content creation.
+
+Section 2.2: Excalidraw Plugin for Sketches and Drawings
+For visual communication of ideas, I rely on the Excalidraw plugin, which allows me to create sketches and drawings with ease.
+
+Section 2.2.1: Using draw.io for Technical Work
+For more complex technical work and drawing compilations, I have found draw.io (a standalone tool) to be particularly useful.
+
+Section 2.3: Publishing for Blogging
+After creating slides, I frequently publish them as blog posts, allowing me to share my thoughts and ideas with a broader audience.
+
+Chapter 3: Plugins Tried
+
+Chapter 4: Plugins Used
+
+Section 4.1: Excalidraw
+Among the plugins I use, Excalidraw plays a significant role, facilitating the creation of various drawings and sketches.
+
+Section 4.1.1: I Draw a Lot of Drawings
+Drawing holds substantial importance in my slide content, and Excalidraw provides a user-friendly interface for this purpose.
+
+Section 4.1.2: Using Excalidraw to Communicate Ideas
+In addition to drawing, Excalidraw serves as an excellent tool for effectively communicating my ideas and concepts.
+
+Section 4.1.3: Using draw.io for Technical Work
+For specific technical scenarios, I leverage draw.io alongside Excalidraw to accomplish more intricate technical drawings.
+
+Section 4.2: Publish Plugin
+The Publish plugin is another integral part of my workflow, facilitating the process of sharing my slides and ideas with others.
+
+Section 4.3: Advanced Slides
+While I tried various plugins, Advanced Slides has found its place in my workflow, with the built-in slides plugin being sufficient for my purposes.
+
+Section 4.3.1: Subsumed by the Tool Slider
+Certain features of the Advanced Slides plugin might be covered by another tool called Slider.
+
+Chapter 5: YouTube Series
+
+Section 5.1: Nicole van der Hoeven
+I have found the YouTube series by Nicole van der Hoeven to be a valuable resource for improving my slide creation skills and techniques.
+
+Chapter 6: Kinopio
+
+Section 6.1: Very Helpful Discord Support
+The supportive Kinopio community on Discord has proven invaluable in maximizing my productivity and understanding of the tool.
+
+Section 6.2: Slap Ideas Down, Impose Order Later
+Kinopio's unique approach of freely jotting down ideas and organizing them later aligns well with my creative process.
+
+Section 6.3: Using "/" to Link Pages
+Kinopio's use of "/" to link pages facilitates creating meaningful connections between different ideas and sections.
+
+Chapter 7: ChatGPT
+
+Chapter 8: Drafts
+
+Chapter 9: Canvas
+
+Section 9.1: The Limitations of an Infinite Canvas
+I have come to believe that an infinite canvas is not always a useful idea, prompting the need for some form of layering.
+
+Section 9.1.1: The Need for Layering
+In my slide creation process, I often require layering to manage and organize content effectively.
+
+Chapter 10: Experiments in Creating `README.md` Files
+
+Section 10.1: Experimenting with Obsidian
+I experimented with using Obsidian to create `README.md` files for projects, but the coordination of multiple vaults proved to be labor-intensive.
+```
+
+---
+
+the following contains a series of slides
+
+slides are separated by single lines containing nothing other than three dashes `---`
+
+each slide contains a title which is a line of text with no preceding dashes
+
+lines of text that begin with dashes are point-form contents of the slide with the number of dashes representing the indentation level of the line
+
+expand each slide into a section for a chapter in a book where eac chapter title begins with two octothorpes and each section begins with three octhorpes
+
+---
+
+initial attraction
+- backlinks
+- promise of slapping ideas down and linking them
+
+---
+
+current usage
+- markdown editor
+- Excalidraw plugin to create cketcher and drawings to communicate ideas
+-- using draw.io for odin0D work (drawing compiler)
+- publish for bloggint
+
+---
+
+plugins tried
+
+---
+
+plugins used
+- Exalidraw
+-- I draw a lot of drawings
+--- I use draw.io (standalone) for tech work
+--- I use Excalidraw to make sketches and to communicate ideas
+- Publish
+- Advanced Slides
+-- built-in slides plugin is enough for my purposes
+--- probably subsumes by the tool Slider
+
+---
+
+YouTube series
+- Nicole van der Hoeven
+
+---
+
+Kinopio
+- very helpful discord support
+- slap ideas down, impose order later
+- use "/" to link pages
+
+---
+
+ChatGPT
+
+---
+
+Drafts
+
+---
+
+Canvas
+- I don't think that an infinite canvas is a useful idea
+-- I want some kinf of layering
+
+---
+
+Experiments in creating `README.md` files
+- experimented with using Objsidian to create `REAMDE.md` for projects
+-- too much work to coordianate multiple vaults
+
+---
+
+```
+## Initial Attraction
+
+---
+
+Backlinks:
+- Promise of slapping ideas down and linking them.
+
+## Current Usage
+
+---
+
+- Markdown editor
+- Excalidraw plugin to create sketches and drawings to communicate ideas
+  - Using draw.io for technical work (drawing compiler)
+- Publish for blogging.
+
+## Plugins Tried
+
+---
+
+(No content provided)
+
+## Plugins Used
+
+---
+
+- Excalidraw
+  - I draw a lot of drawings
+    - I use draw.io (standalone) for tech work
+    - I use Excalidraw to make sketches and communicate ideas.
+- Publish
+- Advanced Slides
+  - Built-in slides plugin is enough for my purposes
+    - Probably subsumed by the tool Slider.
+
+## YouTube Series
+
+---
+
+- Nicole van der Hoeven
+
+## Kinopio
+
+---
+
+- Very helpful Discord support
+- Slap ideas down, impose order later
+- Use "/" to link pages.
+
+## ChatGPT
+
+---
+
+(No content provided)
+
+## Drafts
+
+---
+
+(No content provided)
+
+## Canvas
+
+---
+
+- I don't think that an infinite canvas is a useful idea
+  - I want some kind of layering.
+
+## Experiments in Creating `README.md` Files
+
+---
+
+- Experimented with using Obsidian to create `README.md` for projects
+  - Too much work to coordinate multiple vaults.
+```
+
+---
+
+[regenerate]
+
+---
+```
+## Chapter 1: Initial Attraction
+
+### Overview
+
+In this chapter, we will explore the initial attraction to a particular tool for organizing and linking ideas. The key factors that drew the author's attention will be discussed, including the appeal of backlinks and the promise of seamless idea organization.
+
+### Backlinks and Idea Organization
+
+The author was initially attracted to the tool's capability of creating backlinks. Backlinks are a powerful feature that allows for easy navigation between related ideas, enhancing the overall coherence and accessibility of the content. Additionally, the tool promised a seamless experience in jotting down and linking ideas, making it an intriguing choice for managing information.
+
+## Chapter 2: Current Usage
+
+### Overview
+
+This chapter delves into the current usage of the tool, shedding light on how it is currently employed for various purposes by the author. The chapter will cover the use of a Markdown editor and a specific plugin, as well as the process of publishing content for blogging.
+
+### Markdown Editor and Excalidraw Plugin
+
+The tool is primarily utilized as a Markdown editor, providing a straightforward and intuitive way to create and organize content. Moreover, the author employs the Excalidraw plugin, leveraging it to create sketches and drawings to effectively communicate ideas visually. Specifically, the author uses Excalidraw for both general sketching and communicating technical concepts.
+
+### Blogging and Publication
+
+Furthermore, the chapter will explore the tool's role in the author's blogging endeavors. By using the tool's publishing capabilities, the author can share their ideas and insights with a broader audience, reaching out to readers through well-structured and organized content.
+
+## Chapter 3: Explored Plugins
+
+### Overview
+
+In this chapter, the author's exploration of various plugins for the tool will be covered. While not all plugins made it to the final selection, they played a crucial role in the author's journey towards discovering the most suitable features for their needs.
+
+### An Array of Plugins
+
+The author extensively experimented with several plugins, seeking functionalities that would enhance their workflow. Although some plugins did not make the cut, their exploration was vital in narrowing down the options and ultimately arriving at the most effective choices.
+
+## Chapter 4: Utilized Plugins
+
+### Overview
+
+This chapter delves into the plugins that have found a permanent place in the author's toolkit. These selected plugins offer indispensable features and significantly contribute to the author's productivity and content organization.
+
+### Excalidraw: A Versatile Drawing Tool
+
+Among the plugins used, Excalidraw stands out as an essential component of the author's workflow. Its versatility allows the author to create intricate drawings and sketches, making it an invaluable aid for visual representation. Additionally, Excalidraw serves as a powerful means of conveying ideas effectively.
+
+### Publish: Sharing Ideas with the World
+
+The Publish plugin plays a pivotal role in the author's content dissemination strategy. By utilizing this plugin, the author can effortlessly share their ideas, thoughts, and insights with a broader audience, making it an indispensable tool for their blogging activities.
+
+### Advanced Slides: Streamlined Presentation
+
+The Advanced Slides plugin offers an enhanced slide creation experience, catering to the author's presentation needs. The built-in slides plugin serves the primary purpose, but the added features of Advanced Slides make it a worthwhile inclusion for the author's content creation.
+
+### Slider: A Tool for Streamlined Presentations
+
+The Slider plugin significantly improves the author's ability to create presentations with ease. It enhances the overall presentation experience and may potentially subsume the built-in slides plugin due to its efficiency and additional features.
+
+## Chapter 5: YouTube Series
+
+### Overview
+
+This chapter introduces a YouTube series by Nicole van der Hoeven, dedicated to exploring the tool's various features and functionalities. The author has found the series to be a valuable resource in mastering the tool and maximizing its potential.
+
+### Learning from Nicole van der Hoeven
+
+Nicole van der Hoeven's YouTube series has become a go-to resource for the author. By following the series, the author has gained a deeper understanding of the tool's capabilities and learned valuable tips and tricks to optimize their workflow.
+
+## Chapter 6: Kinopio - A Unique Approach
+
+### Overview
+
+In this chapter, the author explores Kinopio, an alternative tool with a unique approach to idea organization. The chapter delves into the tool's distinguishing features and its role in the author's toolkit.
+
+### Discord Support and User Experience
+
+The author appreciates the valuable support offered by the Kinopio community on Discord. The active community provides assistance and fosters a collaborative environment, enhancing the author's experience with the tool.
+
+### Slapping Ideas Down and Organizing Later
+
+Kinopio's unique philosophy of allowing users to spontaneously jot down ideas and later impose order resonates with the author. This approach aligns well with the author's creative process and helps foster a free-flowing idea generation process.
+
+### Seamless Page Linking with "/"
+
+A notable feature of Kinopio is its seamless page linking using the "/" symbol. This simple yet powerful feature makes it effortless for the author to connect related ideas, ultimately contributing to a more interconnected and comprehensive content structure.
+
+## Chapter 7: ChatGPT's Role
+
+### Overview
+
+This chapter reflects on the role of ChatGPT, a powerful language model, in the author's workflow and content creation process. The chapter discusses the tool's impact and its potential for further optimization.
+
+## Chapter 8: Drafts
+
+### Overview
+
+This chapter briefly touches on the role of drafts in the author's content creation journey. Although not explored in detail, drafts play a crucial role in the iterative process of refining ideas and polishing content.
+
+## Chapter 9: Canvas and Layering
+
+### Overview
+
+This chapter explores the concept of an infinite canvas and the author's perspective on its usefulness. Additionally, the chapter discusses the author's preference for some form of layering in content creation.
+
+### The Utility of an Infinite Canvas
+
+The author contemplates the idea of an infinite canvas for content creation. While acknowledging its potential advantages, the author expresses reservations about its practicality for their specific workflow.
+
+### The Need for Layering
+
+To improve the organization and structure of their content, the author expresses a desire for some form of layering. The inclusion of layering functionality could potentially enhance the author's creative process and streamline content development.
+
+## Chapter 10: Experiments in Creating `README.md` Files
+
+### Overview
+
+This chapter delves into the author's experiments with using the tool to create `README.md` files for projects. The author reflects on their experiences and highlights the strengths and limitations of this approach.
+
+### Using Obsidian for `README.md` Files
+
+The author experimented with employing Obsidian to create `README.md` files for their projects. While initially promising, this approach posed challenges in coordinating multiple vaults, making it less feasible for their specific needs.
+
+---
+The slides have been expanded into chapters and sections for a book, providing a more comprehensive exploration of the topics discussed.
+```
+
