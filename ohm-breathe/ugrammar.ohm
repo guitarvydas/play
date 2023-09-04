@@ -1,0 +1,9 @@
+DollarString {
+  str = delimiter char*
+  delimiter = "«" char+ "»"
+  char =
+    | delimiter -- inner
+    | ~"«" ~"»" any -- other
+}
+
+// «a»«b»c«d»

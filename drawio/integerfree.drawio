@@ -1,0 +1,140 @@
+<mxfile host="Electron" modified="2023-08-03T10:11:01.244Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.5 Chrome/114.0.5735.243 Electron/25.3.1 Safari/537.36" etag="5MWWzoi3KZBRqDInALx3" version="21.6.5" type="device">
+  <diagram name="Page-1" id="Si5my9R0qzAzhGjnDo4z">
+    <mxGraphModel dx="1201" dy="717" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-1" value="12345" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="210" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="elEVweOB6ETJ6EIzHvdu-4" target="elEVweOB6ETJ6EIzHvdu-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-4" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="240" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-5" value="reclaim" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="280" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-6" value="clone" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="400" y="310" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="elEVweOB6ETJ6EIzHvdu-7" target="elEVweOB6ETJ6EIzHvdu-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-7" value="λ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="280" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="elEVweOB6ETJ6EIzHvdu-8" target="elEVweOB6ETJ6EIzHvdu-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-8" value="λ" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="480" y="310" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-9" value="if I&#39;m in a register -&amp;gt; noop()&lt;br&gt;elif I&#39;m in temp space -&amp;gt; noop()&lt;br&gt;elif I&#39;m in parameter space -&amp;gt; noop&lt;br&gt;if I&#39;m in heap space -&amp;gt; free(me)" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="720" y="240" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-11" value="clone (me) to heap space" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;" vertex="1" parent="1">
+          <mxGeometry x="720" y="340" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-13" value="value" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="80" y="210" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-14" value="vtable" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="80" y="240" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-16" value="12345" style="rounded=0;whiteSpace=wrap;html=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="160" y="540" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-25" value="if I&#39;m in a register -&amp;gt; noop()&lt;br&gt;elif I&#39;m in temp space -&amp;gt; noop()&lt;br&gt;elif I&#39;m in parameter space -&amp;gt; noop&lt;br&gt;if I&#39;m in heap space -&amp;gt; free(me)" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="720" y="470" width="220" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-26" value="clone (me) to heap space" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="720" y="570" width="220" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-27" value="type tag" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="80" y="540" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-29" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;fontStyle=1" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="360" as="sourcePoint" />
+            <mxPoint x="220" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-30" value="optimize" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontStyle=0" vertex="1" connectable="0" parent="elEVweOB6ETJ6EIzHvdu-29">
+          <mxGeometry x="0.3125" relative="1" as="geometry">
+            <mxPoint y="-40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-31" value="Int64" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="170" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-32" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="670" y="470" width="20" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-33" value="ad-hoc sprayed thoughout code" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="520" y="525" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-34" value="-&amp;gt; bloatware" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="530" y="575" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-35" value="12345" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="160" y="820" width="160" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-36" value="value" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;" vertex="1" parent="1">
+          <mxGeometry x="80" y="820" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-37" value="" style="shape=flexArrow;endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="220" y="640" as="sourcePoint" />
+            <mxPoint x="220" y="800" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-38" value="optimize" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="elEVweOB6ETJ6EIzHvdu-37">
+          <mxGeometry x="0.3125" relative="1" as="geometry">
+            <mxPoint y="-40" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-39" value="value" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;opacity=50;textOpacity=50;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry y="540" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-40" value="1st optimization due to 1950s concern for using as little memory as possible" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="320" y="920" width="360" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-41" value="2nd optimization due to concern for removing ad-hoc Testing and Q/A and enabling compile-time consistency checking without regard for damage caused to RAD (Rapid Application Development)" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1020" width="360" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-42" value="reclaim and clone were centralized until User-Defined Types were invented, i.e. at first the vtable could be put into one place - the runtime library, but with User-Defined Types, the Users (programmers) needed to supply code for reclaim and clone" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1120" width="360" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-43" value="bloatware and ad-hoc-ness encouraged by allowing implementation structure of Data to leak into Code -&amp;gt; allows writing code to do cleanup, but does not enforce encapsulation and refactoring of such code (allowing refactorization is not the same as enforcing properly factored structure)&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="320" y="1220" width="360" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-44" value="Conclusion: allowing Data Structure / Implementation to leak into Code is Bad" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1320" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-45" value="Conclusion: Code for Control Flow should be a different language (different restrictions) from Implementation of Data" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1380" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-46" value="e.g. Control Flow Code should not be allowed to know details such as int8, int16, int32, int64, float, double, unions, structs, etc." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1450" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-47" value="e.g. I call Data &quot;Operands&quot; and Control Flow &quot;Instructions&quot; (or &quot;scripts&quot; or &quot;control flow&quot; or &quot;sequence&quot; or &quot;steps&quot;)" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1520" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-48" value="Conclusion: GC simply means visiting &lt;i&gt;every&lt;/i&gt;&amp;nbsp;Operand and calling its &lt;i&gt;reclaim()&lt;/i&gt;&amp;nbsp;method." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="360" y="1600" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-49" value="variant: call &lt;i&gt;reclaim()&lt;/i&gt;&amp;nbsp;every time an Operand falls out of scope (similar to Reference Counting GC)" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1670" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-50" value="variant: add Operand to some sort of list of Operands to be GC&#39;ed when necessary" style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1740" width="360" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="elEVweOB6ETJ6EIzHvdu-51" value="variant: supply a compile-time vtable&amp;nbsp; in addition to runtime vtable - determine Operands&#39; GC-needs at compile-time and queue up a &quot;defer&quot; for clean-up, i.e. nothing at all for temps, GC-me for heap-allocated, ..." style="rounded=0;whiteSpace=wrap;html=1;align=left;spacingLeft=5;textOpacity=50;dashed=1;dashPattern=1 4;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1810" width="360" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

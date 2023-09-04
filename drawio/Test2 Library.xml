@@ -1,0 +1,7 @@
+<mxlibrary>[
+  {
+    "xml": "&lt;mxGraphModel&gt;&lt;root&gt;&lt;mxCell id=\"0\"/&gt;&lt;mxCell id=\"1\" parent=\"0\"/&gt;&lt;mxCell id=\"2\" value=\"\" style=\"ellipse;shape=cloud;whiteSpace=wrap;html=1;container=1;\" vertex=\"1\" parent=\"1\"&gt;&lt;mxGeometry width=\"250\" height=\"170\" as=\"geometry\"&gt;&lt;mxRectangle x=\"200\" y=\"280\" width=\"50\" height=\"40\" as=\"alternateBounds\"/&gt;&lt;/mxGeometry&gt;&lt;/mxCell&gt;&lt;mxCell id=\"3\" value=\"\" style=\"shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;\" vertex=\"1\" parent=\"2\"&gt;&lt;mxGeometry x=\"100\" y=\"45\" width=\"60\" height=\"80\" as=\"geometry\"/&gt;&lt;/mxCell&gt;&lt;/root&gt;&lt;/mxGraphModel&gt;",
+    "w": 250,
+    "h": 170
+  }
+]</mxlibrary>

@@ -1,0 +1,27 @@
+<mxfile host="Electron" modified="2023-07-24T03:17:15.481Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.5 Chrome/114.0.5735.243 Electron/25.3.1 Safari/537.36" etag="eDemd-4Es719v67yD3PT" version="21.6.5" type="device">
+  <diagram name="Page-1" id="gQwDYQ7YawIhEFqcuWjs">
+    <mxGraphModel dx="1023" dy="604" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="I-pi_VhXv9lCjfe4Tywq-1" value="C" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;container=1;recursiveResize=0;verticalAlign=top;arcSize=6;fontStyle=1;autosize=0;points=[];absoluteArcSize=1;shadow=1;strokeColor=#001DBC;fillColor=#0050ef;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="236.75" y="120" width="137" height="177" as="geometry">
+            <mxRectangle x="-98" y="-1230" width="99" height="26" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="I-pi_VhXv9lCjfe4Tywq-2" value="input" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];arcSize=50;" vertex="1" parent="I-pi_VhXv9lCjfe4Tywq-1">
+          <mxGeometry x="-16.75" y="36" width="66" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="I-pi_VhXv9lCjfe4Tywq-3" value="output1" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="I-pi_VhXv9lCjfe4Tywq-1">
+          <mxGeometry x="84.75" y="36" width="66" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="I-pi_VhXv9lCjfe4Tywq-5" value="output2" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="I-pi_VhXv9lCjfe4Tywq-1">
+          <mxGeometry x="84.75" y="82.5" width="66" height="25" as="geometry" />
+        </mxCell>
+        <mxCell id="I-pi_VhXv9lCjfe4Tywq-6" value="output3" style="rounded=1;whiteSpace=wrap;html=1;sketch=0;points=[[0,0.5,0,0,0],[1,0.5,0,0,0]];fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;arcSize=50;" vertex="1" parent="I-pi_VhXv9lCjfe4Tywq-1">
+          <mxGeometry x="84.75" y="129" width="66" height="25" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

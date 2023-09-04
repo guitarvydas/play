@@ -1,0 +1,11 @@
+DollarString {
+  str = firstdelimiter char* ";"
+  firstdelimiter = delimiter
+  delimiter = "$" char+ "$"
+  char =
+    | delimiter -- inner
+    | ~"$" ~";" any -- other
+}
+
+//$a$$b$c$d$;
+//$foo$ start $notfoo$ more $foo$;
