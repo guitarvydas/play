@@ -1,0 +1,21 @@
+package zd
+
+import "core:strings"
+import "core:mem"
+import "core:os"
+import "core:fmt"
+
+main :: proc (){
+    cs := "TARVY"
+    fmt.println (typeid_of (type_of (cs)))
+    fmt.println (len (cs))
+    fmt.println (raw_data (cs))
+    fmt.println (&cs)
+    
+    clonedcs := strings.clone (cs)
+    fmt.println (typeid_of (type_of (clonedcs)))
+    fmt.println (len (clonedcs))
+    fmt.println (raw_data (clonedcs))
+    fmt.println (&clonedcs)
+
+}
