@@ -1,35 +1,42 @@
 package odinstate
 
 import "core:fmt"
+import "core:runtime"
 
 State :: struct {
     state : int
 }
 
-mutate_state :: proc (any1: any, any2: any) {
-    fmt.printf ("begin mutate\n  any1=%p %v\n  any2=%p %v\n", any1, any1, any2, any2)
-    a1 := any1.(^State)
-    a2 := &any2.(State)
-    a1.state = 51
-    a2.state = 75
-    fmt.printf ("finish mutate\n  a1=%p %v\n  a2=%p %v\n", a1, a1, a2, a2)
+Object :: struct {
+    data : State
 }
 
-do_nothing :: proc (envany: any) {
+old_mutate_state :: proc (anyparam: any) {
+    fmt.printf ("in proc %v\n", transmute(runtime.Raw_Any)anyparam)
+    obj := anyparam.(Object)
+    fmt.printf ("in proc obj=%p\n", obj)
+    obj.data.state = 71
+}
+
+mutate_state :: proc (anyparam: any) {
+    fmt.printf ("in proc %v\n", transmute(runtime.Raw_Any)anyparam)
+    p := &anyparam.(Object)
+    fmt.printf ("in proc obj=%p\n", p)
+    p.data.state = 71
+}
+
+do_nothing :: proc (anyparam: any) {
     x := 1
     y := 2
     z := 3
-    fmt.println (envany, x, y, z)
+    fmt.println (anyparam, x, y, z)
 }
 
 main :: proc () {
-    a1 := new (State)
-    a2 := new (State)
-    a1.state = 1
-    a2.state = 2
-    fmt.printf ("a1=%p %v, a2=%p %v\n", a1, a1, a2, a2)
-    mutate_state (a1, a2^)
+    v := new (Object)
+    v.data.state = 5
+    mutate_state (v^)
     do_nothing (0)
-    fmt.printf ("a1=%p %v, a2=%p %v\n", a1, a1, a2, a2)
+    fmt.printf ("%v\n", v)
 }
 

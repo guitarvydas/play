@@ -1,0 +1,24 @@
+{
+    "name":"bit",
+    "id":"iU3BA-QzPucqWfZWKDJkw"
+    
+    connections: [
+{"startCardId":"qv1qp3BtdYckUZIF504zP",
+		 "endCardId":"iU3BA-QzPucqWfZWKDJkw",
+		 "path":"m610,
+784 q00,
+00 127,
+-10",
+		 "controlPoint":"q00,
+00",
+		 "id":"qj_yJWCuAvhaJbcXfBU1r",
+		 "spaceId":"XidvtBMoiFFoAGym3XYx4",
+		 "userId":null,
+		 "connectionTypeId":"Yi3wv_zP89pb1DCwnSfJQ",
+		 "distanceFromOrigin":1606,
+		 "labelIsVisible":false,
+		 "directionIsVisible":false,
+		 "createdAt":"2023-10-16T20:26:49.852Z",
+ "updatedAt":"2023-10-16T20:26:49.852Z"
+}
+]	
