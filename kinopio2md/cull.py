@@ -13,7 +13,6 @@ for x in obj['cards']:
     id = x['id']
     card = { 'id' : id, 'name' : x['name'] }
     cards[id] = card
-    print (card)
 
 connections = {}
 for y in obj['connections']:
@@ -24,14 +23,18 @@ for y in obj['connections']:
     connections[id] = { 'id': id, 'from': fromCard, 'to': toCard, 'type': connType }
     
 print ()
-print (cards)
 for c in cards:
     print (cards[c])
 
 print ()
-print (connections)
 for j in connections:
     print (connections[j])
 
+print ()
+culled = { 'cards' : cards, 'connections': connections}
+print (culled)
 
-    
+with open("out.json", "w") as outfile:
+    json.dump(culled, outfile)
+
+
