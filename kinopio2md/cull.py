@@ -34,7 +34,11 @@ print ()
 culled = { 'cards' : cards, 'connections': connections}
 print (culled)
 
+# Serializing json
+json_object = json.dumps(culled, indent=4)
+ 
+# Writing to sample.json
 with open("out.json", "w") as outfile:
-    json.dump(culled, outfile)
+    outfile.write(json_object)
 
 
