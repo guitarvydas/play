@@ -15,8 +15,23 @@ for x in obj['cards']:
     cards[id] = card
     print (card)
 
+connections = {}
+for y in obj['connections']:
+    fromCard = y['startCardId']
+    toCard = y['endCardId']
+    connType = y['connectionTypeId']
+    id = y['id']
+    connections[id] = { 'id': id, 'from': fromCard, 'to': toCard, 'type': connType }
+    
 print ()
 print (cards)
 for c in cards:
     print (cards[c])
+
+print ()
+print (connections)
+for j in connections:
+    print (connections[j])
+
+
     
