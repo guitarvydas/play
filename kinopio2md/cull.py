@@ -22,17 +22,17 @@ for y in obj['connections']:
     id = y['id']
     connections[id] = { 'id': id, 'from': fromCard, 'to': toCard, 'type': connType }
     
-print ()
-for c in cards:
-    print (cards[c])
+# print ()
+# for c in cards:
+#     print (cards[c])
 
-print ()
-for j in connections:
-    print (connections[j])
+# print ()
+# for j in connections:
+#     print (connections[j])
 
-print ()
+# print ()
 culled = { 'cards' : cards, 'connections': connections}
-print (culled)
+# print (culled)
 
 # Serializing json
 json_object = json.dumps(culled, indent=4)
