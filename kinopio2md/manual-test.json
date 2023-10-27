@@ -1,0 +1,12 @@
+{
+  "cards": {
+      "nodeT": {"id":"nodeT", "text":"T",			"kind": "root"	},
+      "nodeU": {"id":"nodeU", "text":"U", "parent": "nodeT"			},
+      "nodeX": {"id":"nodeX", "text":"X", "parent": "nodeT"			},
+      "nodeV": {"id":"nodeV", "text":"V", "parent": "nodeU"			},
+      "nodeY": {"id":"nodeY", "text":"Y", "parent": "nodeX",	"kind": "leaf"	},
+      "nodeW": {"id":"nodeW", "text":"W", "parent": "nodeV"			},
+      "nodeZ": {"id":"nodeZ", "text":"Z", "parent": "nodeW",	"kind": "leaf"	}
+  }
+}
+
